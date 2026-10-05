@@ -45,7 +45,8 @@ From: pytorch/pytorch:2.14.0-cuda13.2-cudnn9-runtime
     rm -rf /root/.cache/pip || true
 
     # Patch arboreto bug
-    patch "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/arboreto/core.py" /groundscale/arboreto.patch
+    patch -d "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/arboreto" < /groundscale/arboreto.patch
+
 
 %runscript
     # If no args provided, default to --help to match Docker CMD

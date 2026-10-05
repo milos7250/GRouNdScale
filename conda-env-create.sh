@@ -19,7 +19,7 @@ else
 fi
 pip install -r requirements2.txt --no-build-isolation
 
-patch "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/arboreto/core.py" ./arboreto.patch
+patch -d "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/arboreto" < ./arboreto.patch
 
 # Ask user if they want to install developer dependencies, default to no
 read -p "Do you want to install developer dependencies? (y/N) " -n 1 -r

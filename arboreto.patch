@@ -1,5 +1,5 @@
---- /mnt/apps/users/mmicik/conda/envs/groundscale/lib/python3.11/site-packages/arboreto/core.py.bak	2025-11-17 18:12:08.920391504 +0000
-+++ /mnt/apps/users/mmicik/conda/envs/groundscale/lib/python3.11/site-packages/arboreto/core.py	2025-11-17 18:12:35.540113299 +0000
+--- arboreto/core.py	2025-11-17 18:12:08.920391504 +0000
++++ arboreto/core.py	2025-11-17 18:12:35.540113299 +0000
 @@ -447,7 +447,8 @@
  
      # gather the DataFrames into one distributed DataFrame
@@ -10,3 +10,14 @@
  
      # optionally limit the number of resulting regulatory links, descending by top importance
      if limit:
+--- arboreto/algo.py	2026-10-05 14:44:48.325875338 +0100
++++ arboreto/algo.py	2026-10-05 14:44:53.273826271 +0100
+@@ -154,7 +154,7 @@
+     """
+ 
+     if client_or_address is None or str(client_or_address).lower() == 'local':
+-        local_cluster = LocalCluster(diagnostics_port=None)
++        local_cluster = LocalCluster()
+         client = Client(local_cluster)
+ 
+         def close_client_and_local_cluster(verbose=False):
