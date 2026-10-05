@@ -1,3 +1,4 @@
+import warnings
 from collections import Counter
 from configparser import ConfigParser
 from pathlib import Path
@@ -43,7 +44,14 @@ def preprocess(cfg: ConfigParser) -> None:
     # clustering
     logger.info("Clustering data...")
     ann_clustered = anndata.copy()
-    sc.pp.recipe_zheng17(ann_clustered)
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore", message=r".*Use sc.pp.highly_variable_genes instead.*", category=FutureWarning
+        )
+        warnings.filterwarnings(
+            "ignore", message=r".*zero-centering a sparse array/matrix densifies it.*", category=UserWarning
+        )
+        sc.pp.recipe_zheng17(ann_clustered)
     sc.tl.pca(ann_clustered, n_comps=50)
     sc.pp.neighbors(ann_clustered, n_pcs=50, random_state=random_seed)
     sc.tl.louvain(ann_clustered, resolution=float(cfg.get("Preprocessing", "louvain res")), random_state=random_seed)
@@ -109,11 +117,11 @@ def preprocess(cfg: ConfigParser) -> None:
 
     logger.info("Saving datasets...")
     Path(cfg.get("Data", "train")).parent.mkdir(parents=True, exist_ok=True)
-    anndata[:val_size].write_h5ad(cfg.get("Data", "validation"))
+    anndata[:val_size].copy().write_h5ad(cfg.get("Data", "validation"))
     Path(cfg.get("Data", "validation")).parent.mkdir(parents=True, exist_ok=True)
-    anndata[val_size : test_size + val_size].write_h5ad(cfg.get("Data", "test"))
+    anndata[val_size : test_size + val_size].copy().write_h5ad(cfg.get("Data", "test"))
     Path(cfg.get("Data", "test")).parent.mkdir(parents=True, exist_ok=True)
-    anndata[test_size + val_size :].write_h5ad(cfg.get("Data", "train"))
+    anndata[test_size + val_size :].copy().write_h5ad(cfg.get("Data", "train"))
 
     logger.info("Successfully preprocessed and saved dataset.")
     logger.info(

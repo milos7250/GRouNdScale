@@ -728,10 +728,16 @@ class GANTrainer:
         self._init_optimizers()
         self._init_schedulers()
 
+        # Save the model graph to TensorBoard for visualization.
+        # This is done only on rank 0 in DDP or when not using DDP.
         if (is_ddp_initialized() and os.environ.get("RANK") == "0") or not is_ddp_initialized():
             self._init_umap()
-            self.logger.debug("Saving model graph...")
-            self.gan.log_tensorboard_graph(self.output_dir)
+            # Skipped if modules are compiled to avoid OOM errors with large models,
+            # as eager execution is required for graph logging, and requires much
+            # more memory than compiled execution.
+            if not compile_modules:
+                self.logger.debug("Saving model graph...")
+                self.gan.log_tensorboard_graph(self.output_dir)
 
         if checkpoint_path is not None:
             self._load_checkpoint(checkpoint_path)

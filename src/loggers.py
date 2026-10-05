@@ -171,15 +171,15 @@ if not __set_up:
 
     # Suppress specific warnings
     warnings.filterwarnings(
-        "ignore", message=".*pkg_resources is deprecated as an API.*", category=UserWarning, module="louvain"
+        "ignore", message=r".*pkg_resources is deprecated as an API.*", category=UserWarning, module="louvain"
     )
-    warnings.filterwarnings("ignore", message=".*GPSampler is experimental.*")
+    warnings.filterwarnings("ignore", message=r".*GPSampler is experimental.*")
     warnings.filterwarnings(
-        "ignore", message=".*dynamo_pgo force disabled by torch.compiler.config.force_disable_caches*"
+        "ignore", message=r".*dynamo_pgo force disabled by torch.compiler.config.force_disable_caches*"
     )
-    warnings.filterwarnings("ignore", message=".*Using an existing study with name .* instead of creating a new one.*")
-    warnings.filterwarnings("ignore", message=".*Trial [0-9]+ pruned.*")
-    warnings.filterwarnings("ignore", message=".*Rich is experimental/alpha.*", category=TqdmExperimentalWarning)
+    warnings.filterwarnings("ignore", message=r".*Using an existing study with name .* instead of creating a new one.*")
+    warnings.filterwarnings("ignore", message=r".*Trial [0-9]+ pruned.*")
+    warnings.filterwarnings("ignore", message=r".*Rich is experimental/alpha.*", category=TqdmExperimentalWarning)
 
     # Setup plotting variables
     plt.rcParams.update({

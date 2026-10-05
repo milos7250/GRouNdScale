@@ -41,7 +41,8 @@ RUN rm -rf /root/.cache/pip || true
 
 # Patch arboreto bug
 COPY arboreto.patch /groundscale
-RUN patch "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/arboreto/core.py" /groundscale/arboreto.patch
+RUN patch -d "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/arboreto" < /groundscale/arboreto.patch
+
 
 
 FROM runtime AS docs
