@@ -46,15 +46,24 @@ def preprocess(cfg: ConfigParser) -> None:
     ann_clustered = anndata.copy()
     with warnings.catch_warnings():
         warnings.filterwarnings(
-            "ignore", message=r".*Use sc.pp.highly_variable_genes instead.*", category=FutureWarning
+            "ignore",
+            message=r".*The function filter_genes_dispersion is deprecated and will be removed in the future.*",
+            category=FutureWarning,
         )
         warnings.filterwarnings(
             "ignore", message=r".*zero-centering a sparse array/matrix densifies it.*", category=UserWarning
         )
+        warnings.filterwarnings(
+            "ignore",
+            message=r".*The function louvain is deprecated and will be removed in the future. Use :func:`scanpy.tl.leiden` instead.*",
+            category=FutureWarning,
+        )
         sc.pp.recipe_zheng17(ann_clustered)
-    sc.tl.pca(ann_clustered, n_comps=50)
-    sc.pp.neighbors(ann_clustered, n_pcs=50, random_state=random_seed)
-    sc.tl.louvain(ann_clustered, resolution=float(cfg.get("Preprocessing", "louvain res")), random_state=random_seed)
+        sc.tl.pca(ann_clustered, n_comps=50)
+        sc.pp.neighbors(ann_clustered, n_pcs=50, random_state=random_seed)
+        sc.tl.louvain(
+            ann_clustered, resolution=float(cfg.get("Preprocessing", "louvain res")), random_state=random_seed
+        )
     anndata.obs["cluster"] = ann_clustered.obs["louvain"]
     del ann_clustered
 
