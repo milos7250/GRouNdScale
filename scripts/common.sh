@@ -33,6 +33,11 @@ export GROUNDSCALE_LOGLEVEL=${GROUNDSCALE_LOGLEVEL:-INFO}
 export GROUNDSCALE_NO_TQDM=${GROUNDSCALE_NO_TQDM:-0}
 export LOGLEVEL=${LOGLEVEL:-WARNING}
 
+export PYTHON="apptainer exec --nv 'docker://milos7250/groundscale:latest' python"
+python(){
+    apptainer exec --nv 'docker://milos7250/groundscale:latest' python "$@"
+}
+
 if [[ -f "$POSTGRES_DIR/.env" ]]; then
     set -a
     source "$POSTGRES_DIR/.env"

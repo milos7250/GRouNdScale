@@ -18,6 +18,6 @@ export NUM_GENES=$SIZE
 sed "s|\${SIZE}|$SIZE|g" "${CONFIG%.cfg}_template.cfg" > "${CONFIG%.cfg}.cfg"
 sed -i "s|\${NUM_GENES}|$NUM_GENES|g" "${CONFIG%.cfg}.cfg"
 
-apptainer exec --nv "docker://milos7250/groundgan:latest" \
+apptainer exec --nv "docker://milos7250/groundscale:latest" \
     python \
     profile_memory_upstream.py

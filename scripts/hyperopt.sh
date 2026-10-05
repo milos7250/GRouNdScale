@@ -17,8 +17,7 @@ source "$CODE_ROOT/scripts/common.sh"
 # Sleep random amount of time to avoid race conditions when creating optuna study
 sleep $(( RANDOM % 60 ))
 
-apptainer exec --nv "$CODE_ROOT/docker/groundscale.sif" \
-    python \
+python \
     "$CODE_ROOT/src/main.py" \
     --config "$CONFIG" \
     --optimize-hyperparameters

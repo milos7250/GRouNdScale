@@ -14,8 +14,7 @@ CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation
 source "$CODE_ROOT/scripts/common.sh"
 
 
-apptainer exec --nv "$CODE_ROOT/docker/groundscale.sif" \
-    python \
+python \
     "$CODE_ROOT/src/main.py" \
     --config "$CONFIG" \
     --generate \
