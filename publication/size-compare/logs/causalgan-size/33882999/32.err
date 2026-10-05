@@ -1,0 +1,154 @@
++ export CONFIG=causal_gan.cfg
++ CONFIG=causal_gan.cfg
++ export CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ export GROUNDGAN_LOGLEVEL=DEBUG
++ GROUNDGAN_LOGLEVEL=DEBUG
++ export GROUNDGAN_NO_TQDM=1
++ GROUNDGAN_NO_TQDM=1
++ export PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ PID=
++ trap on_exit EXIT
++ export SIZE=17000
++ SIZE=17000
++ export NUM_GENES=17000
++ NUM_GENES=17000
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/preprocess.sh
+/opt/conda/lib/python3.11/site-packages/scanpy/preprocessing/_recipes.py:185: FutureWarning: Use sc.pp.highly_variable_genes instead
+  filter_result = filter_genes_dispersion(
+/opt/conda/lib/python3.11/functools.py:909: UserWarning: zero-centering a sparse array/matrix densifies it.
+  return dispatch(args[0].__class__)(*args, **kw)
+/opt/conda/lib/python3.11/site-packages/anndata/_core/anndata.py:1208: ImplicitModificationWarning: Trying to modify attribute `.obs` of view, initializing view as actual.
+  df[key] = c
+/opt/conda/lib/python3.11/site-packages/anndata/_core/anndata.py:1208: ImplicitModificationWarning: Trying to modify attribute `.obs` of view, initializing view as actual.
+  df[key] = c
+/opt/conda/lib/python3.11/site-packages/anndata/_core/anndata.py:1208: ImplicitModificationWarning: Trying to modify attribute `.obs` of view, initializing view as actual.
+  df[key] = c
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/create-grn.sh
+/opt/conda/lib/python3.11/site-packages/distributed/client.py:3398: UserWarning: Sending large graph of size 4.22 GiB.
+This may cause some slowdown.
+Consider loading the data with Dask directly
+ or using futures or delayed objects to embed the data into the graph without repetition.
+See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask for more information.
+  warnings.warn(
+++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/../..//inspect_h5ad.py results/17000/train.h5ad
+++ grep -oE '\([0-9]+, [0-9]+\)'
+++ cut -d, -f2
+++ grep -oE '[0-9]+'
++ NUM_GENES=17000
++ export NUM_GENES
++ PID=1826097
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/train.sh
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/17000/gpu-usage.csv
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/17000/gpu-usage.csv
+Traceback (most recent call last):
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/main.py", line 178, in <module>
+    _main()
+  File "/opt/conda/lib/python3.11/site-packages/click/core.py", line 1462, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/rich_click/rich_command.py", line 216, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/click/core.py", line 1246, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/click/core.py", line 814, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/main.py", line 166, in _main
+    main(
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/main.py", line 88, in main
+    result = fac.get_trainer()(trial)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/factory.py", line 351, in <lambda>
+    _get_trainer()(trial),
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/factory.py", line 337, in <lambda>
+    return lambda trial: gan_trainer.train(
+                         ^^^^^^^^^^^^^^^^^^
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/training/gan.py", line 735, in train
+    self.gan.log_tensorboard_graph(self.output_dir)
+  File "/opt/conda/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/gans/gan.py", line 301, in log_tensorboard_graph
+    w.add_graph(self.gen, gen_data, use_strict_trace=False)
+  File "/opt/conda/lib/python3.11/site-packages/torch/utils/tensorboard/writer.py", line 841, in add_graph
+    graph(model, input_to_model, verbose, use_strict_trace)
+  File "/opt/conda/lib/python3.11/site-packages/torch/utils/tensorboard/_pytorch_graph.py", line 332, in graph
+    raise e
+  File "/opt/conda/lib/python3.11/site-packages/torch/utils/tensorboard/_pytorch_graph.py", line 326, in graph
+    trace = torch.jit.trace(model, args, strict=use_strict_trace)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1044, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/jit/_trace.py", line 998, in trace
+    traced_func = _trace_impl(
+                  ^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/jit/_trace.py", line 696, in _trace_impl
+    return trace_module(
+           ^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/jit/_trace.py", line 1181, in trace_module
+    module._c._create_method_from_trace(
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1765, in _slow_forward
+    result = self.forward(*input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/networks/masked_causal_generator.py", line 173, in forward
+    gene_expression = self._generator(regulators)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1765, in _slow_forward
+    result = self.forward(*input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1765, in _slow_forward
+    result = self.forward(*input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1765, in _slow_forward
+    result = self.forward(*input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/sparselinear/sparselinear.py", line 334, in forward
+    output = torch_sparse.spmm(self.indices, self.weights, self.out_features, self.in_features, inputs.t()).t()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch_sparse/spmm.py", line 28, in spmm
+    out = out * value.unsqueeze(-1)
+          ~~~~^~~~~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.46 GiB. GPU 0 has a total capacity of 79.27 GiB of which 15.16 GiB is free. Including non-PyTorch memory, this process has 64.11 GiB memory in use. Of the allocated memory 51.91 GiB is allocated by PyTorch, and 11.68 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
++ on_exit
++ status=1
++ [[ -n 1826097 ]]
++ kill -SIGINT 1826097
++ ((  status != 0  ))
++ scancel -t PENDING 33882999
++ exit 1

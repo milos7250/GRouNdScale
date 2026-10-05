@@ -1,0 +1,50 @@
++ export CONFIG=causal_gan.cfg
++ CONFIG=causal_gan.cfg
++ export CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ export GROUNDGAN_LOGLEVEL=DEBUG
++ GROUNDGAN_LOGLEVEL=DEBUG
++ export GROUNDGAN_NO_TQDM=1
++ GROUNDGAN_NO_TQDM=1
++ alias python=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ PID=
++ trap on_exit EXIT
++ export SIZE=7500
++ SIZE=7500
++ export NUM_GENES=7500
++ NUM_GENES=7500
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/preprocess.sh
+/opt/conda/lib/python3.11/site-packages/scanpy/preprocessing/_recipes.py:185: FutureWarning: Use sc.pp.highly_variable_genes instead
+  filter_result = filter_genes_dispersion(
+/opt/conda/lib/python3.11/functools.py:909: UserWarning: zero-centering a sparse array/matrix densifies it.
+  return dispatch(args[0].__class__)(*args, **kw)
+/opt/conda/lib/python3.11/site-packages/anndata/_core/anndata.py:1208: ImplicitModificationWarning: Trying to modify attribute `.obs` of view, initializing view as actual.
+  df[key] = c
+/opt/conda/lib/python3.11/site-packages/anndata/_core/anndata.py:1208: ImplicitModificationWarning: Trying to modify attribute `.obs` of view, initializing view as actual.
+  df[key] = c
+/opt/conda/lib/python3.11/site-packages/anndata/_core/anndata.py:1208: ImplicitModificationWarning: Trying to modify attribute `.obs` of view, initializing view as actual.
+  df[key] = c
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/create-grn.sh
+/opt/conda/lib/python3.11/site-packages/distributed/client.py:3398: UserWarning: Sending large graph of size 1.86 GiB.
+This may cause some slowdown.
+Consider loading the data with Dask directly
+ or using futures or delayed objects to embed the data into the graph without repetition.
+See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask for more information.
+  warnings.warn(
+++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/../..//inspect_h5ad.py results/7500/train.h5ad
+++ grep -oE '\([0-9]+, [0-9]+\)'
+++ cut -d, -f2
+++ grep -oE '[0-9]+'
++ NUM_GENES=7500
++ export NUM_GENES
++ PID=289857
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/7500/gpu-usage.csv
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/train.sh
++ kill -SIGINT 289857
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/count-parameters.py --checkpoint results/7500/checkpoints/step_20.pth --out results/7500/params-size.json
++ on_exit
++ status=0
++ [[ -n 289857 ]]
++ kill -SIGINT 289857
++ ((  status != 0  ))
++ exit 0

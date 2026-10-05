@@ -1,0 +1,82 @@
+Running command on n23-64-512-nagini
+[20:10:09] INFO     (randomness) Initial random seed: 171758223                                                                                                                         randomness.py:11
+           INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+           INFO     (GRouNdScale CLI) Initializing training libraries...                                                                                                                      main.py:77
+[20:10:13] INFO     (randomness) Using seed 781759803 for PyTorch random number generation.                                                                                             randomness.py:42
+[20:10:28] WARNING  (dotenv.main) python-dotenv could not parse statement starting at line 2                                                                                                  main.py:35
+           WARNING  (dotenv.main) python-dotenv could not parse statement starting at line 4                                                                                                  main.py:35
+           WARNING  (dotenv.main) python-dotenv could not parse statement starting at line 5                                                                                                  main.py:35
+[20:10:30] INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:726
+[20:10:41] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:748
+[20:16:08] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:580
+                    Generator Loss                             8.5e+02                                                                                                                                  
+                    Generator Total Loss                       8.5e+02                                                                                                                                  
+                    Critic Total Loss                         -1.3e+04                                                                                                                                  
+                    Critic Fake Loss                          -8.4e+02                                                                                                                                  
+                    Critic Real Loss                          -1.5e+04                                                                                                                                  
+                    Critic Gradient Penalty Loss               3.5e+03                                                                                                                                  
+                    Total Loss                                -1.2e+04                                                                                                                                  
+                    Validation Generator Loss                       47                                                                                                                                  
+                    Validation Generator Total Loss                 47                                                                                                                                  
+                    Validation Critic Fake Loss                    -47                                                                                                                                  
+                    Validation Critic Real Loss               -3.7e+04                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss    9.9e+03                                                                                                                                  
+                    Validation Critic Total Loss              -2.7e+04                                                                                                                                  
+                    Validation Total Loss                     -2.7e+04                                                                                                                                  
+[20:16:17] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:671
+Finished training after 20 steps.:  100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20/20  [ 0:05:35 < 0:00:00 , ? it/s ]
+[20:16:21] INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:726
+[20:16:23] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:748
+[20:26:06] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:580
+                    Generator Loss                             1.8e+03                                                                                                                                  
+                    Generator Labeler Loss                     1.3e+02                                                                                                                                  
+                    Generator Antilabeler Loss                 1.3e+02                                                                                                                                  
+                    Generator Total Loss                       2.1e+03                                                                                                                                  
+                    Critic Total Loss                         -4.4e+04                                                                                                                                  
+                    Critic Fake Loss                          -1.2e+03                                                                                                                                  
+                    Critic Real Loss                          -8.4e+04                                                                                                                                  
+                    Critic Gradient Penalty Loss               4.1e+04                                                                                                                                  
+                    Total Loss                                -4.2e+04                                                                                                                                  
+                    Labeler Real Loss                               12                                                                                                                                  
+                    Labeler Fake Loss                          1.1e+02                                                                                                                                  
+                    Antilabeler Loss                           1.1e+02                                                                                                                                  
+                    Validation Generator Loss                   -6e+02                                                                                                                                  
+                    Validation Generator Total Loss             -6e+02                                                                                                                                  
+                    Validation Critic Fake Loss                  6e+02                                                                                                                                  
+                    Validation Critic Real Loss                 -1e+05                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss    5.1e+04                                                                                                                                  
+                    Validation Critic Total Loss              -5.2e+04                                                                                                                                  
+                    Validation Total Loss                     -5.3e+04                                                                                                                                  
+[20:26:12] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:671
+Finished training after 20 steps.:  100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20/20  [ 0:09:48 < 0:00:00 , ? it/s ]
+           INFO     (GRouNdScale CLI) Finished                                                                                                                                               main.py:141
+[10/02/26 20:26:20] INFO     Loading checkpoint from      count-parameters.py:48
+                             'results/17000/checkpoints/s                       
+                             tep_20.pth' on cuda                                
+[10/02/26 20:26:22] INFO     Parameter counts:            count-parameters.py:60
+                             gen_state_dict                                     
+                             59.18M parameters                                  
+                             crit_state_dict                                    
+                             18.07M parameters                                  
+                             labeler_state_dict                                 
+                             42.03M parameters                                  
+                             antilabeler_state_dict                             
+                             42.03M parameters                                  
+                             step                                               
+                             1 parameters                                       
+                             gen_optimizer_state_dict                           
+                             44.13M parameters                                  
+                             crit_optimizer_state_dict                          
+                             54.2M parameters                                   
+                             labeler_optimizer_state_dict                       
+                             126.06M parameters                                 
+                             antilabeler_optimizer_state_                       
+                             dict  126.06M parameters                           
+                             gen_scheduler_state_dict                           
+                             6 parameters                                       
+                             crit_scheduler_state_dict                          
+                             6 parameters                                       
+                    INFO     Successfully saved parameter count-parameters.py:64
+                             counts to                                          
+                             'results/17000/params-size.j                       
+                             son'                                               

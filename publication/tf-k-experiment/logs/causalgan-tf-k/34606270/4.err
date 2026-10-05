@@ -1,0 +1,42 @@
++ export CONFIG=causal_gan.cfg
++ CONFIG=causal_gan.cfg
++ export CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ export GROUNDGAN_LOGLEVEL=DEBUG
++ GROUNDGAN_LOGLEVEL=DEBUG
++ export GROUNDGAN_NO_TQDM=1
++ GROUNDGAN_NO_TQDM=1
++ export PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ SLURM_ARRAY_JOB_ID=34606270
++ SLURM_ARRAY_TASK_ID=4
++ PID=
++ trap on_exit EXIT
++ export TOP_K=4
++ TOP_K=4
++ export NUM_GENES=4
++ NUM_GENES=4
++ export OUT_DIR=4
++ OUT_DIR=4
++ mkdir -p results/4
++ cp data/processed/inferred_grnboost2.csv data/processed/test.h5ad data/processed/train.h5ad data/processed/validation.h5ad results/4/
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/create-grn.sh
+++ grep -oE '\([0-9]+, [0-9]+\)'
+++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/../..//inspect_h5ad.py results/4/train.h5ad
+++ cut -d, -f2
+++ grep -oE '[0-9]+'
++ NUM_GENES=3000
++ export NUM_GENES
++ PID=2371210
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/4/gpu-usage.csv
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/train.sh
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/4/gpu-usage.csv
++ kill -SIGINT 2371210
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/count-parameters.py --checkpoint results/4/checkpoints/step_20.pth --out results/4/params-size.json
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/count-parameters.py --checkpoint results/4/checkpoints/step_20.pth --out results/4/params-size.json
++ on_exit
++ status=0
++ [[ -n 2371210 ]]
++ kill -SIGINT 2371210
++ ((  status != 0  ))
++ exit 0

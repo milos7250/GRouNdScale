@@ -1,0 +1,39 @@
++ export CONFIG=causal_gan.cfg
++ CONFIG=causal_gan.cfg
++ export CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ export GROUNDGAN_LOGLEVEL=DEBUG
++ GROUNDGAN_LOGLEVEL=DEBUG
++ export GROUNDGAN_NO_TQDM=1
++ GROUNDGAN_NO_TQDM=1
++ export PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ PID=
++ trap on_exit EXIT
++ export SIZE=17000
++ SIZE=17000
+++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/../..//inspect_h5ad.py results/17000/train.h5ad
+++ grep -oE '\([0-9]+, [0-9]+\)'
+++ cut -d, -f2
+++ grep -oE '[0-9]+'
++ NUM_GENES=17000
++ export NUM_GENES
++ PID=2014662
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/17000/gpu-usage.csv
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/train.sh
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/17000/gpu-usage.csv
+INFO:    Using cached SIF image
+/usr/local/lib/python3.12/dist-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+W1002 20:24:45.730000 2014723 torch/_inductor/scheduler.py:5480] [3/1] Layout conflict detected for buf28: template expects FixedLayout('cuda:0', torch.float32, size=[2000, 1168], stride=[1168, 1]) but layout is frozen to FixedLayout('cuda:0', torch.float32, size=[2000, 1168], stride=[1, 2016])
+W1002 20:25:00.632000 2014723 torch/_inductor/scheduler.py:5480] [3/1] Layout conflict detected for buf4: template expects FixedLayout('cuda:0', torch.float32, size=[1168, 1024], stride=[1024, 1]) but layout is frozen to FixedLayout('cuda:0', torch.float32, size=[1168, 1024], stride=[1, 1184])
+W1002 20:25:06.799000 2014723 torch/_inductor/scheduler.py:5480] [3/1] Layout conflict detected for buf34: template expects FixedLayout('cuda:0', torch.float32, size=[1024, 15836], stride=[15836, 1]) but layout is frozen to FixedLayout('cuda:0', torch.float32, size=[1024, 15836], stride=[15840, 1])
++ kill -SIGINT 2014662
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/count-parameters.py --checkpoint results/17000/checkpoints/step_20.pth --out results/17000/params-size.json
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/count-parameters.py --checkpoint results/17000/checkpoints/step_20.pth --out results/17000/params-size.json
++ on_exit
++ status=0
++ [[ -n 2014662 ]]
++ kill -SIGINT 2014662
++ ((  status != 0  ))
++ exit 0
