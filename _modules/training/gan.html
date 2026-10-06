@@ -1,0 +1,1391 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>training.gan &#8212; GRouNdScale 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/training/gan';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="GRouNdScale - Home"/>
+    <img src="../../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="GRouNdScale - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://hub.docker.com/repository/docker/milos7250/groundscale/" title="Docker" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-docker fa-lg" aria-hidden="true"></i><span class="visually-hidden">Docker</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://doi.org/10.1038/s41467-024-48516-6" title="Manuscript" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-book fa-lg" aria-hidden="true"></i><span class="visually-hidden">Manuscript</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale/actions" title="Docs Build" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://github.com/milos7250/GRouNdScale/actions/workflows/documentation.yaml/badge.svg?branch=master" class="icon-link-image" alt="Docs Build"/></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_parser.html">custom_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation.html">evaluation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../factory.html">factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gans.html">gans package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperparameter_optimization.html">hyperparameter_optimization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../init_ddp.html">init_ddp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers.html">layers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../loggers.html">loggers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../networks.html">networks package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../perturbation.html">perturbation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preprocessing.html">preprocessing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../randomness.html">randomness module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sc_dataset.html">sc_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../training.html">training package</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale/issues/new?title=Issue%20on%20page%20%2F_modules/training/gan.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for training.gan</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">time_ns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">TypedDict</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch._inductor.config</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch._inductor.select_algorithm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">optuna</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrialPruned</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">barrier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_initialized</span> <span class="k">as</span> <span class="n">is_ddp_initialized</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn.parallel</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistributedDataParallel</span> <span class="k">as</span> <span class="n">DDP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdamW</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.tensorboard</span><span class="w"> </span><span class="kn">import</span> <span class="n">SummaryWriter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.rich</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">umap</span><span class="w"> </span><span class="kn">import</span> <span class="n">UMAP</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">evaluation.data_quality</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_RF_AUROC</span><span class="p">,</span> <span class="n">plot_UMAP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">loggers</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_logger</span><span class="p">,</span> <span class="n">tqdm_logging_redirect</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sc_dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_loader</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.dicts</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GANCritLosses</span><span class="p">,</span>
+    <span class="n">GANGenLosses</span><span class="p">,</span>
+    <span class="n">GANLosses</span><span class="p">,</span>
+    <span class="n">LossList</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunningAverage</span><span class="p">,</span> <span class="n">set_learning_rate_scheduler</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.figure</span><span class="w"> </span><span class="kn">import</span> <span class="n">Figure</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">optuna</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trial</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tensor</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="kn">import</span> <span class="n">Module</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimizer</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">torch.optim.lr_scheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">LRScheduler</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">gans</span><span class="w"> </span><span class="kn">import</span> <span class="n">GAN</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sc_dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">SCDataLoader</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.dicts</span><span class="w"> </span><span class="kn">import</span> <span class="n">GANTrainingArgs</span><span class="p">,</span> <span class="n">SummaryArgs</span>
+
+
+<div class="viewcode-block" id="GANTrainer">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GANTrainer</span><span class="p">:</span>
+<div class="viewcode-block" id="GANTrainer.HookResults">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer.HookResults">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">HookResults</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">rf_auroc</span><span class="p">:</span> <span class="nb">float</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer.__init__">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">gan</span><span class="p">:</span> <span class="s2">"GAN"</span><span class="p">,</span>
+        <span class="n">train_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="n">valid_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="n">training_args</span><span class="p">:</span> <span class="s2">"GANTrainingArgs"</span><span class="p">,</span>
+        <span class="n">summary_args</span><span class="p">:</span> <span class="s2">"SummaryArgs"</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gan</span> <span class="o">=</span> <span class="n">gan</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_file</span> <span class="o">=</span> <span class="n">train_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valid_file</span> <span class="o">=</span> <span class="n">valid_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span> <span class="o">=</span> <span class="n">training_args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_args</span> <span class="o">=</span> <span class="n">summary_args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">output_dir</span>
+
+        <span class="c1"># self.modules keys need to match attribute names of the GAN class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Module</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"gen"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">gen</span><span class="p">,</span> <span class="s2">"crit"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">crit</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SCDataLoader</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optimizer</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">LRScheduler</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SummaryWriter</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">"stats"</span><span class="p">:</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"TensorBoard/"</span><span class="p">),</span>
+                <span class="s2">"umap"</span><span class="p">:</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"TensorBoard/"</span><span class="p">,</span> <span class="n">filename_suffix</span><span class="o">=</span><span class="s2">".UMAP"</span><span class="p">),</span>
+                <span class="s2">"rf_auroc"</span><span class="p">:</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"TensorBoard/"</span><span class="p">,</span> <span class="n">filename_suffix</span><span class="o">=</span><span class="s2">".RF_AUROC"</span><span class="p">),</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_ddp_initialized</span><span class="p">()</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"RANK"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"0"</span>
+            <span class="k">else</span> <span class="p">{}</span>
+        <span class="p">)</span>  <span class="c1"># Only initialize summary writers on rank 0 to avoid conflicts in DDP</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compiled</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._init_loaders">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._init_loaders">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_loaders</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Initializing data loaders..."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"train"</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_loader</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">train_file</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"valid"</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_loader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valid_file</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._init_optimizers">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._init_optimizers">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Initializing optimizers..."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">]</span> <span class="o">=</span> <span class="n">AdamW</span><span class="p">(</span>
+            <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">parameters</span><span class="p">()),</span>
+            <span class="n">lr</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"gen_alpha_0"</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">),</span>
+            <span class="n">betas</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"beta1"</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"beta2"</span><span class="p">]),</span>
+            <span class="n">amsgrad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">fused</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">]</span> <span class="o">=</span> <span class="n">AdamW</span><span class="p">(</span>
+            <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">crit</span><span class="o">.</span><span class="n">parameters</span><span class="p">()),</span>
+            <span class="n">lr</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"crit_alpha_0"</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">),</span>
+            <span class="n">betas</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"beta1"</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"beta2"</span><span class="p">]),</span>
+            <span class="n">amsgrad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">fused</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._init_schedulers">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._init_schedulers">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_schedulers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Initializing schedulers..."</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">scheduler_args</span><span class="p">(</span><span class="n">comp</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">"optimizer"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">[</span><span class="n">comp</span><span class="p">],</span>
+                <span class="s2">"alpha_0"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">comp</span><span class="si">}</span><span class="s2">_alpha_0"</span><span class="p">],</span>
+                <span class="s2">"alpha_final"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">comp</span><span class="si">}</span><span class="s2">_alpha_final"</span><span class="p">],</span>
+                <span class="s2">"max_steps"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"max_steps"</span><span class="p">],</span>
+                <span class="s2">"decay_type"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"lr_decay_type"</span><span class="p">,</span> <span class="s2">"cosine"</span><span class="p">),</span>
+                <span class="s2">"warmup_percent"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"lr_warmup_percent"</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">),</span>
+                <span class="s2">"holding_percent"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"lr_holding_percent"</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">),</span>
+            <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_learning_rate_scheduler</span><span class="p">(</span><span class="o">**</span><span class="n">scheduler_args</span><span class="p">(</span><span class="s2">"gen"</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_learning_rate_scheduler</span><span class="p">(</span><span class="o">**</span><span class="n">scheduler_args</span><span class="p">(</span><span class="s2">"crit"</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._init_umap">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._init_umap">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_umap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Precompute UMAP embeddings for the validation set to speed up UMAP plotting during training."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Initializing UMAP..."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">umap</span> <span class="o">=</span> <span class="n">UMAP</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">umap</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"valid"</span><span class="p">]</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">cells</span><span class="p">)</span>  <span class="c1"># ensure UMAP is fitted only once to preserve comparability</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">real_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">umap</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"valid"</span><span class="p">]</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">cells</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._compile_and_ddp">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._compile_and_ddp">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compile_and_ddp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compile_modules</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">compiled</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">compile_modules</span><span class="p">:</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">_inductor</span><span class="o">.</span><span class="n">select_algorithm</span><span class="o">.</span><span class="n">PRINT_AUTOTUNE</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># to suppress autotune printing</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">_inductor</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_autotune_report_choices_stats</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># to suppress autotune stats printing</span>
+            <span class="k">if</span> <span class="n">compile_modules</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_critic_step</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_critic_step</span><span class="p">,</span> <span class="n">fullgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"max-autotune-no-cudagraphs"</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_generator_step</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_generator_step</span><span class="p">,</span> <span class="n">fullgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"max-autotune-no-cudagraphs"</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">compile_modules</span> <span class="ow">and</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">DDP</span><span class="p">(</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">fullgraph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"max-autotune-no-cudagraphs"</span><span class="p">),</span>
+                        <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LOCAL_RANK"</span><span class="p">])],</span>
+                    <span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">compile_modules</span> <span class="ow">and</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">DDP</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"LOCAL_RANK"</span><span class="p">])])</span>
+            <span class="k">if</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span>
+                        <span class="n">key</span>
+                    <span class="p">]</span>  <span class="c1"># Update the module reference in the GAN to the DDP module</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Attempted to compile already compiled trainer. This should not have any effect."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compiled</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">training_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">module</span><span class="o">.</span><span class="n">training</span> <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+
+    <span class="nd">@training_mode</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">training_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">training</span> <span class="o">=</span> <span class="p">[</span><span class="n">training</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">module</span><span class="p">,</span> <span class="n">is_training</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">training</span><span class="p">):</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">is_training</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GANTrainer._load_checkpoint">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._load_checkpoint">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">model_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loading checkpoint from </span><span class="si">{</span><span class="n">checkpoint_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                <span class="c1"># DDP wraps the module, so we need to load the state dict into the wrapped module</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_state_dict"</span><span class="p">])</span>  <span class="c1"># pyright: ignore[reportAttributeAccessIssue]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_state_dict"</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">model_only</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
+                <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">checkpoint</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"step"</span><span class="p">]</span>
+                <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_optimizer_state_dict"</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">]</span>
+                <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_scheduler_state_dict"</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">]</span>
+            <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Checkpoint at </span><span class="si">{</span><span class="n">checkpoint_path</span><span class="si">}</span><span class="s2"> is missing optimizer/scheduler state dicts or step count. Loading model weights only."</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s2">"step"</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">optimizer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">optimizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_optimizer_state_dict"</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">scheduler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">scheduler</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_scheduler_state_dict"</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._save_checkpoint">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._save_checkpoint">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">model_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">checkpoint</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                <span class="c1"># DDP wraps the module, so we need to save the state dict of the wrapped module</span>
+                <span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_state_dict"</span><span class="p">]</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>  <span class="c1"># pyright: ignore[reportAttributeAccessIssue]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_state_dict"</span><span class="p">]</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">model_only</span><span class="p">:</span>
+            <span class="n">checkpoint</span><span class="p">[</span><span class="s2">"step"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">optimizer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_optimizer_state_dict"</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">scheduler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">checkpoint</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_scheduler_state_dict"</span><span class="p">]</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+
+        <span class="n">output_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">,</span> <span class="n">output_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">".pth"</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._should_run">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._should_run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_should_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freq</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">root_thread_only</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">root_thread_only</span> <span class="ow">and</span> <span class="n">is_ddp_initialized</span><span class="p">()</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"RANK"</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">"0"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">freq</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">%</span> <span class="n">freq</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"max_steps"</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._generator_loss">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._generator_loss">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generator_loss</span><span class="p">(</span><span class="n">crit_fake_pred</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Tensor"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the generator loss from the critic's score of the generated cells.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        crit_fake_pred</span>
+<span class="sd">            The critic's score on fake generated cells.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tensor</span>
+<span class="sd">            Generator's loss value for the current batch.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">crit_fake_pred</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._critic_loss">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._critic_loss">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_critic_loss</span><span class="p">(</span>
+        <span class="n">crit_fake_pred</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span>
+        <span class="n">crit_real_pred</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span>
+        <span class="n">gp</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span>
+        <span class="n">c_lambda</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Tensor"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute critic's loss given the its scores on real and fake cells,</span>
+<span class="sd">        the gradient penalty, and gradient penalty regularization hyper-parameter.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        crit_fake_pred</span>
+<span class="sd">            Critic's score on fake cells.</span>
+<span class="sd">        crit_real_pred</span>
+<span class="sd">            Critic's score on real cells.</span>
+<span class="sd">        gp</span>
+<span class="sd">            Unweighted gradient penalty</span>
+<span class="sd">        c_lambda</span>
+<span class="sd">            Regularization hyper-parameter to be used with the gradient penalty</span>
+<span class="sd">            in the WGAN loss.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tensor</span>
+<span class="sd">            Critic's loss for the current batch.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">crit_fake_pred</span><span class="p">)</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">crit_real_pred</span><span class="p">),</span> <span class="n">c_lambda</span> <span class="o">*</span> <span class="n">gp</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._get_gradient">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._get_gradient">[docs]</a>
+    <span class="nd">@torch</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">set_stance</span><span class="p">(</span><span class="s2">"force_eager"</span><span class="p">)</span>  <span class="c1"># gradients not supported in compiled mode</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_gradient</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">real</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span>
+        <span class="n">fake</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span>
+        <span class="n">real_labels</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Tensor"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the gradient of the critic's scores with respect to interpolations</span>
+<span class="sd">        of real and fake cells.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        real</span>
+<span class="sd">            A batch of real cells.</span>
+<span class="sd">        fake</span>
+<span class="sd">            A batch of fake cells.</span>
+<span class="sd">        real_labels</span>
+<span class="sd">            A batch of real labels (corresponding to real_cells). Not used in non-conditional GAN.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tensor</span>
+<span class="sd">            Gradient of the critic's score with respect to interpolated data.</span>
+<span class="sd">        """</span>
+
+        <span class="c1"># Mix real and fake cells together</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">real</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">interpolates</span> <span class="o">=</span> <span class="n">real</span> <span class="o">*</span> <span class="n">epsilon</span> <span class="o">+</span> <span class="n">fake</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">interpolates</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the critic's scores on the mixed data</span>
+        <span class="n">critic_interpolates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">](</span><span class="n">interpolates</span><span class="p">)</span>
+
+        <span class="c1"># Take the gradient of the scores with respect to the data</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">critic_interpolates</span><span class="p">,</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">interpolates</span><span class="p">,</span>
+            <span class="n">grad_outputs</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">critic_interpolates</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">),</span>
+            <span class="n">create_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">gradient</span>  <span class="c1"># noqa: RET504</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._gradient_penalty">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._gradient_penalty">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_gradient_penalty</span><span class="p">(</span><span class="n">gradient</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Tensor"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the gradient penalty given a gradient.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gradient</span>
+<span class="sd">            The gradient of the critic's score with respect to</span>
+<span class="sd">            the interpolated data.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tensor</span>
+<span class="sd">            Gradient penalty of the given gradient.</span>
+<span class="sd">        """</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">gradient</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gradient</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">gradient_norm</span> <span class="o">=</span> <span class="n">gradient</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">gradient</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>  <span class="c1"># pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">gradient_norm</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># pyright: ignore[reportUnknownArgumentType]</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._critic_step">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._critic_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_critic_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real_cells</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="s2">"Tensor"</span><span class="p">,</span> <span class="s2">"Tensor"</span><span class="p">,</span> <span class="s2">"Tensor"</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Performs a forward pass of the critic on real and fake cells.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        real_cells</span>
+<span class="sd">            Tensor containing a batch of real cells.</span>
+<span class="sd">        real_labels</span>
+<span class="sd">            Tensor containing a batch of real labels (corresponding to real_cells). Not used in non-conditional GAN.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple[Tensor, Tensor, Tensor]</span>
+<span class="sd">            Critic's scores on fake cells, critic's scores on real cells, and the generated fake cells (generated without tracking gradients).</span>
+<span class="sd">        """</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">fake_noise</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">generate_noise</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">real_cells</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">fake_cells</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">](</span><span class="n">fake_noise</span><span class="p">)</span>
+
+        <span class="n">crit_fake_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">](</span><span class="n">fake_cells</span><span class="p">)</span>
+        <span class="n">crit_real_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">](</span><span class="n">real_cells</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">crit_fake_pred</span><span class="p">,</span> <span class="n">crit_real_pred</span><span class="p">,</span> <span class="n">fake_cells</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._train_critic">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._train_critic">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_train_critic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real_cells</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span> <span class="n">c_lambda</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GANCritLosses</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Trains the critic for one iteration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        real_cells</span>
+<span class="sd">            Tensor containing a batch of real cells.</span>
+<span class="sd">        real_labels</span>
+<span class="sd">            Tensor containing a batch of real labels (corresponding to real_cells).</span>
+<span class="sd">        c_lambda</span>
+<span class="sd">            Regularization hyper-parameter for gradient penalty.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict[str, float]</span>
+<span class="sd">            The computed critic loss and gradient penalty.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            If the critic optimizer is not initialized.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">]</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">(</span><span class="n">set_to_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">crit_fake_pred</span><span class="p">,</span> <span class="n">crit_real_pred</span><span class="p">,</span> <span class="n">fake_cells</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_critic_step</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">)</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_gradient</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span> <span class="n">real_labels</span><span class="p">)</span>
+        <span class="n">gp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gradient_penalty</span><span class="p">(</span><span class="n">gradient</span><span class="p">)</span>
+
+        <span class="n">total_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_critic_loss</span><span class="p">(</span><span class="n">crit_fake_pred</span><span class="p">,</span> <span class="n">crit_real_pred</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">c_lambda</span><span class="p">)</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">GANCritLosses</span><span class="p">({</span>
+            <span class="s2">"Critic Fake Loss"</span><span class="p">:</span> <span class="n">crit_fake_pred</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+            <span class="s2">"Critic Real Loss"</span><span class="p">:</span> <span class="o">-</span><span class="n">crit_real_pred</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+            <span class="s2">"Critic Gradient Penalty Loss"</span><span class="p">:</span> <span class="n">c_lambda</span> <span class="o">*</span> <span class="n">gp</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+            <span class="s2">"Critic Total Loss"</span><span class="p">:</span> <span class="n">total_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Update gradients</span>
+        <span class="n">total_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+        <span class="c1"># Update optimizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">]</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">losses</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._generator_step">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._generator_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generator_step</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="s2">"Tensor"</span><span class="p">,</span> <span class="s2">"Tensor"</span><span class="p">,</span> <span class="s2">"Tensor"</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Performs a forward pass of the generator and critic and computes the generator loss.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tensor</span>
+<span class="sd">            Generator's loss for the current batch, critic's scores on fake cells, and the generated fake cells.</span>
+<span class="sd">        """</span>
+        <span class="n">fake_noise</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">generate_noise</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">latent_dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">fake</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">](</span><span class="n">fake_noise</span><span class="p">)</span>
+        <span class="n">crit_fake_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">](</span><span class="n">fake</span><span class="p">)</span>
+
+        <span class="n">gen_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator_loss</span><span class="p">(</span><span class="n">crit_fake_pred</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">gen_loss</span><span class="p">,</span> <span class="n">crit_fake_pred</span><span class="p">,</span> <span class="n">fake</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._train_generator">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._train_generator">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_train_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GANGenLosses</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Trains the generator for one iteration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict[str, float]</span>
+<span class="sd">            Dictionary containing only 1 item, the generator loss.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            If the generator optimizer is not initialized.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">]</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">(</span><span class="n">set_to_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">gen_loss</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator_step</span><span class="p">()</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">GANGenLosses</span><span class="p">({</span>
+            <span class="s2">"Generator Loss"</span><span class="p">:</span> <span class="n">gen_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+            <span class="s2">"Generator Total Loss"</span><span class="p">:</span> <span class="n">gen_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+        <span class="p">})</span>
+        <span class="n">gen_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+        <span class="c1"># Update weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizers</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">]</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">losses</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._training_step">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._training_step">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_training_step</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">real_cells</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">:</span> <span class="s2">"Tensor"</span><span class="p">,</span> <span class="n">critic_iter</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">c_lambda</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GANLosses</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Performs one training step</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        real_cells</span>
+<span class="sd">            Tensor containing a batch of real cells.</span>
+<span class="sd">        real_labels</span>
+<span class="sd">            Tensor containing a batch of real labels (corresponding to real_cells). Not used in non-conditional GAN.</span>
+<span class="sd">        critic_iter</span>
+<span class="sd">            Number of training iterations of the critic for each iteration on the generator.</span>
+<span class="sd">        c_lambda</span>
+<span class="sd">            Regularization hyper-parameter for gradient penalty.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict[str, float]</span>
+<span class="sd">            Dictionary containing the computed losses.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            If the critic or generator learning rate schedulers are not initialized.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">crit_losses</span> <span class="o">=</span> <span class="n">LossList</span><span class="p">[</span><span class="n">GANCritLosses</span><span class="p">]()</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">critic_iter</span><span class="p">):</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">cudagraph_mark_step_begin</span><span class="p">()</span>
+                <span class="n">crit_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_train_critic</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">,</span> <span class="n">c_lambda</span><span class="p">))</span>
+
+            <span class="n">crit_losses</span> <span class="o">=</span> <span class="n">crit_losses</span><span class="o">.</span><span class="n">avg</span><span class="p">()</span>
+            <span class="c1"># Update learning rate</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">]</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">crit_losses</span> <span class="o">=</span> <span class="n">GANCritLosses</span><span class="p">({</span>
+                <span class="s2">"Critic Total Loss"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                <span class="s2">"Critic Fake Loss"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                <span class="s2">"Critic Real Loss"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                <span class="s2">"Critic Gradient Penalty Loss"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="n">torch</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">cudagraph_mark_step_begin</span><span class="p">()</span>
+        <span class="n">gen_losses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_train_generator</span><span class="p">()</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">GANLosses</span><span class="p">(</span>
+            <span class="n">gen_losses</span>
+            <span class="o">|</span> <span class="n">crit_losses</span>  <span class="c1"># pyright: ignore[reportOperatorIssue]</span>
+            <span class="o">|</span> <span class="p">{</span>
+                <span class="s2">"Total Loss"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">([</span><span class="n">crit_losses</span><span class="p">[</span><span class="s2">"Critic Total Loss"</span><span class="p">],</span> <span class="n">gen_losses</span><span class="p">[</span><span class="s2">"Generator Total Loss"</span><span class="p">]])</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">]</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">losses</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._get_validation_loss">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._get_validation_loss">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_validation_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Computes the validation loss over the entire validation set.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict[str, float]</span>
+<span class="sd">            Dictionary containing average generator loss, critic loss and gradient penalty</span>
+<span class="sd">            over the entire validation set.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Computing validation loss..."</span><span class="p">)</span>
+        <span class="n">was_training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_mode</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Set modules to eval mode for validation</span>
+
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">LossList</span><span class="p">[</span><span class="n">GANLosses</span><span class="p">]()</span>
+        <span class="k">for</span> <span class="n">real_cells</span><span class="p">,</span> <span class="n">real_labels</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"valid"</span><span class="p">]:</span>
+            <span class="n">real_cells</span> <span class="o">=</span> <span class="n">real_cells</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">real_labels</span> <span class="o">=</span> <span class="n">real_labels</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                <span class="n">crit_fake_pred</span><span class="p">,</span> <span class="n">crit_real_pred</span><span class="p">,</span> <span class="n">fake_cells</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_critic_step</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">)</span>
+
+            <span class="n">gradient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_gradient</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">)</span>
+            <span class="n">gp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gradient_penalty</span><span class="p">(</span><span class="n">gradient</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+                <span class="n">gen_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator_loss</span><span class="p">(</span><span class="n">crit_fake_pred</span><span class="p">)</span>
+                <span class="n">crit_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_critic_loss</span><span class="p">(</span>
+                    <span class="n">crit_fake_pred</span><span class="p">,</span> <span class="n">crit_real_pred</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">c_lambda</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"c_lambda"</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">GANLosses</span><span class="p">({</span>
+                        <span class="s2">"Generator Loss"</span><span class="p">:</span> <span class="n">gen_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                        <span class="s2">"Generator Total Loss"</span><span class="p">:</span> <span class="n">gen_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                        <span class="s2">"Critic Fake Loss"</span><span class="p">:</span> <span class="n">crit_fake_pred</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                        <span class="s2">"Critic Real Loss"</span><span class="p">:</span> <span class="o">-</span><span class="n">crit_real_pred</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                        <span class="s2">"Critic Gradient Penalty Loss"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"c_lambda"</span><span class="p">]</span> <span class="o">*</span> <span class="n">gp</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                        <span class="s2">"Critic Total Loss"</span><span class="p">:</span> <span class="n">crit_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                        <span class="s2">"Total Loss"</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">gen_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">crit_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()]))</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+                    <span class="p">})</span>
+                <span class="p">)</span>
+
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">avg</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_mode</span> <span class="o">=</span> <span class="n">was_training</span>  <span class="c1"># Restore original training mode</span>
+        <span class="k">return</span> <span class="p">{</span><span class="sa">f</span><span class="s2">"Validation </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">losses</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>  <span class="c1"># pyright: ignore[reportReturnType]</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._get_learning_rates_dict">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._get_learning_rates_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_learning_rates_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"Generator LR"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">[</span><span class="s2">"gen"</span><span class="p">]</span><span class="o">.</span><span class="n">get_last_lr</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>  <span class="c1"># pyright: ignore[reportAttributeAccessIssue]</span>
+            <span class="s2">"Critic LR"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedulers</span><span class="p">[</span><span class="s2">"crit"</span><span class="p">]</span><span class="o">.</span><span class="n">get_last_lr</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>  <span class="c1"># pyright: ignore[reportAttributeAccessIssue]</span>
+        <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._log_stats">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._log_stats">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss_list</span><span class="p">:</span> <span class="n">LossList</span><span class="p">[</span><span class="n">GANLosses</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">loss_list</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="n">last_n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">summary_args</span><span class="p">[</span><span class="s2">"summary_freq"</span><span class="p">])</span>
+        <span class="n">losses</span> <span class="o">|=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_validation_loss</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">is_ddp_initialized</span><span class="p">()</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"RANK"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">"0"</span><span class="p">:</span>
+            <span class="k">return</span>  <span class="c1"># Only log stats on rank 0 in DDP to avoid conflicts</span>
+
+        <span class="n">gen_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">()</span> <span class="k">if</span> <span class="s2">"_lsn"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">k</span><span class="p">]</span>
+        <span class="n">gen_total_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">gen_params</span><span class="p">)</span>
+        <span class="n">gen_total_n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">gen_params</span><span class="p">)</span>
+        <span class="n">gen_mean_abs_weight</span> <span class="o">=</span> <span class="n">gen_total_sum</span> <span class="o">/</span> <span class="n">gen_total_n</span> <span class="k">if</span> <span class="n">gen_total_n</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+        <span class="n">crit_params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">crit</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="n">crit_total_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">crit_params</span><span class="p">)</span>
+        <span class="n">crit_total_n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">crit_params</span><span class="p">)</span>
+        <span class="n">crit_mean_abs_weight</span> <span class="o">=</span> <span class="n">crit_total_sum</span> <span class="o">/</span> <span class="n">crit_total_n</span> <span class="k">if</span> <span class="n">crit_total_n</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+        <span class="n">learning_rates_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_learning_rates_dict</span><span class="p">()</span> <span class="o">|</span> <span class="p">{</span>
+            <span class="s2">"Generator Avg Abs Weight"</span><span class="p">:</span> <span class="n">gen_mean_abs_weight</span><span class="p">,</span>
+            <span class="s2">"Critic Avg Abs Weight"</span><span class="p">:</span> <span class="n">crit_mean_abs_weight</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">losses</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">float_format</span><span class="o">=</span><span class="s2">"</span><span class="si">{:.2g}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">learning_rates_dict</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">float_format</span><span class="o">=</span><span class="s2">"</span><span class="si">{:.2g}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">(</span><span class="n">losses</span> <span class="o">|</span> <span class="n">learning_rates_dict</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"stats"</span><span class="p">]</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"stats"</span><span class="p">]</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._generate_umap_figures">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._generate_umap_figures">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_umap_figures</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">fake_embedding</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fake_labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="s2">"Figure"</span><span class="p">,</span> <span class="s2">"Figure"</span><span class="p">,</span> <span class="s2">"Figure"</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Generates UMAP figures comparing the real and fake cells in the validation set. This class uses the same</span>
+<span class="sd">        method as the evaluation code.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fake_embedding</span>
+<span class="sd">            The generated fake cell embeddings to be compared against the real cell embeddings from the validation set.</span>
+<span class="sd">        fake_labels</span>
+<span class="sd">            The generated fake cell labels corresponding to `fake_embedding`. (not used in non-conditional GAN)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        scatter_fig</span>
+<span class="sd">            Generated UMAP scatter plot figure comparing real and fake cells in the validation set.</span>
+<span class="sd">        hexbin_fig</span>
+<span class="sd">            Generated UMAP hexbin plot figure comparing real and fake cells in the validation set.</span>
+<span class="sd">        hist_rel_abun_fig</span>
+<span class="sd">            Generated histogram figure of the relative abundance of real cells in the validation set compared to fake cells in the UMAP space.</span>
+<span class="sd">        """</span>
+        <span class="n">scatter_fig</span><span class="p">,</span> <span class="n">hexbin_fig</span><span class="p">,</span> <span class="n">hist_rel_abun_fig</span> <span class="o">=</span> <span class="n">plot_UMAP</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">real_embedding</span><span class="p">,</span> <span class="n">fake_embedding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">scatter_fig</span><span class="p">,</span> <span class="n">hexbin_fig</span><span class="p">,</span> <span class="n">hist_rel_abun_fig</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._log_umap_plots">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._log_umap_plots">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log_umap_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fake_labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Generates and saves UMAP plots comparing the real and fake cells in the validation set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fake_cells</span>
+<span class="sd">            The generated fake cells to be compared against the real cells from the validation set.</span>
+<span class="sd">        fake_labels</span>
+<span class="sd">            The generated fake cell labels corresponding to fake_cells.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Generating UMAP plots..."</span><span class="p">)</span>
+        <span class="n">fake_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">umap</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">fake_cells</span><span class="p">))</span>
+        <span class="n">scatter_fig</span><span class="p">,</span> <span class="n">hexbin_fig</span><span class="p">,</span> <span class="n">hist_rel_abun_fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_umap_figures</span><span class="p">(</span><span class="n">fake_embedding</span><span class="p">,</span> <span class="n">fake_labels</span><span class="p">)</span>
+
+        <span class="n">scatter_fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">"UMAP Scatter Plot at Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">hexbin_fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">"UMAP Hexbin Plot at Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">hist_rel_abun_fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">"UMAP Relative Abundance of Real Cells at Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="n">umap_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"UMAP"</span>
+        <span class="n">umap_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">scatter_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"step_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">_scatter.jpg"</span><span class="p">)</span>
+        <span class="n">hexbin_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"step_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">_hexbin.jpg"</span><span class="p">)</span>
+        <span class="n">hist_rel_abun_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"step_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">_hist_real_relative.jpg"</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"umap"</span><span class="p">]</span><span class="o">.</span><span class="n">add_figure</span><span class="p">(</span><span class="s2">"UMAP Scatter Plot"</span><span class="p">,</span> <span class="n">scatter_fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"umap"</span><span class="p">]</span><span class="o">.</span><span class="n">add_figure</span><span class="p">(</span><span class="s2">"UMAP Hexbin Plot"</span><span class="p">,</span> <span class="n">hexbin_fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"umap"</span><span class="p">]</span><span class="o">.</span><span class="n">add_figure</span><span class="p">(</span>
+            <span class="s2">"UMAP istogram Relative Abundance of Real Cells"</span><span class="p">,</span> <span class="n">hist_rel_abun_fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"umap"</span><span class="p">]</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._rf_auroc">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._rf_auroc">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rf_auroc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Computes the AUROC of a random forest classifier trained to distinguish real from fake cells on the validation set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fake_cells</span>
+<span class="sd">            The generated fake cells to be compared against the real cells from the validation set.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            AUROC of the random forest classifier.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: Computing Random Forest AUROC..."</span><span class="p">)</span>
+
+        <span class="n">rf_auroc</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">compute_RF_AUROC</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"valid"</span><span class="p">]</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">)</span>
+        <span class="n">rf_auroc_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"RF_AUROC"</span>
+        <span class="n">rf_auroc_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">rf_auroc_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"step_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">.jpg"</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"rf_auroc"</span><span class="p">]</span><span class="o">.</span><span class="n">add_figure</span><span class="p">(</span><span class="s2">"Random Forest AUROC"</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"stats"</span><span class="p">]</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s2">"AUROC"</span><span class="p">,</span> <span class="n">rf_auroc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"rf_auroc"</span><span class="p">]</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_writers</span><span class="p">[</span><span class="s2">"stats"</span><span class="p">]</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: Computed Random Forest AUROC: </span><span class="si">{</span><span class="n">rf_auroc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rf_auroc</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer._ignore_first_n_in_running_average">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer._ignore_first_n_in_running_average">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ignore_first_n_in_running_average</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Determines the number of initial steps to ignore when computing the running average time per step.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            The number of initial steps to ignore in the running average calculation.</span>
+<span class="sd">        """</span>
+        <span class="c1"># By default, ignore the first 2 iterations in the running average to allow both generator and critic to warm up</span>
+        <span class="k">return</span> <span class="mi">2</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer.eval_hooks">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer.eval_hooks">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eval_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss_list</span><span class="p">:</span> <span class="n">LossList</span><span class="p">[</span><span class="n">GANLosses</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"GANTrainer.HookResults"</span><span class="p">:</span>
+        <span class="n">hook_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">HookResults</span><span class="p">()</span>
+        <span class="n">run_save</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary_args</span><span class="p">[</span><span class="s2">"save_freq"</span><span class="p">],</span> <span class="n">root_thread_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="ow">or</span> <span class="n">force</span>
+        <span class="n">run_summary</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_should_run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary_args</span><span class="p">[</span><span class="s2">"summary_freq"</span><span class="p">],</span> <span class="n">root_thread_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="ow">or</span> <span class="n">force</span>
+        <span class="p">)</span> <span class="ow">and</span> <span class="n">loss_list</span>
+        <span class="n">run_umap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary_args</span><span class="p">[</span><span class="s2">"plt_freq"</span><span class="p">],</span> <span class="n">root_thread_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="ow">or</span> <span class="n">force</span>
+        <span class="n">run_rf_auroc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary_args</span><span class="p">[</span><span class="s2">"rf_auroc_freq"</span><span class="p">],</span> <span class="n">root_thread_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="ow">or</span> <span class="n">force</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">run_save</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_save_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"checkpoints/step_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error saving checkpoint at step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">run_summary</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_log_stats</span><span class="p">(</span><span class="n">loss_list</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error saving summary at step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">run_umap</span><span class="p">,</span> <span class="n">run_rf_auroc</span><span class="p">]):</span>
+            <span class="n">fake_cells</span><span class="p">,</span> <span class="n">fake_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">generate_cells</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"valid"</span><span class="p">]</span><span class="o">.</span><span class="n">dataset</span><span class="p">))</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">run_umap</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_log_umap_plots</span><span class="p">(</span><span class="n">fake_cells</span><span class="p">,</span> <span class="n">fake_labels</span><span class="o">=</span><span class="n">fake_labels</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error saving plots at step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">run_rf_auroc</span><span class="p">:</span>
+                    <span class="n">hook_results</span><span class="p">[</span><span class="s2">"rf_auroc"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rf_auroc</span><span class="p">(</span><span class="n">fake_cells</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error saving RF AUROC at step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">hook_results</span></div>
+
+
+<div class="viewcode-block" id="GANTrainer.train">
+<a class="viewcode-back" href="../../training.html#training.gan.GANTrainer.train">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">:</span> <span class="s2">"Path | None"</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">compile_modules</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="s2">"Trial | None"</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Initializing training..."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_loaders</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_optimizers</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_schedulers</span><span class="p">()</span>
+
+        <span class="c1"># Save the model graph to TensorBoard for visualization.</span>
+        <span class="c1"># This is done only on rank 0 in DDP or when not using DDP.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">is_ddp_initialized</span><span class="p">()</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"RANK"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"0"</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_umap</span><span class="p">()</span>
+            <span class="c1"># Skipped if modules are compiled to avoid OOM errors with large models,</span>
+            <span class="c1"># as eager execution is required for graph logging, and requires much</span>
+            <span class="c1"># more memory than compiled execution.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">compile_modules</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Saving model graph..."</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">log_tensorboard_graph</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">checkpoint_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_load_checkpoint</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">)</span>
+
+        <span class="c1"># Compile modules for faster training and wrap in DDP for distributed training if applicable.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compile_and_ddp</span><span class="p">(</span><span class="n">compile_modules</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_mode</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">set_float32_matmul_precision</span><span class="p">(</span><span class="s2">"high"</span><span class="p">)</span>  <span class="c1"># to speed up training with minimal effect on model performance</span>
+        <span class="n">loader_gen</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"train"</span><span class="p">])</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="n">LossList</span><span class="p">[</span><span class="n">GANLosses</span><span class="p">]()</span>
+        <span class="n">average_time_per_step</span> <span class="o">=</span> <span class="n">RunningAverage</span><span class="p">(</span><span class="n">ignore_first</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ignore_first_n_in_running_average</span><span class="p">())</span>
+        <span class="n">eval_hook_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Starting training loop..."</span><span class="p">)</span>
+        <span class="k">with</span> <span class="p">(</span>
+            <span class="n">tqdm_logging_redirect</span><span class="p">(</span>
+                <span class="n">loggers</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">],</span> <span class="n">tqdm_class</span><span class="o">=</span><span class="n">tqdm</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">"Training GAN"</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"max_steps"</span><span class="p">]</span>
+            <span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"max_steps"</span><span class="p">]:</span>
+                    <span class="n">time_start</span> <span class="o">=</span> <span class="n">time_ns</span><span class="p">()</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">real_cells</span><span class="p">,</span> <span class="n">real_labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">loader_gen</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                        <span class="n">loader_gen</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loaders</span><span class="p">[</span><span class="s2">"train"</span><span class="p">])</span>
+                        <span class="n">real_cells</span><span class="p">,</span> <span class="n">real_labels</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">loader_gen</span><span class="p">)</span>
+
+                    <span class="n">real_cells</span> <span class="o">=</span> <span class="n">real_cells</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+                    <span class="n">real_labels</span> <span class="o">=</span> <span class="n">real_labels</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gan</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+                    <span class="n">iter_losses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_training_step</span><span class="p">(</span>
+                        <span class="n">real_cells</span><span class="p">,</span> <span class="n">real_labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"crit_iter"</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s2">"c_lambda"</span><span class="p">]</span>
+                    <span class="p">)</span>
+                    <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iter_losses</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                        <span class="n">barrier</span><span class="p">()</span>
+                    <span class="n">time_end</span> <span class="o">=</span> <span class="n">time_ns</span><span class="p">()</span>
+                    <span class="n">average_time_per_step</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                        <span class="p">(</span><span class="n">time_end</span> <span class="o">-</span> <span class="n">time_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1_000_000</span>
+                    <span class="p">)</span>  <span class="c1"># update average time per step in milliseconds</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">"Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">training_args</span><span class="p">[</span><span class="s1">'max_steps'</span><span class="p">]</span><span class="si">}</span><span class="s2"> completed in </span><span class="si">{</span><span class="p">(</span><span class="n">time_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">time_start</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">1_000_000</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> milliseconds (average: </span><span class="si">{</span><span class="n">average_time_per_step</span><span class="o">.</span><span class="n">average</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> ms)"</span>
+                    <span class="p">)</span>
+
+                    <span class="n">eval_hook_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_hooks</span><span class="p">(</span><span class="n">losses</span><span class="p">)</span>
+
+                    <span class="c1"># Allow trial pruning before reaching the end of training based on rf_auroc values</span>
+                    <span class="k">if</span> <span class="n">trial</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">"rf_auroc"</span> <span class="ow">in</span> <span class="n">eval_hook_results</span><span class="p">:</span>
+                        <span class="n">trial</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">eval_hook_results</span><span class="p">[</span><span class="s2">"rf_auroc"</span><span class="p">],</span> <span class="n">step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="p">(</span>
+                            <span class="n">eval_hook_results</span><span class="p">[</span><span class="s2">"rf_auroc"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.99</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">&gt;</span> <span class="mi">10_000</span>
+                        <span class="p">):</span>  <span class="c1"># If the RF AUROC is very high after a considerable number of steps, the generator is likely not learning and we can stop early</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s2">"Step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: RF AUROC is very high (</span><span class="si">{</span><span class="n">eval_hook_results</span><span class="p">[</span><span class="s1">'rf_auroc'</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">), stopping early."</span>
+                            <span class="p">)</span>
+                            <span class="k">raise</span> <span class="n">TrialPruned</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">should_prune</span><span class="p">():</span>
+                            <span class="k">raise</span> <span class="n">TrialPruned</span><span class="p">()</span>
+
+                    <span class="k">if</span> <span class="n">is_ddp_initialized</span><span class="p">():</span>
+                        <span class="n">barrier</span><span class="p">()</span>
+                    <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Update progress bar only after the first step</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="n">pbar</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Finished training after </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> steps."</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">TrialPruned</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Trial pruned at step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">eval_hooks</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Run hooks one last time to save final checkpoint and plots</span>
+                <span class="k">raise</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error during training at step </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">eval_hooks</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Run hooks one last time to save final checkpoint and plots</span>
+                <span class="k">raise</span>
+
+        <span class="k">return</span> <span class="n">eval_hook_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"rf_auroc"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Milos Micik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Milos Micik.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

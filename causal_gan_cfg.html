@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="_static/logo.svg" rel="icon" type="image/svg+xml">
+    <title>&lt;no title&gt; &#8212; GRouNdScale 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=a681ed88"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'causal_gan_cfg';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt="GRouNdScale - Home"/>
+    <img src="_static/logo.svg" class="logo__image only-dark pst-js-only" alt="GRouNdScale - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://hub.docker.com/repository/docker/milos7250/groundscale/" title="Docker" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-docker fa-lg" aria-hidden="true"></i><span class="visually-hidden">Docker</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://doi.org/10.1038/s41467-024-48516-6" title="Manuscript" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-book fa-lg" aria-hidden="true"></i><span class="visually-hidden">Manuscript</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale/actions" title="Docs Build" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://github.com/milos7250/GRouNdScale/actions/workflows/documentation.yaml/badge.svg?branch=master" class="icon-link-image" alt="Docs Build"/></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom_parser.html">custom_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html">evaluation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="factory.html">factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gans.html">gans package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hyperparameter_optimization.html">hyperparameter_optimization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="init_ddp.html">init_ddp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers.html">layers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loggers.html">loggers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networks.html">networks package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="perturbation.html">perturbation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">preprocessing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="randomness.html">randomness module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sc_dataset.html">sc_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="training.html">training package</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale/blob/master/docs/causal_gan_cfg.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale/edit/master/docs/causal_gan_cfg.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale/issues/new?title=Issue%20on%20page%20%2Fcausal_gan_cfg.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/causal_gan_cfg.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple pst-show_toc_level nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[EXPERIMENT]</span>
+<span class="na">output directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">results/GRouNdScale</span>
+<span class="na">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cuda</span><span class="w"> </span><span class="c1">; we will let the program choose what is available</span>
+<span class="na">checkpoint  ; set value to use a trained model</span>
+<span class="na">compile modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"> </span><span class="c1">; use torch.compile for faster training</span>
+<span class="na">use DDP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span><span class="w"> </span><span class="c1">; use distributed data parallel training</span>
+<span class="na">random seed ; optional random seed</span>
+<span class="na">deterministic mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span><span class="w"> </span><span class="c1">; use deterministic algorithms where supported</span>
+
+<span class="w">    </span><span class="k">[Preprocessing]</span>
+<span class="w">    </span><span class="na">10x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<span class="w">    </span><span class="na">raw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/raw/PBMC/</span>
+<span class="w">    </span><span class="na">validation set size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000</span>
+<span class="w">    </span><span class="na">test set size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000</span>
+<span class="w">    </span><span class="na">annotations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/raw/PBMC/barcodes_annotations.tsv</span>
+<span class="w">    </span><span class="na">min cells</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="c1">; genes expressed in less than 3 cells are discarded</span>
+<span class="w">    </span><span class="na">min genes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span><span class="w"> </span><span class="c1">; cells with less than 10 genes expressed are discarded</span>
+<span class="w">    </span><span class="na">library size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">20000</span><span class="w"> </span><span class="c1">; library size used for library-size normalization</span>
+<span class="w">    </span><span class="na">louvain res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.15</span><span class="w"> </span><span class="c1">; Louvain clustering resolution (higher resolution means finding more and smaller clusters)</span>
+<span class="w">    </span><span class="na">highly variable number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000</span><span class="w"> </span><span class="c1">; number of highly variable genes to identify</span>
+
+<span class="w">    </span><span class="k">[GRN Preparation]</span>
+<span class="w">    </span><span class="na">TFs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/raw/Homo_sapiens_TF.csv</span>
+<span class="w">    </span><span class="na">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">grnboost2</span><span class="w"> </span><span class="c1">; "grnboost2" for GRNBoost2/Arboreto, "rustscenic" for RustScenic</span>
+<span class="w">    </span><span class="na">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">15</span><span class="w"> </span><span class="c1">; k is the number of top most important TFs per gene to include in the GRN</span>
+<span class="w">    </span><span class="na">Inferred GRN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/processed/PBMC/inferred_grnboost2.csv</span>
+
+<span class="w">    </span><span class="c1">; "top" for selecting top k edges</span>
+<span class="w">    </span><span class="c1">; "pos ctr" for generating positive control GRNs (even indices 0, 2, 4... = top 1, 3, 5, ...)</span>
+<span class="w">    </span><span class="c1">; "neg ctr" for generating negative control GRNs (odd indices 1, 3, 5... = top 2, 4, 6, ...)</span>
+<span class="w">    </span><span class="c1">; note that k has to be a pair number for strategy=ctr</span>
+<span class="w">    </span><span class="na">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">top</span>
+<span class="w">    </span><span class="na">include genes with no regulators</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span>
+
+<span class="w">    </span><span class="k">[Data]</span>
+<span class="w">    </span><span class="na">train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/processed/PBMC/PBMC68k_train.h5ad</span>
+<span class="w">    </span><span class="na">validation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/processed/PBMC/PBMC68k_validation.h5ad</span>
+<span class="w">    </span><span class="na">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/processed/PBMC/PBMC68k_test.h5ad</span>
+<span class="w">    </span><span class="na">number of genes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000</span>
+
+<span class="w">    </span><span class="c1">; this causal graph is a pickled nested dictionary</span>
+<span class="w">    </span><span class="c1">; nested dictionary keys are gene indices</span>
+<span class="w">    </span><span class="c1">; the dictionary is of this form:</span>
+<span class="w">    </span><span class="c1">; {381: {51, 65, 353, 664, 699},</span>
+<span class="w">    </span><span class="c1">; 16: {21, 65, 353, 605, 699},</span>
+<span class="w">    </span><span class="c1">; ...</span>
+<span class="w">    </span><span class="c1">; 565: {18, 51, 65, 552, 650}}</span>
+<span class="w">    </span><span class="c1">; In this example, 381, 16, and 565 are gene indices in the input dataset</span>
+<span class="w">    </span><span class="c1">; Each key's (gene's) value is the indiced of its regulating TFs in the input dataset</span>
+<span class="w">    </span><span class="c1">; A tutorial will be made available in the future.</span>
+
+<span class="w">    </span><span class="na">causal graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/processed/PBMC/causal_graph.pkl</span>
+
+<span class="w">    </span><span class="k">[Generation]</span>
+<span class="w">    </span><span class="na">number of cells to generate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10000</span>
+<span class="w">    </span><span class="na">generation path ; will save to [Experiment]/output directory/simulated.h5ad if left undefined</span>
+
+<span class="w">    </span><span class="k">[Evaluation]</span>
+<span class="w">    </span><span class="na">simulated data path ; will use [Generation]/generation path if left undefined</span>
+<span class="w">    </span><span class="na">plot umap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"> </span><span class="c1">; Note: has to be true in order to run miLISI</span>
+<span class="w">    </span><span class="na">compute euclidean distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<span class="w">    </span><span class="na">compute cosine distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<span class="w">    </span><span class="na">compute rf auroc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<span class="w">    </span><span class="na">compute MMD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<span class="w">    </span><span class="na">compute miLISI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"> </span><span class="c1">; plot umap has to be True for this to work</span>
+
+<span class="w">    </span><span class="k">[GRN Benchmarking]</span>
+<span class="w">    </span><span class="na">grn to benchmark</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path/to/inferred/grn.csv</span>
+<span class="w">    </span><span class="na">ground truth save path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/generated/</span>
+<span class="w">    </span><span class="na">plots save path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">results/GRouNdScale/</span>
+<span class="w">    </span><span class="na">compute precision at k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span>
+<span class="w">    </span><span class="na">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
+<span class="w">    </span><span class="na">compute pr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+
+<span class="w">    </span><span class="k">[Perturbation]</span>
+<span class="w">    </span><span class="na">save dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">data/generated/</span>
+
+<span class="w">    </span><span class="c1">; tfs to perturb and perturbation values are paired. The two lists need to be of the same size.</span>
+<span class="w">    </span><span class="na">tfs to perturb ;</span><span class="o">=</span><span class="w"> </span><span class="s">TF names separated by a space (ex: IRF8 CEBPA)</span>
+<span class="w">    </span><span class="na">perturbation values ;</span><span class="o">=</span><span class="w"> </span><span class="s">Float values separated by a space to set respecive TF in tfs to perturb (ex: 0 100.2)</span>
+
+<span class="w">    </span><span class="k">[Model]</span>
+<span class="w">    </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">causal GAN</span>
+<span class="w">    </span><span class="na">noise per gene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+<span class="w">    </span><span class="na">depth per gene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3</span>
+<span class="w">    </span><span class="na">width per gene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
+<span class="w">    </span><span class="na">critic layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1024 512 256</span>
+<span class="w">    </span><span class="na">labeler layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2000 2000 2000</span>
+<span class="w">    </span><span class="na">latent dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">128</span><span class="w"> </span><span class="c1">; noise vector dimensions</span>
+<span class="w">    </span><span class="na">lambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span><span class="w"> </span><span class="c1">; regularization hyper-parameter for gradient penalty</span>
+
+
+<span class="w">    </span><span class="k">[Training]</span>
+<span class="w">    </span><span class="na">batch size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1024</span>
+<span class="w">    </span><span class="na">critic iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span><span class="w"> </span><span class="c1">; iterations to train the critic for each iteration of the generator</span>
+<span class="w">    </span><span class="na">maximum steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000000</span>
+<span class="w">    </span><span class="na">labeler and antilabeler training intervals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+
+<span class="w">        </span><span class="k">[Optimizer]</span>
+<span class="w">        </span><span class="c1">; coefficients used for computing running averages of gradient and its square</span>
+<span class="w">        </span><span class="na">beta1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span>
+<span class="w">        </span><span class="na">beta2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.9</span>
+
+<span class="w">        </span><span class="k">[Learning Rate]</span>
+<span class="w">        </span><span class="na">generator initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.001</span>
+<span class="w">        </span><span class="na">generator final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0001</span>
+<span class="w">        </span><span class="na">critic initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.001</span>
+<span class="w">        </span><span class="na">critic final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.001</span>
+<span class="w">        </span><span class="na">decay type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cosine</span><span class="w"> </span><span class="c1">; linear, cosine, or exponential</span>
+<span class="w">        </span><span class="na">warmup percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.02</span>
+<span class="w">        </span><span class="na">holding percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.60</span>
+<span class="w">        </span><span class="na">labeler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0001</span>
+<span class="w">        </span><span class="na">antilabeler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0001</span>
+
+
+<span class="w">        </span><span class="k">[Logging]</span>
+<span class="w">        </span><span class="na">summary frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10000</span>
+<span class="w">        </span><span class="na">plot frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10000</span>
+<span class="w">        </span><span class="na">save frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">100000</span>
+<span class="w">        </span><span class="na">rf auroc frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10000</span>
+
+<span class="w">    </span><span class="k">[CC Model]</span>
+<span class="w">    </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">GAN</span><span class="w"> </span><span class="c1">; Non-conditional single-cell RNA-seq GAN</span>
+<span class="w">    </span><span class="na">generator layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">256 512 1024</span>
+<span class="w">    </span><span class="na">critic layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1024 512 256</span>
+<span class="w">    </span><span class="na">latent dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">128</span><span class="w"> </span><span class="c1">; noise vector dimensions</span>
+<span class="w">    </span><span class="na">lambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span><span class="w"> </span><span class="c1">; regularization hyper-parameter for gradient penalty</span>
+
+
+<span class="w">    </span><span class="k">[CC Training]</span>
+<span class="w">    </span><span class="na">batch size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">128</span>
+<span class="w">    </span><span class="na">critic iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span><span class="w"> </span><span class="c1">; iterations to train the critic for each iteration of the generator</span>
+<span class="w">    </span><span class="na">maximum steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">200000</span>
+
+<span class="w">        </span><span class="k">[CC Optimizer]</span>
+<span class="w">        </span><span class="c1">; coefficients used for computing running averages of gradient and its square</span>
+<span class="w">        </span><span class="na">beta1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span>
+<span class="w">        </span><span class="na">beta2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.9</span>
+
+<span class="w">        </span><span class="k">[CC Learning Rate]</span>
+<span class="w">        </span><span class="na">generator initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0001</span>
+<span class="w">        </span><span class="na">generator final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.00001</span>
+<span class="w">        </span><span class="na">critic initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0001</span>
+<span class="w">        </span><span class="na">critic final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.00001</span>
+<span class="w">        </span><span class="na">decay type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cosine</span><span class="w"> </span><span class="c1">; linear, cosine, or exponential</span>
+<span class="w">        </span><span class="na">warmup percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.02</span>
+<span class="w">        </span><span class="na">holding percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.60</span>
+
+<span class="w">        </span><span class="k">[CC Logging]</span>
+<span class="w">        </span><span class="na">summary frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10000</span>
+<span class="w">        </span><span class="na">plot frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10000</span>
+<span class="w">        </span><span class="na">save frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">100000</span>
+<span class="w">        </span><span class="na">rf auroc frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10000</span>
+</pre></div>
+</div>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="simple pst-show_toc_level nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Milos Micik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Milos Micik.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

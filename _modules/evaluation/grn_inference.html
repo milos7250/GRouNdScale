@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>evaluation.grn_inference &#8212; GRouNdScale 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/evaluation/grn_inference';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="GRouNdScale - Home"/>
+    <img src="../../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="GRouNdScale - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://hub.docker.com/repository/docker/milos7250/groundscale/" title="Docker" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-docker fa-lg" aria-hidden="true"></i><span class="visually-hidden">Docker</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://doi.org/10.1038/s41467-024-48516-6" title="Manuscript" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-book fa-lg" aria-hidden="true"></i><span class="visually-hidden">Manuscript</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale/actions" title="Docs Build" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://github.com/milos7250/GRouNdScale/actions/workflows/documentation.yaml/badge.svg?branch=master" class="icon-link-image" alt="Docs Build"/></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_parser.html">custom_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation.html">evaluation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../factory.html">factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gans.html">gans package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperparameter_optimization.html">hyperparameter_optimization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../init_ddp.html">init_ddp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers.html">layers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../loggers.html">loggers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../networks.html">networks package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../perturbation.html">perturbation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preprocessing.html">preprocessing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../randomness.html">randomness module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sc_dataset.html">sc_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../training.html">training package</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale/issues/new?title=Issue%20on%20page%20%2F_modules/evaluation/grn_inference.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for evaluation.grn_inference</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">auc</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">loggers</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_logger</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Collection</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">configparser</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigParser</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">(</span><span class="s2">"evaluate"</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_imposed_grn">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.grn_inference.get_imposed_grn">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_imposed_grn</span><span class="p">(</span>
+    <span class="n">cfg</span><span class="p">:</span> <span class="s2">"ConfigParser"</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="nb">int</span><span class="p">,</span>
+<span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Load and process the imposed (ground-truth) GRN from a causal graph file.</span>
+
+<span class="sd">    This function reads the GRouNdScale GRN and maps numeric gene indices to gene names</span>
+<span class="sd">    and constructs a structured representation of the GRN.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cfg</span>
+<span class="sd">        Configuration object providing the necessary file paths:</span>
+<span class="sd">        - "Data" -&gt; "train": Path to real cells `.h5ad` file for gene name mapping.</span>
+<span class="sd">        - "Data" -&gt; "causal graph": Path to the pickle file containing the ground truth GRN.</span>
+<span class="sd">        - "GRN Benchmarking" -&gt; "ground truth save path": Optional output path for saving the ground truth GRN in csv format.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    imposed_grn</span>
+<span class="sd">        DataFrame with a single column "res" containing string-formatted edges ("TF -&gt; target").</span>
+
+<span class="sd">    imposed_TFs</span>
+<span class="sd">        Set of transcription factors (TFs) involved in the imposed GRN.</span>
+
+<span class="sd">    imposed_targets</span>
+<span class="sd">        Set of target genes in the imposed GRN.</span>
+
+<span class="sd">    imposed_edges</span>
+<span class="sd">        List of edges as strings in the format "TF -&gt; target".</span>
+
+<span class="sd">    TFs</span>
+<span class="sd">        List of unique transcription factors (from `imposed_TFs`), useful for downstream filtering.</span>
+
+<span class="sd">    possible_edges_no</span>
+<span class="sd">        Total number of possible TF-target combinations based on imposed GRN (\\|TFs\\| * \\|targets\\|).</span>
+<span class="sd">    """</span>
+    <span class="n">real_cells</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Data"</span><span class="p">,</span> <span class="s2">"train"</span><span class="p">))</span>
+    <span class="n">gene_names</span> <span class="o">=</span> <span class="n">real_cells</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="n">imposed_TFs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">imposed_targets</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Data"</span><span class="p">,</span> <span class="s2">"causal graph"</span><span class="p">),</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">imposed_grn</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+
+    <span class="c1"># convert the GRN from GRouNdScale format (based on gene number to gene name)</span>
+    <span class="n">imposed_edges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">to_save_edges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">gene</span><span class="p">,</span> <span class="n">tfs</span> <span class="ow">in</span> <span class="n">imposed_grn</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">gene</span> <span class="o">=</span> <span class="n">gene_names</span><span class="p">[</span><span class="n">gene</span><span class="p">]</span>
+        <span class="n">imposed_targets</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gene</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">tf</span> <span class="ow">in</span> <span class="n">tfs</span><span class="p">:</span>
+            <span class="n">tf</span> <span class="o">=</span> <span class="n">gene_names</span><span class="p">[</span><span class="n">tf</span><span class="p">]</span>
+
+            <span class="c1"># create a third column in the df for the edge: (TF -&gt; Gene) format</span>
+            <span class="n">imposed_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span> <span class="o">+</span> <span class="s2">" -&gt; "</span> <span class="o">+</span> <span class="n">gene</span><span class="p">)</span>
+            <span class="n">to_save_edges</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"TF (regulator)"</span><span class="p">:</span> <span class="n">tf</span><span class="p">,</span> <span class="s2">"Gene (target)"</span><span class="p">:</span> <span class="n">gene</span><span class="p">})</span>
+            <span class="n">imposed_TFs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="p">)</span>
+
+    <span class="n">imposed_grn_save_path</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"GRN Benchmarking"</span><span class="p">,</span> <span class="s2">"ground truth save path"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">imposed_grn_save_path</span><span class="p">:</span>
+        <span class="n">save_path</span> <span class="o">=</span> <span class="n">imposed_grn_save_path</span> <span class="o">+</span> <span class="s2">"ground truth GRN.csv"</span>
+        <span class="n">imposed_grn_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">to_save_edges</span><span class="p">)</span>
+        <span class="n">imposed_grn_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Saved ground truth GRN to </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">imposed_grn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">imposed_edges</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"res"</span><span class="p">])</span>
+    <span class="n">TFs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">imposed_TFs</span><span class="p">)</span>
+    <span class="n">possible_edges_no</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">imposed_TFs</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">imposed_targets</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">imposed_grn</span><span class="p">,</span>
+        <span class="n">imposed_TFs</span><span class="p">,</span>
+        <span class="n">imposed_targets</span><span class="p">,</span>
+        <span class="n">imposed_edges</span><span class="p">,</span>
+        <span class="n">TFs</span><span class="p">,</span>
+        <span class="n">possible_edges_no</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_fake_grn">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.grn_inference.get_fake_grn">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_fake_grn</span><span class="p">(</span>
+    <span class="n">cfg</span><span class="p">:</span> <span class="s2">"ConfigParser"</span><span class="p">,</span>
+    <span class="n">imposed_TFs</span><span class="p">:</span> <span class="s2">"Collection[str]"</span><span class="p">,</span>
+    <span class="n">imposed_targets</span><span class="p">:</span> <span class="s2">"Collection[str]"</span><span class="p">,</span>
+    <span class="n">TFs</span><span class="p">:</span> <span class="s2">"Collection[str]"</span><span class="p">,</span>
+    <span class="n">possible_edges_no</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Construct a benchmark gene regulatory network (GRN) DataFrame using inferred and imposed edges.</span>
+
+<span class="sd">    This function loads an inferred GRN from a file, filters it based on imposed TFs</span>
+<span class="sd">    and targets, and augments it with all possible unreported edges (assigned zero importance).</span>
+<span class="sd">    This ensures that all theoretically possible edges are included for evaluation purposes (e.g., computing recall).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cfg</span>
+<span class="sd">        Configuration object providing the path to the inferred GRN file via the section</span>
+<span class="sd">        "GRN Benchmarking" -&gt; "grn to benchmark".</span>
+
+<span class="sd">    imposed_TFs</span>
+<span class="sd">        List of TFs that are considered "imposed" in the simulation and should be included as sources in the GRN.</span>
+
+<span class="sd">    imposed_targets</span>
+<span class="sd">        List of target genes that are expected to be regulated in the benchmark.</span>
+
+<span class="sd">    TFs</span>
+<span class="sd">        List of all possible TFs used to filter the GRN (must be valid source nodes).</span>
+
+<span class="sd">    possible_edges_no</span>
+<span class="sd">        Total number of possible edges in the benchmark GRN (used for validation/debugging).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        DataFrame representing the benchmark GRN. Columns include:</span>
+<span class="sd">        - "TF": Source transcription factor</span>
+<span class="sd">        - "target": Target gene</span>
+<span class="sd">        - "importance": Importance score (0 for non-inferred edges)</span>
+<span class="sd">        - "res": String representation of the edge ("TF -&gt; target")</span>
+<span class="sd">    """</span>
+    <span class="c1"># Read inferred GRN, assuming edges are already ordered by importance</span>
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"GRN Benchmarking"</span><span class="p">,</span> <span class="s2">"grn to benchmark"</span><span class="p">,</span> <span class="n">fallback</span><span class="o">=</span><span class="s2">""</span><span class="p">),</span>
+        <span class="n">sep</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span>
+        <span class="c1"># header=None,</span>
+    <span class="p">)</span>
+    <span class="n">fake_grn</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"TF"</span><span class="p">,</span> <span class="s2">"target"</span><span class="p">,</span> <span class="s2">"importance"</span><span class="p">]</span>
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="n">fake_grn</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">fake_grn</span><span class="o">.</span><span class="n">importance</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="n">fake_grn</span><span class="p">[</span><span class="s2">"res"</span><span class="p">]</span> <span class="o">=</span> <span class="n">fake_grn</span><span class="p">[</span><span class="s2">"TF"</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" -&gt; "</span> <span class="o">+</span> <span class="n">fake_grn</span><span class="p">[</span><span class="s2">"target"</span><span class="p">]</span>  <span class="c1"># pyright: ignore[reportOperatorIssue]</span>
+
+    <span class="n">unimportant_edges</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"TF"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"target"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"importance"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"res"</span><span class="p">:</span> <span class="p">[]}</span>
+    <span class="k">for</span> <span class="n">tf</span> <span class="ow">in</span> <span class="n">imposed_TFs</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">imposed_targets</span><span class="p">:</span>
+            <span class="n">unimportant_edges</span><span class="p">[</span><span class="s2">"TF"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="p">)</span>
+            <span class="n">unimportant_edges</span><span class="p">[</span><span class="s2">"target"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gene</span><span class="p">)</span>
+            <span class="n">unimportant_edges</span><span class="p">[</span><span class="s2">"importance"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">unimportant_edges</span><span class="p">[</span><span class="s2">"res"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span> <span class="o">+</span> <span class="s2">" -&gt; "</span> <span class="o">+</span> <span class="n">gene</span><span class="p">)</span>
+
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="n">fake_grn</span><span class="p">[</span><span class="o">~</span><span class="n">fake_grn</span><span class="p">[</span><span class="s2">"target"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TFs</span><span class="p">)]</span>  <span class="c1"># remove edge if a TF is also a target gene</span>
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="n">fake_grn</span><span class="p">[</span><span class="n">fake_grn</span><span class="p">[</span><span class="s2">"TF"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TFs</span><span class="p">)]</span>  <span class="c1"># remove edge not coming from a TF</span>
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="n">fake_grn</span><span class="p">[</span><span class="n">fake_grn</span><span class="p">[</span><span class="s2">"target"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">imposed_targets</span><span class="p">)]</span>
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="n">fake_grn</span><span class="p">[</span><span class="n">fake_grn</span><span class="p">[</span><span class="s2">"TF"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">TFs</span><span class="p">)]</span>
+
+    <span class="c1"># add all the edges that don't appear in the inference method as low importance edges</span>
+    <span class="c1"># without this, recall might not go to 1</span>
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">fake_grn</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">unimportant_edges</span><span class="p">)])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"res"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">assert</span> <span class="n">fake_grn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">possible_edges_no</span>
+    <span class="k">return</span> <span class="n">fake_grn</span></div>
+
+
+
+<div class="viewcode-block" id="compute_precision_at_k">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.grn_inference.compute_precision_at_k">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_precision_at_k</span><span class="p">(</span>
+    <span class="n">fake_grn</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">imposed_grn</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">TFs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">numTFs_pergene</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">save_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute precision at k for inferred GRN against the imposed ground truth.</span>
+<span class="sd">    It plots the precision and baseline curves and optionally saves the figure.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fake_grn</span>
+<span class="sd">        Inferred GRN with columns "TF", "target", and "res" (formatted as "TF -&gt; target").</span>
+
+<span class="sd">    imposed_grn</span>
+<span class="sd">        Ground truth GRN with a column "res" representing edges in "TF -&gt; target" format.</span>
+
+<span class="sd">    TFs</span>
+<span class="sd">        List or set of valid transcription factors. Used to exclude predictions where a TF is treated as a target.</span>
+
+<span class="sd">    numTFs_pergene</span>
+<span class="sd">        Maximum number of top TFs to evaluate per gene.</span>
+<span class="sd">    save_path</span>
+<span class="sd">        Directory path where the precision-at-k plot should be saved. If empty, the plot is not saved.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    """</span>
+    <span class="n">range_TFs_pergene</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numTFs_pergene</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">precisions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">baselines</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">n_toptfs</span> <span class="ow">in</span> <span class="n">range_TFs_pergene</span><span class="p">:</span>
+        <span class="c1"># the code below doesn't preserve order</span>
+        <span class="n">fake_grn_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">fake_grn</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"target"</span><span class="p">)[</span><span class="s2">"TF"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">))</span>
+        <span class="n">fake_grn_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">gene</span><span class="p">:</span> <span class="nb">set</span><span class="p">(</span><span class="n">tfs</span><span class="p">[:</span><span class="n">n_toptfs</span><span class="p">])</span> <span class="k">for</span> <span class="p">(</span><span class="n">gene</span><span class="p">,</span> <span class="n">tfs</span><span class="p">)</span> <span class="ow">in</span> <span class="n">fake_grn_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+        <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">gene</span><span class="p">,</span> <span class="n">tfs</span> <span class="ow">in</span> <span class="n">fake_grn_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">TFs</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">tf</span> <span class="ow">in</span> <span class="n">tfs</span><span class="p">:</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span> <span class="o">+</span> <span class="s2">" -&gt; "</span> <span class="o">+</span> <span class="n">gene</span><span class="p">)</span>
+
+        <span class="n">fake_grn_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"res"</span><span class="p">])</span>
+        <span class="n">common_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fake_grn_dict</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:][</span><span class="s2">"res"</span><span class="p">])</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">imposed_grn</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:][</span><span class="s2">"res"</span><span class="p">]))</span>
+
+        <span class="n">consistency</span> <span class="o">=</span> <span class="n">common_edges</span> <span class="o">/</span> <span class="n">fake_grn_dict</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># precision</span>
+        <span class="n">precisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">consistency</span><span class="p">)</span>
+        <span class="n">baselines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_toptfs</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">TFs</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Inferred grn at k = </span><span class="si">{</span><span class="n">n_toptfs</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">fake_grn_dict</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:][</span><span class="s1">'res'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imposed grn at k = </span><span class="si">{</span><span class="n">n_toptfs</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">imposed_grn</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:][</span><span class="s1">'res'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Common edges at k = </span><span class="si">{</span><span class="n">n_toptfs</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">common_edges</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Precision at k = </span><span class="si">{</span><span class="n">n_toptfs</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">consistency</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Baseline at k = </span><span class="si">{</span><span class="n">n_toptfs</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">baselines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Inferred GRN precision at k: </span><span class="si">{</span><span class="n">precisions</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Baseline precision at k: </span><span class="si">{</span><span class="n">baselines</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">range_TFs_pergene</span><span class="p">,</span>
+        <span class="n">precisions</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">"Inferred GRN"</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">"solid"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">range_TFs_pergene</span><span class="p">,</span>
+        <span class="n">baselines</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">"Baseline"</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">"s"</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">"dotted"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numTFs_pergene</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">range_TFs_pergene</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Number of top TFs per gene"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Precision"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper right"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">numTFs_pergene</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">save_path</span><span class="p">:</span>
+        <span class="n">Path</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span> <span class="o">/</span> <span class="s2">"Top_TF_precision.png"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span> <span class="o">/</span> <span class="s2">"Top_TF_precision.pdf"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Saved precision at k plot at </span><span class="si">{</span><span class="n">save_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s1">'Top_TF_precision.png'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="compute_PR">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.grn_inference.compute_PR">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_PR</span><span class="p">(</span>
+    <span class="n">fake_grn</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">imposed_grn</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">imposed_edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">imposed_targets</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">imposed_TFs</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">save_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute and plot the Precision-Recall (PR) curve for a predicted gene regulatory network (GRN)</span>
+<span class="sd">    against a ground-truth GRN.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fake_grn</span>
+<span class="sd">        Inferred GRN DataFrame with a column 'res' representing edges in the format "TF -&gt; target".</span>
+
+<span class="sd">    imposed_grn</span>
+<span class="sd">        Ground-truth GRN DataFrame with a column 'res' representing edges in the same format.</span>
+
+<span class="sd">    imposed_edges</span>
+<span class="sd">        List of all ground-truth edges as strings ("TF -&gt; target").</span>
+
+<span class="sd">    imposed_targets</span>
+<span class="sd">        Set of ground-truth target genes.</span>
+
+<span class="sd">    imposed_TFs</span>
+<span class="sd">        Set of ground-truth transcription factors.</span>
+
+<span class="sd">    save_path</span>
+<span class="sd">        Directory path to save the precision-recall plot as "PR_curve.png".</span>
+<span class="sd">        If None or empty, the plot is not saved.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    """</span>
+    <span class="n">precisions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">recalls</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">lb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>  <span class="c1"># define the TOP % of edges to consider</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ct</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lb</span><span class="p">):</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fake_grn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ct</span><span class="p">)</span>
+        <span class="n">common_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fake_grn</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">ct</span><span class="p">][</span><span class="s2">"res"</span><span class="p">])</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">imposed_grn</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:][</span><span class="s2">"res"</span><span class="p">]))</span>
+        <span class="n">recall</span> <span class="o">=</span> <span class="n">common_edges</span> <span class="o">/</span> <span class="n">imposed_grn</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">recalls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall</span><span class="p">)</span>
+        <span class="n">precision</span> <span class="o">=</span> <span class="n">common_edges</span> <span class="o">/</span> <span class="n">ct</span>
+        <span class="n">precisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">precision</span><span class="p">)</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">auc_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">recalls</span><span class="p">,</span> <span class="n">precisions</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"font.size"</span><span class="p">:</span> <span class="mi">15</span><span class="p">})</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">recalls</span><span class="p">,</span>
+        <span class="n">precisions</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Inferred GRN AUPRC: </span><span class="si">{</span><span class="n">auc_score</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">"solid"</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">baseline</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">imposed_edges</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">imposed_TFs</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">imposed_targets</span><span class="p">))</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Recall"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Precision"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">baseline</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"dimgrey"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"dashed"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="s2">"random"</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper right"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Inferred GRN AURPC: </span><span class="si">{</span><span class="n">auc_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Baseline AUPRC (random predictor): </span><span class="si">{</span><span class="n">baseline</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">save_path</span><span class="p">:</span>
+        <span class="n">Path</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span> <span class="o">/</span> <span class="s2">"PR_curve.png"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span> <span class="o">/</span> <span class="s2">"PR_curve.pdf"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Saved PR curve at </span><span class="si">{</span><span class="n">save_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s1">'PR_curve.png'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="evaluate">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.grn_inference.evaluate">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="s2">"ConfigParser"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Evaluate the reconstructed GRN against the ground truth GRN</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cfg</span>
+<span class="sd">        Parser for config file containing program params.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    """</span>
+    <span class="p">(</span>
+        <span class="n">imposed_grn</span><span class="p">,</span>
+        <span class="n">imposed_TFs</span><span class="p">,</span>
+        <span class="n">imposed_targets</span><span class="p">,</span>
+        <span class="n">imposed_edges</span><span class="p">,</span>
+        <span class="n">TFs</span><span class="p">,</span>
+        <span class="n">possible_edges_no</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">get_imposed_grn</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+    <span class="n">fake_grn</span> <span class="o">=</span> <span class="n">get_fake_grn</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">imposed_TFs</span><span class="p">,</span> <span class="n">imposed_targets</span><span class="p">,</span> <span class="n">TFs</span><span class="p">,</span> <span class="n">possible_edges_no</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"GRN Benchmarking"</span><span class="p">,</span> <span class="s2">"compute precision at k"</span><span class="p">):</span>
+        <span class="n">compute_precision_at_k</span><span class="p">(</span>
+            <span class="n">fake_grn</span><span class="p">,</span>
+            <span class="n">imposed_grn</span><span class="p">,</span>
+            <span class="n">TFs</span><span class="p">,</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s2">"GRN Benchmarking"</span><span class="p">,</span> <span class="s2">"k"</span><span class="p">),</span>
+            <span class="n">Path</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"GRN Benchmarking"</span><span class="p">,</span> <span class="s2">"plots save path"</span><span class="p">)),</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"GRN Benchmarking"</span><span class="p">,</span> <span class="s2">"compute pr"</span><span class="p">):</span>
+        <span class="n">compute_PR</span><span class="p">(</span>
+            <span class="n">fake_grn</span><span class="p">,</span>
+            <span class="n">imposed_grn</span><span class="p">,</span>
+            <span class="n">imposed_edges</span><span class="p">,</span>
+            <span class="n">imposed_targets</span><span class="p">,</span>
+            <span class="n">imposed_TFs</span><span class="p">,</span>
+            <span class="n">Path</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"GRN Benchmarking"</span><span class="p">,</span> <span class="s2">"plots save path"</span><span class="p">)),</span>
+        <span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Milos Micik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Milos Micik.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

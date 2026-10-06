@@ -1,0 +1,939 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>evaluation.data_quality &#8212; GRouNdScale 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/evaluation/data_quality';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="GRouNdScale - Home"/>
+    <img src="../../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="GRouNdScale - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://hub.docker.com/repository/docker/milos7250/groundscale/" title="Docker" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-docker fa-lg" aria-hidden="true"></i><span class="visually-hidden">Docker</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://doi.org/10.1038/s41467-024-48516-6" title="Manuscript" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-book fa-lg" aria-hidden="true"></i><span class="visually-hidden">Manuscript</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/milos7250/GRouNdScale/actions" title="Docs Build" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="https://github.com/milos7250/GRouNdScale/actions/workflows/documentation.yaml/badge.svg?branch=master" class="icon-link-image" alt="Docs Build"/></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API References</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom_parser.html">custom_parser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation.html">evaluation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../factory.html">factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gans.html">gans package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hyperparameter_optimization.html">hyperparameter_optimization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../init_ddp.html">init_ddp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers.html">layers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../loggers.html">loggers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../networks.html">networks package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../perturbation.html">perturbation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preprocessing.html">preprocessing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../randomness.html">randomness module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sc_dataset.html">sc_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../training.html">training package</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/milos7250/GRouNdScale/issues/new?title=Issue%20on%20page%20%2F_modules/evaluation/data_quality.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for evaluation.data_quality</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">configparser</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.axes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Axes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.figure</span><span class="w"> </span><span class="kn">import</span> <span class="n">Figure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sparse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">cosine_distances</span><span class="p">,</span> <span class="n">euclidean_distances</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">umap</span><span class="w"> </span><span class="kn">import</span> <span class="n">UMAP</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">evaluation</span><span class="w"> </span><span class="kn">import</span> <span class="n">MMD</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">evaluation.lisi</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_lisi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">loggers</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">randomness</span><span class="w"> </span><span class="kn">import</span> <span class="n">random_seed</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">(</span><span class="s2">"evaluate"</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_datasets">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.data_quality.read_datasets">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_datasets</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Load real and simulated (fake) gene expression datasets.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cfg</span>
+<span class="sd">        Parser for config file containing program params.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple[numpy.ndarray, numpy.ndarray]</span>
+<span class="sd">        A tuple containing:</span>
+<span class="sd">        - real_cells.X : NumPy array of real gene expression data</span>
+<span class="sd">        - fake_cells.X : NumPy array of simulated gene expression data, truncated to match real data row count</span>
+<span class="sd">    """</span>
+    <span class="n">test_cells_path</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Data"</span><span class="p">,</span> <span class="s2">"test"</span><span class="p">)</span>
+
+    <span class="n">fake_cells_path</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"simulated data path"</span><span class="p">,</span> <span class="n">fallback</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fake_cells_path</span><span class="p">:</span>  <span class="c1"># Fall back to generation path</span>
+        <span class="n">fake_cells_path</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Generation"</span><span class="p">,</span> <span class="s2">"generation path"</span><span class="p">,</span> <span class="n">fallback</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fake_cells_path</span><span class="p">:</span>  <span class="c1"># Fall back on default save dir if generation path is also empty</span>
+        <span class="n">fake_cells_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"EXPERIMENT"</span><span class="p">,</span> <span class="s2">"output directory"</span><span class="p">))</span> <span class="o">/</span> <span class="s2">"simulated.h5ad"</span>
+
+    <span class="n">real_cells</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">test_cells_path</span><span class="p">)</span>
+    <span class="n">fake_cells</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">fake_cells_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">real_cells</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">):</span>  <span class="c1"># pyright: ignore[reportUnknownMemberType]</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"The real data matrix is not in sparse csr format. Please preprocess the data accordingly."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">real_cells</span> <span class="o">=</span> <span class="n">real_cells</span><span class="o">.</span><span class="n">X</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fake_cells</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">):</span>  <span class="c1"># pyright: ignore[reportUnknownMemberType]</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"The fake data matrix is not in sparse csr format. Please preprocess the data accordingly."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fake_cells</span> <span class="o">=</span> <span class="n">fake_cells</span><span class="o">.</span><span class="n">X</span>
+
+    <span class="n">no_of_cells</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">real_cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fake_cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># pyright: ignore[reportOptionalSubscript,reportUnknownArgumentType]</span>
+    <span class="n">real_cells</span> <span class="o">=</span> <span class="n">real_cells</span><span class="p">[:</span><span class="n">no_of_cells</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">fake_cells</span> <span class="o">=</span> <span class="n">fake_cells</span><span class="p">[:</span><span class="n">no_of_cells</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span></div>
+
+
+
+<div class="viewcode-block" id="get_UMAP_embeddings">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.data_quality.get_UMAP_embeddings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_UMAP_embeddings</span><span class="p">(</span>
+    <span class="n">real</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">,</span> <span class="n">fake</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute UMAP embeddings for real and fake cell data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    real</span>
+<span class="sd">        A NumPy array of real cell data with shape (n_real_cells, n_features).</span>
+<span class="sd">    fake</span>
+<span class="sd">        A NumPy array of fake/generated cell data with shape (n_fake_cells, n_features).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">        A tuple containing the 2D UMAP embeddings of the real and fake data,</span>
+<span class="sd">        in the form (real_embedding, fake_embedding).</span>
+<span class="sd">    """</span>
+    <span class="n">umap</span> <span class="o">=</span> <span class="n">UMAP</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">umap</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>  <span class="c1"># ensure UMAP is fitted only once to preserve comparability</span>
+    <span class="n">real_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">umap</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">real</span><span class="p">))</span>
+    <span class="n">fake_embedding</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">umap</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">fake</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">real_embedding</span><span class="p">,</span> <span class="n">fake_embedding</span></div>
+
+
+
+<div class="viewcode-block" id="plot_UMAP">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.data_quality.plot_UMAP">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_UMAP</span><span class="p">(</span><span class="n">real_embedding</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fake_embedding</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Figure</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">Figure</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Perform UMAP embedding on real and fake cell data and save a scatter plot.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    real</span>
+<span class="sd">        A NumPy array of real cell data with shape (n_real_cells, n_features).</span>
+<span class="sd">    fake</span>
+<span class="sd">        A NumPy array of fake/generated cell data with shape (n_fake_cells, n_features).</span>
+<span class="sd">    output_dir</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple[Figure, Figure, Figure]</span>
+<span class="sd">        A tuple containing the matplotlib Figure objects for the scatter plot, hexbin plot, and histogram</span>
+<span class="sd">        difference plot, respectively.</span>
+<span class="sd">    """</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span>
+            <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])),</span>
+            <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])),</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+            <span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="nb">min</span><span class="p">(</span><span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])),</span>
+            <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])),</span>
+        <span class="p">],</span>
+    <span class="p">])</span>
+    <span class="n">margin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">extent</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">extent</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.05</span>  <span class="c1"># 5% margin</span>
+    <span class="n">extent</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">margin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">extent</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">margin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">scatter_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="c1"># Interweave points for cycled colors</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">real_embedding</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">fake_embedding</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">real_embedding</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">real_embedding</span><span class="o">.</span><span class="n">dtype</span>
+    <span class="p">)</span>
+    <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">real_embedding</span>
+    <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">fake_embedding</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))[:</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create artificial legend handles for the scatter plot</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="p">[],</span>
+        <span class="p">[],</span>
+        <span class="n">c</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">"real"</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">a2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="p">[],</span>
+        <span class="p">[],</span>
+        <span class="n">c</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">"generated"</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"lower left"</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"UMAP Projection of Real and Generated Cells"</span><span class="p">)</span>
+
+    <span class="n">hexbin_fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="p">:</span> <span class="n">Axes</span>
+    <span class="n">ax2</span><span class="p">:</span> <span class="n">Axes</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span>
+        <span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">mincnt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">"Reds"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Real Cells"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ax1</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+
+    <span class="n">ax2</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span>
+        <span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">mincnt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">"Reds"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Generated Cells"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"UMAP Histograms"</span><span class="p">)</span>
+
+    <span class="n">H_real</span><span class="p">,</span> <span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">real_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+    <span class="n">H_fake</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fake_embedding</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+    <span class="n">H_real</span><span class="p">[</span><span class="n">H_real</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">H_rel</span> <span class="o">=</span> <span class="n">H_real</span> <span class="o">/</span> <span class="p">(</span><span class="n">H_real</span> <span class="o">+</span> <span class="n">H_fake</span><span class="p">)</span>  <span class="c1"># relative density difference</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xedges</span><span class="p">,</span> <span class="n">yedges</span><span class="p">)</span>
+    <span class="n">v_bound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H_rel</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>
+
+    <span class="n">hist_rel_abun_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">H_rel</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"coolwarm"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">v_bound</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">+</span> <span class="n">v_bound</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"UMAP Histogram Relative Abundance of Real Cells"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>  <span class="c1"># shrink fig so cbar is visible</span>
+    <span class="c1"># make new ax object for the cbar</span>
+    <span class="n">cbar_ax</span> <span class="o">=</span> <span class="n">hist_rel_abun_fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.87</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">))</span>  <span class="c1"># x, y, width, height</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cax</span><span class="o">=</span><span class="n">cbar_ax</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scatter_fig</span><span class="p">,</span> <span class="n">hexbin_fig</span><span class="p">,</span> <span class="n">hist_rel_abun_fig</span></div>
+
+
+
+<div class="viewcode-block" id="compute_distances">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.data_quality.compute_distances">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_distances</span><span class="p">(</span>
+    <span class="n">real_cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute Euclidean and Cosine distances between the mean expression profiles of real and fake cells.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    real_cells</span>
+<span class="sd">        A NumPy array representing real cell data (cells × features).</span>
+<span class="sd">    fake_cells</span>
+<span class="sd">        A NumPy array representing fake cell data (cells × features).</span>
+<span class="sd">    axis</span>
+<span class="sd">        Axis along which to compute the mean expression (default is 0, meaning across cells), by default 0</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple[float, float]</span>
+<span class="sd">        A tuple containing:</span>
+<span class="sd">        - Euclidean distance between the mean expression profiles.</span>
+<span class="sd">        - Cosine distance between the mean expression profiles.</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># calculate mean expression across cells</span>
+    <span class="n">fake_mean_expression</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fake_cells</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">real_mean_expression</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">real_cells</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">euclidean_distances</span><span class="p">(</span><span class="n">fake_mean_expression</span><span class="p">,</span> <span class="n">real_mean_expression</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+        <span class="n">cosine_distances</span><span class="p">(</span><span class="n">fake_mean_expression</span><span class="p">,</span> <span class="n">real_mean_expression</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="compute_RF_AUROC">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.data_quality.compute_RF_AUROC">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_RF_AUROC</span><span class="p">(</span>
+    <span class="n">real_cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">,</span>
+    <span class="n">fake_cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">,</span>
+    <span class="n">n_components</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Figure</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute the AUROC and plot the ROC curve of a Random Forest classifier distinguishing real from fake cells.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    real_cells</span>
+<span class="sd">        A NumPy array representing real cell data (cells x features).</span>
+<span class="sd">    fake_cells</span>
+<span class="sd">        A NumPy array representing fake/generated cell data (cells x features).</span>
+<span class="sd">    n_components</span>
+<span class="sd">        Number of principal components to retain during PCA, by default 50</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple[float, Figure]</span>
+<span class="sd">        The area under the ROC curve (AUROC) for the classifier and the matplotlib Figure object containing the ROC plot.</span>
+<span class="sd">    """</span>
+    <span class="c1"># create labels for real and fake data (real = 1, fake = 0)</span>
+    <span class="n">y_real</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">real_cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># pyright: ignore[reportOptionalSubscript]</span>
+    <span class="n">y_fake</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">fake_cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># pyright: ignore[reportOptionalSubscript]</span>
+
+    <span class="c1"># perform PCA</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_seed</span><span class="p">)</span>
+
+    <span class="c1"># split data into training and testing</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">sparse</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"csr"</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">y_real</span><span class="p">,</span> <span class="n">y_fake</span><span class="p">)),</span>
+        <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="n">random_seed</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># train and test RF</span>
+    <span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_seed</span><span class="p">)</span>
+    <span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">roc_auc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+
+    <span class="c1"># plot ROC</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Receiver Operating Characteristic"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"AUC = </span><span class="si">{</span><span class="n">roc_auc</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"r--"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"True Positive Rate"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"False Positive Rate"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">roc_auc</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="evaluate">
+<a class="viewcode-back" href="../../evaluation.html#evaluation.data_quality.evaluate">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Assess the data quality of the simulated dataset.</span>
+
+<span class="sd">    - Umap plots of real vs simulated cells (jointly embedded and plotted).</span>
+<span class="sd">    - Euclidean and Cosine distances between the centroids of real cells and simulated cells.</span>
+<span class="sd">        The centroid cell was obtained by calculating the mean along the gene axis (across all simulated or real cells).</span>
+<span class="sd">    - Area under the receiver operating characteristic curve of a random forest in distinguishing real cells from simulated ones.</span>
+<span class="sd">        We perform dimensionality reduction using PCA to extract the top 50 PCs of each cell as the input features to the RF model.</span>
+<span class="sd">        The RF model is composed of 1000 trees and the Gini impurity was used to measure the quality of a split.</span>
+<span class="sd">    - Maximum mean discrepancy (MMD) to estimate the proximity of high-dimensional distributions of real and simulated cells without</span>
+<span class="sd">      creating centroids.</span>
+<span class="sd">    - Mean integration local inverse Simpson's Index (miLISI).</span>
+<span class="sd">        iLISI captures the effective number of datatypes (real or simulated) to which datapoints of its local neighborhood belong.</span>
+
+<span class="sd">    As a “control” (and to enable calibration of these scores), we also calculated these metrics using two halves of the reference test set.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cfg</span>
+<span class="sd">        Parser for config file containing program params.</span>
+<span class="sd">    """</span>
+    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"EXPERIMENT"</span><span class="p">,</span> <span class="s2">"output directory"</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"savefig.dpi"</span><span class="p">:</span> <span class="mi">600</span><span class="p">})</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span> <span class="o">=</span> <span class="n">read_datasets</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+
+    <span class="c1"># Split the test set into 2 to compute the control metrics</span>
+    <span class="n">num_rows</span> <span class="o">=</span> <span class="n">real_cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># pyright: ignore[reportOptionalSubscript]</span>
+    <span class="n">half</span> <span class="o">=</span> <span class="n">num_rows</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">real_cells_ctr1</span> <span class="o">=</span> <span class="n">real_cells</span><span class="p">[:</span><span class="n">half</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">real_cells_ctr2</span> <span class="o">=</span> <span class="n">real_cells</span><span class="p">[</span><span class="n">half</span><span class="p">:,</span> <span class="p">:]</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"plot umap"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"compute miLISI"</span><span class="p">):</span>
+        <span class="n">real_embedding</span><span class="p">,</span> <span class="n">fake_embedding</span> <span class="o">=</span> <span class="n">get_UMAP_embeddings</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">)</span>
+        <span class="n">scatter_fig</span><span class="p">,</span> <span class="n">hexbin_fig</span><span class="p">,</span> <span class="n">hist_diff_fig</span> <span class="o">=</span> <span class="n">plot_UMAP</span><span class="p">(</span><span class="n">real_embedding</span><span class="p">,</span> <span class="n">fake_embedding</span><span class="p">)</span>
+
+        <span class="n">umap_path</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"UMAP"</span>
+        <span class="n">umap_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">scatter_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_path</span> <span class="o">/</span> <span class="s2">"UMAP Scatter.png"</span><span class="p">)</span>
+        <span class="n">scatter_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_path</span> <span class="o">/</span> <span class="s2">"UMAP Scatter.pdf"</span><span class="p">)</span>
+        <span class="n">scatter_fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_rasterization_zorder</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+        <span class="n">scatter_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_path</span> <span class="o">/</span> <span class="s2">"UMAP Scatter Rasterized.pdf"</span><span class="p">)</span>
+        <span class="n">hexbin_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_path</span> <span class="o">/</span> <span class="s2">"UMAP Histogram.png"</span><span class="p">)</span>
+        <span class="n">hexbin_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_path</span> <span class="o">/</span> <span class="s2">"UMAP Histogram.pdf"</span><span class="p">)</span>
+        <span class="n">hist_diff_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_path</span> <span class="o">/</span> <span class="s2">"UMAP Histogram Difference.png"</span><span class="p">)</span>
+        <span class="n">hist_diff_fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">umap_path</span> <span class="o">/</span> <span class="s2">"UMAP Histogram Difference.pdf"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">"all"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"compute euclidean distance"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span>
+        <span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"compute cosine distance"</span>
+    <span class="p">):</span>
+        <span class="n">euclidean</span><span class="p">,</span> <span class="n">cosine</span> <span class="o">=</span> <span class="n">compute_distances</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">)</span>
+        <span class="n">euclidean_ctr</span><span class="p">,</span> <span class="n">cosine_ctr</span> <span class="o">=</span> <span class="n">compute_distances</span><span class="p">(</span><span class="n">real_cells_ctr1</span><span class="p">,</span> <span class="n">real_cells_ctr2</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Euclidean distance (real vs fake): </span><span class="si">{</span><span class="n">euclidean</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Euclidean distance (control): </span><span class="si">{</span><span class="n">euclidean_ctr</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cosine distance (real vs fake): </span><span class="si">{</span><span class="n">cosine</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cosine distance (control): </span><span class="si">{</span><span class="n">cosine_ctr</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="n">results</span> <span class="o">|=</span> <span class="p">{</span>
+            <span class="s2">"euclidean_distance_real_vs_fake"</span><span class="p">:</span> <span class="n">euclidean</span><span class="p">,</span>
+            <span class="s2">"euclidean_distance_control"</span><span class="p">:</span> <span class="n">euclidean_ctr</span><span class="p">,</span>
+            <span class="s2">"cosine_distance_real_vs_fake"</span><span class="p">:</span> <span class="n">cosine</span><span class="p">,</span>
+            <span class="s2">"cosine_distance_control"</span><span class="p">:</span> <span class="n">cosine_ctr</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"compute rf auroc"</span><span class="p">):</span>
+        <span class="n">rf_auroc</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">compute_RF_AUROC</span><span class="p">(</span>
+            <span class="n">real_cells</span><span class="p">,</span>
+            <span class="n">fake_cells</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"RF.png"</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"RF.pdf"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"RF ROC plot saved to </span><span class="si">{</span><span class="n">output_dir</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="s1">'RF.png'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"RF AUROC: </span><span class="si">{</span><span class="n">rf_auroc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">|=</span> <span class="p">{</span><span class="s2">"rf_auroc"</span><span class="p">:</span> <span class="n">rf_auroc</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"compute MMD"</span><span class="p">):</span>
+        <span class="n">mmd_real_vs_fake</span> <span class="o">=</span> <span class="n">MMD</span><span class="o">.</span><span class="n">MMD</span><span class="p">(</span><span class="n">real_cells</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">real_cells</span><span class="p">,</span> <span class="n">fake_cells</span><span class="p">)</span>
+        <span class="n">mmd_control</span> <span class="o">=</span> <span class="n">MMD</span><span class="o">.</span><span class="n">MMD</span><span class="p">(</span><span class="n">real_cells</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">real_cells_ctr1</span><span class="p">,</span> <span class="n">real_cells_ctr2</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MMD (real vs fake): </span><span class="si">{</span><span class="n">mmd_real_vs_fake</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MMD (control): </span><span class="si">{</span><span class="n">mmd_control</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">|=</span> <span class="p">{</span>
+            <span class="s2">"mmd_real_vs_fake"</span><span class="p">:</span> <span class="n">mmd_real_vs_fake</span><span class="p">,</span>
+            <span class="s2">"mmd_control"</span><span class="p">:</span> <span class="n">mmd_control</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="s2">"Evaluation"</span><span class="p">,</span> <span class="s2">"compute miLISI"</span><span class="p">):</span>
+        <span class="n">umap_real_ctr1</span><span class="p">,</span> <span class="n">umap_real_ctr2</span> <span class="o">=</span> <span class="n">get_UMAP_embeddings</span><span class="p">(</span><span class="n">real_cells_ctr1</span><span class="p">,</span> <span class="n">real_cells_ctr2</span><span class="p">)</span>
+
+        <span class="n">umap_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">real_embedding</span><span class="p">,</span> <span class="n">fake_embedding</span><span class="p">))</span>  <span class="c1"># pyright: ignore[reportPossiblyUnboundVariable]</span>
+        <span class="n">umap_coords_ctr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">umap_real_ctr1</span><span class="p">,</span> <span class="n">umap_real_ctr2</span><span class="p">))</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">"real"</span><span class="p">]</span> <span class="o">*</span> <span class="n">real_cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"generated"</span><span class="p">]</span> <span class="o">*</span> <span class="n">fake_cells</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>  <span class="c1"># pyright: ignore[reportOptionalSubscript]</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"type"</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">metadata_ctr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">"ctr1"</span><span class="p">]</span> <span class="o">*</span> <span class="n">umap_real_ctr1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"ctr2"</span><span class="p">]</span> <span class="o">*</span> <span class="n">umap_real_ctr2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"type"</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">lisis</span> <span class="o">=</span> <span class="n">compute_lisi</span><span class="p">(</span><span class="n">umap_coords</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="p">[</span><span class="s2">"type"</span><span class="p">])</span>
+        <span class="n">lisis_ctr</span> <span class="o">=</span> <span class="n">compute_lisi</span><span class="p">(</span><span class="n">umap_coords_ctr</span><span class="p">,</span> <span class="n">metadata_ctr</span><span class="p">,</span> <span class="p">[</span><span class="s2">"type"</span><span class="p">])</span>
+        <span class="n">lisis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">lisis</span><span class="p">)</span>
+        <span class="n">lisis_ctr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">lisis_ctr</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"miLISI (real vs fake): </span><span class="si">{</span><span class="n">lisis</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"miLISI (control): </span><span class="si">{</span><span class="n">lisis_ctr</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">|=</span> <span class="p">{</span>
+            <span class="s2">"miLISI_real_vs_fake"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">lisis</span><span class="p">),</span>
+            <span class="s2">"miLISI_control"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">lisis_ctr</span><span class="p">),</span>
+        <span class="p">}</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">"evaluation_results.json"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Milos Micik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Milos Micik.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
