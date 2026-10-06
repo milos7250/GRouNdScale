@@ -1,0 +1,47 @@
++ export CONFIG=causal_gan.cfg
++ CONFIG=causal_gan.cfg
++ export CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup
++ export GROUNDGAN_LOGLEVEL=DEBUG
++ GROUNDGAN_LOGLEVEL=DEBUG
++ export GROUNDGAN_NO_TQDM=1
++ GROUNDGAN_NO_TQDM=1
++ export PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ PYTHON=/mnt/apps/users/mmicik//conda/envs/groundgan/bin/python
++ SLURM_ARRAY_JOB_ID=33898382
++ SLURM_ARRAY_TASK_ID=21
++ PID=
++ trap on_exit EXIT
++ export SIZE=2100
++ SIZE=2100
++ export NUM_GENES=2100
++ NUM_GENES=2100
++ mkdir -p results/2100
++ python ./limit-tfs.py -i data/processed/inferred_grnboost2.csv -o results/2100/inferred_grnboost2.csv --num-tfs 2100
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python ./limit-tfs.py -i data/processed/inferred_grnboost2.csv -o results/2100/inferred_grnboost2.csv --num-tfs 2100
++ echo Symbol
++ cut -d, -f1
++ sort -u
++ grep -v TF
++ cp data/processed/test.h5ad data/processed/train.h5ad data/processed/validation.h5ad results/2100/
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/create-grn.sh
+/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/src/preprocessing/grn_creation.py:146: ImplicitModificationWarning: Trying to modify attribute `._uns` of view, initializing view as actual.
+  real_cells.uns["GRouNdGAN_was_subsetted"] = True
+++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/../..//inspect_h5ad.py results/2100/train.h5ad
+++ grep -oE '\([0-9]+, [0-9]+\)'
+++ cut -d, -f2
+++ grep -oE '[0-9]+'
++ NUM_GENES=2772
++ export NUM_GENES
++ PID=4696
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/2100/gpu-usage.csv
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/train.sh
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/measure-gpu-usage.py --output results/2100/gpu-usage.csv
++ kill -SIGINT 4696
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/count-parameters.py --checkpoint results/2100/checkpoints/step_20.pth --out results/2100/params-size.json
++ /mnt/apps/users/mmicik//conda/envs/groundgan/bin/python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup/scripts/count-parameters.py --checkpoint results/2100/checkpoints/step_20.pth --out results/2100/params-size.json
++ on_exit
++ status=0
++ [[ -n 4696 ]]
++ kill -SIGINT 4696
++ exit 0

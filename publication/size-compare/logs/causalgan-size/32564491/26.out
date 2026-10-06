@@ -1,0 +1,328 @@
+Running command on n23-64-512-dobby
+[23:53:31] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (randomness) Logger randomness initialized.                                                                                                                           loggers.py:100
+           INFO     (randomness) Initial random seed: 2397183644                                                                                                                        randomness.py:11
+           INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+[23:53:33] DEBUG    (preprocessing.grn_accessor) Logger preprocessing.grn_accessor initialized.                                                                                           loggers.py:100
+[23:53:39] DEBUG    (preprocessing.preprocess) Logger preprocessing.preprocess initialized.                                                                                               loggers.py:100
+           INFO     (preprocessing.preprocess) Loading data...                                                                                                                          preprocess.py:26
+[23:53:44] INFO     (preprocessing.preprocess) Shuffling data...                                                                                                                        preprocess.py:33
+           INFO     (preprocessing.preprocess) Clustering data...                                                                                                                       preprocess.py:43
+[23:54:38] INFO     (preprocessing.preprocess) Filtering data...                                                                                                                        preprocess.py:61
+[23:54:41] INFO     (preprocessing.preprocess) Subsetting highly variable genes...                                                                                                      preprocess.py:71
+[23:54:44] INFO     (preprocessing.preprocess) Saving datasets...                                                                                                                      preprocess.py:109
+           INFO     (preprocessing.preprocess) Successfully preprocessed and saved dataset.                                                                                            preprocess.py:117
+           INFO     (preprocessing.preprocess) Train set (66579 cells, 14000 genes): results/14000/train.h5ad                                                                          preprocess.py:118
+           INFO     (preprocessing.preprocess) Validation set (1000 cells, 14000 genes): results/14000/validation.h5ad                                                                 preprocess.py:121
+           INFO     (preprocessing.preprocess) Test set (1000 cells, 14000 genes): results/14000/test.h5ad                                                                             preprocess.py:122
+           INFO     (GRouNdGAN CLI) Finished                                                                                                                                                 main.py:141
+Running command on n23-64-512-dobby
+[23:54:47] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (randomness) Logger randomness initialized.                                                                                                                           loggers.py:100
+           INFO     (randomness) Initial random seed: 2585812020                                                                                                                        randomness.py:11
+           INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+[23:54:48] DEBUG    (preprocessing.grn_accessor) Logger preprocessing.grn_accessor initialized.                                                                                           loggers.py:100
+[23:54:53] DEBUG    (preprocessing.grn_creation) Logger preprocessing.grn_creation initialized.                                                                                           loggers.py:100
+[23:54:56] INFO     (preprocessing.grn_creation) Starting GRN inference using 1045 TFs.                                                                                               grn_creation.py:71
+preparing dask client
+[23:54:57] INFO     (distributed.http.proxy) To route to workers diagnostics web server please install jupyter-server-proxy: python -m pip install jupyter-server-proxy                      proxy.py:86
+           INFO     (distributed.scheduler) State start                                                                                                                                scheduler.py:1765
+           INFO     (distributed.scheduler)   Scheduler at:     tcp://127.0.0.1:45273                                                                                                  scheduler.py:4281
+           INFO     (distributed.scheduler)   dashboard at:  http://127.0.0.1:8787/status                                                                                              scheduler.py:4296
+           INFO     (distributed.scheduler) Registering Worker plugin shuffle                                                                                                          scheduler.py:8176
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:37563'                                                                                                     nanny.py:368
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:35987'                                                                                                     nanny.py:368
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:37047'                                                                                                     nanny.py:368
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:35595'                                                                                                     nanny.py:368
+[23:54:57] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+[23:54:57] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+[23:54:57] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+[23:54:57] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+[23:54:58] INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:41787                                                                                                worker.py:1463
+[23:54:58] INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:39353                                                                                                worker.py:1463
+[23:54:58] INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:38911                                                                                                worker.py:1463
+[23:54:58] INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:42589                                                                                                worker.py:1463
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:41787                                                                                                worker.py:1464
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:39353                                                                                                worker.py:1464
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:38911                                                                                                worker.py:1464
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:42589                                                                                                worker.py:1464
+           INFO     (distributed.worker)           Worker name:                          2                                                                                                worker.py:1467
+           INFO     (distributed.worker)           Worker name:                          0                                                                                                worker.py:1467
+           INFO     (distributed.worker)           Worker name:                          3                                                                                                worker.py:1467
+           INFO     (distributed.worker)           Worker name:                          1                                                                                                worker.py:1467
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:34005                                                                                                worker.py:1469
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:44915                                                                                                worker.py:1469
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:38927                                                                                                worker.py:1469
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:33591                                                                                                worker.py:1469
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:45273                                                                                                worker.py:1470
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:45273                                                                                                worker.py:1470
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:45273                                                                                                worker.py:1470
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:45273                                                                                                worker.py:1470
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32581367/dask-scratch-space/worker-0gthalv5                                                                   worker.py:1478
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32581367/dask-scratch-space/worker-_s0vvw1p                                                                   worker.py:1478
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32581367/dask-scratch-space/worker-aibr7ffb                                                                   worker.py:1478
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32581367/dask-scratch-space/worker-9gw0ul8g                                                                   worker.py:1478
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+[23:54:58] INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:41787 name: 2                                                                                        scheduler.py:4629
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:41787                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36682                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:45273                                                                                                worker.py:1258
+           INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:42589 name: 3                                                                                        scheduler.py:4629
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:42589                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:45273                                                                                              core.py:883
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36712                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:45273                                                                                                worker.py:1258
+           INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:38911 name: 1                                                                                        scheduler.py:4629
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:38911                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:45273                                                                                              core.py:883
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36698                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:45273                                                                                                worker.py:1258
+           INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:39353 name: 0                                                                                        scheduler.py:4629
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:39353                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:45273                                                                                              core.py:883
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36680                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:45273                                                                                                worker.py:1258
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:45273                                                                                              core.py:883
+           INFO     (distributed.scheduler) Receive client connection: Client-2b079f59-9cea-11f1-b904-84160cef6dd0                                                                     scheduler.py:5953
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36726                                                                                              core.py:883
+parsing input
+creating dask graph
+4 partitions
+computing dask graph
+shutting down client and local cluster
+[00:47:18] INFO     (distributed.scheduler) Remove client Client-2b079f59-9cea-11f1-b904-84160cef6dd0                                                                                  scheduler.py:5998
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36726; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove client Client-2b079f59-9cea-11f1-b904-84160cef6dd0                                                                                  scheduler.py:5998
+           INFO     (distributed.scheduler) Close client connection: Client-2b079f59-9cea-11f1-b904-84160cef6dd0                                                                       scheduler.py:5990
+           INFO     (distributed.scheduler) Retire worker addresses (stimulus_id='retire-workers-1787269638.3809886') (0, 1, 2, 3)                                                     scheduler.py:7609
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:37563'. Reason: nanny-close                                                                                       nanny.py:611
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:35987'. Reason: nanny-close                                                                                       nanny.py:611
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:37047'. Reason: nanny-close                                                                                       nanny.py:611
+[00:47:18] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:39353. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:35595'. Reason: nanny-close                                                                                       nanny.py:611
+[00:47:18] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:38911. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+[00:47:18] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:41787. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:45273 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36680; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:39353 name: 0 (stimulus_id='handle-worker-cleanup-1787269638.3986297')                                 scheduler.py:5439
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:45273 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:45273 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36698; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:38911 name: 1 (stimulus_id='handle-worker-cleanup-1787269638.4034202')                                 scheduler.py:5439
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36682; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:41787 name: 2 (stimulus_id='handle-worker-cleanup-1787269638.406632')                                  scheduler.py:5439
+[00:47:18] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:42589. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:45273 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36712; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:42589 name: 3 (stimulus_id='handle-worker-cleanup-1787269638.7526476')                                 scheduler.py:5439
+           INFO     (distributed.scheduler) Lost all workers                                                                                                                           scheduler.py:5577
+[00:47:19] INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:35987' closed.                                                                                                            nanny.py:626
+           INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:37563' closed.                                                                                                            nanny.py:626
+           INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:37047' closed.                                                                                                            nanny.py:626
+           INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:35595' closed.                                                                                                            nanny.py:626
+           INFO     (distributed.scheduler) Closing scheduler. Reason: unknown                                                                                                         scheduler.py:4338
+           INFO     (distributed.scheduler) Scheduler closing all comms                                                                                                                scheduler.py:4366
+finished
+[00:47:21] INFO     (preprocessing.grn_creation) Successfully saved GRN inferred by GRNBoost2 GRN to results/14000/inferred_grnboost2.csv                                             grn_creation.py:74
+[00:47:22] INFO     (preprocessing.grn_creation) Creating top 15 GRN from top TFs                                                                                                     grn_creation.py:94
+           INFO     (preprocessing.grn_creation) All targets have regulators; no targets with no regulators included in the causal graph.                                            grn_creation.py:134
+[00:47:25] INFO     (preprocessing.grn_creation) Causal graph info:                                                                                                                  grn_creation.py:160
+                              ``TFs``     1045                                                                                                                                                          
+                          ``Targets``    12955                                                                                                                                                          
+                                Genes    14000                                                                                                                                                          
+                       Possible Edges 13537975                                                                                                                                                          
+                        Imposed Edges   194325                                                                                                                                                          
+                    GRN density Edges     1.4%                                                                                                                                                          
+           INFO     (preprocessing.grn_creation) Successfully saved GRouNdGAN causal graph to results/14000/causal_graph.pkl                                                         grn_creation.py:182
+[00:47:26] INFO     (GRouNdGAN CLI) Finished                                                                                                                                                 main.py:141
+Running command on n23-64-512-dobby
+[00:47:32] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (randomness) Logger randomness initialized.                                                                                                                           loggers.py:100
+           INFO     (randomness) Initial random seed: 1757244461                                                                                                                        randomness.py:11
+           INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+           INFO     (GRouNdGAN CLI) Initializing training libraries...                                                                                                                        main.py:77
+[00:47:40] INFO     (randomness) Using seed 781759803 for PyTorch random number generation.                                                                                             randomness.py:42
+[00:47:58] DEBUG    (evaluation.MMD) Logger evaluation.MMD initialized.                                                                                                                   loggers.py:100
+           DEBUG    (evaluate) Logger evaluate initialized.                                                                                                                               loggers.py:100
+[00:48:00] DEBUG    (training.gan) Logger training.gan initialized.                                                                                                                       loggers.py:100
+           INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:727
+           DEBUG    (training.gan) Initializing data loaders...                                                                                                                                gan.py:87
+[00:48:01] DEBUG    (training.gan) Initializing optimizers...                                                                                                                                  gan.py:94
+           DEBUG    (training.gan) Initializing schedulers...                                                                                                                                 gan.py:112
+           DEBUG    (training.gan) Initializing UMAP...                                                                                                                                       gan.py:130
+[00:48:11] DEBUG    (training.gan) Saving model graph...                                                                                                                                      gan.py:734
+[00:48:13] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:749
+[00:48:49] DEBUG    (training.gan) Step 0/20 completed in 36262 milliseconds (average: nan ms)                                                                                                gan.py:778
+[00:49:08] DEBUG    (training.gan) Step 1/20 completed in 18447 milliseconds (average: nan ms)                                                                                                gan.py:778
+           DEBUG    (training.gan) Step 2/20 completed in 44 milliseconds (average: 44 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 3/20 completed in 46 milliseconds (average: 45 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 4/20 completed in 43 milliseconds (average: 45 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 5/20 completed in 46 milliseconds (average: 45 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 6/20 completed in 43 milliseconds (average: 45 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 7/20 completed in 46 milliseconds (average: 45 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 8/20 completed in 42 milliseconds (average: 45 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 9/20 completed in 46 milliseconds (average: 45 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 10/20 completed in 43 milliseconds (average: 45 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 11/20 completed in 46 milliseconds (average: 45 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 12/20 completed in 42 milliseconds (average: 45 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 13/20 completed in 46 milliseconds (average: 45 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 14/20 completed in 43 milliseconds (average: 45 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 15/20 completed in 50 milliseconds (average: 45 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 16/20 completed in 32 milliseconds (average: 44 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 17/20 completed in 31 milliseconds (average: 44 ms)                                                                                                   gan.py:778
+[00:49:09] DEBUG    (training.gan) Step 18/20 completed in 32 milliseconds (average: 43 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 19/20 completed in 33 milliseconds (average: 42 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 20/20 completed in 33 milliseconds (average: 42 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Computing validation loss...                                                                                                                               gan.py:516
+[00:49:28] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:581
+                    Generator Loss                             1.6e+03                                                                                                                                  
+                    Generator Total Loss                       1.6e+03                                                                                                                                  
+                    Critic Total Loss                         -4.8e+03                                                                                                                                  
+                    Critic Fake Loss                          -1.6e+03                                                                                                                                  
+                    Critic Real Loss                          -4.1e+03                                                                                                                                  
+                    Critic Gradient Penalty Loss               8.4e+02                                                                                                                                  
+                    Total Loss                                  -3e+03                                                                                                                                  
+                    Validation Generator Loss                  2.4e+03                                                                                                                                  
+                    Validation Generator Total Loss            2.4e+03                                                                                                                                  
+                    Validation Critic Fake Loss               -2.4e+03                                                                                                                                  
+                    Validation Critic Real Loss               -7.4e+03                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss    1.7e+03                                                                                                                                  
+                    Validation Critic Total Loss              -8.1e+03                                                                                                                                  
+                    Validation Total Loss                     -5.7e+03                                                                                                                                  
+           DEBUG    (training.gan) Step 20:                                                                                                                                                   gan.py:582
+                    Generator LR               8.9e-08                                                                                                                                                  
+                    Critic LR                    1e-05                                                                                                                                                  
+                    Generator Avg Abs Weight     0.037                                                                                                                                                  
+                    Critic Avg Abs Weight        0.011                                                                                                                                                  
+           DEBUG    (training.gan) Generating UMAP plots...                                                                                                                                   gan.py:625
+[00:49:32] DEBUG    (training.gan) Step 20: Computing Random Forest AUROC...                                                                                                                  gan.py:660
+[00:49:36] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:672
+[00:49:39] DEBUG    (training.gan) Logger training.gan initialized.                                                                                                                       loggers.py:100
+           INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:727
+           DEBUG    (training.gan) Initializing data loaders...                                                                                                                                gan.py:87
+[00:49:40] DEBUG    (training.gan) Initializing optimizers...                                                                                                                                  gan.py:94
+           DEBUG    (training.gan) Initializing schedulers...                                                                                                                                 gan.py:112
+           DEBUG    (training.gan) Initializing UMAP...                                                                                                                                       gan.py:130
+[00:49:43] DEBUG    (training.gan) Saving model graph...                                                                                                                                      gan.py:734
+[00:49:45] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:749
+[00:51:25] DEBUG    (training.gan) Step 0/20 completed in 100658 milliseconds (average: nan ms)                                                                                               gan.py:778
+[00:52:26] DEBUG    (training.gan) Step 1/20 completed in 60793 milliseconds (average: nan ms)                                                                                                gan.py:778
+[00:52:27] DEBUG    (training.gan) Step 2/20 completed in 973 milliseconds (average: 973 ms)                                                                                                  gan.py:778
+[00:52:28] DEBUG    (training.gan) Step 3/20 completed in 986 milliseconds (average: 980 ms)                                                                                                  gan.py:778
+[00:52:29] DEBUG    (training.gan) Step 4/20 completed in 972 milliseconds (average: 977 ms)                                                                                                  gan.py:778
+[00:52:30] DEBUG    (training.gan) Step 5/20 completed in 985 milliseconds (average: 979 ms)                                                                                                  gan.py:778
+[00:52:31] DEBUG    (training.gan) Step 6/20 completed in 973 milliseconds (average: 978 ms)                                                                                                  gan.py:778
+[00:52:32] DEBUG    (training.gan) Step 7/20 completed in 987 milliseconds (average: 980 ms)                                                                                                  gan.py:778
+[00:52:33] DEBUG    (training.gan) Step 8/20 completed in 974 milliseconds (average: 979 ms)                                                                                                  gan.py:778
+[00:52:34] DEBUG    (training.gan) Step 9/20 completed in 985 milliseconds (average: 980 ms)                                                                                                  gan.py:778
+[00:52:35] DEBUG    (training.gan) Step 10/20 completed in 975 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:36] DEBUG    (training.gan) Step 11/20 completed in 984 milliseconds (average: 980 ms)                                                                                                 gan.py:778
+[00:52:37] DEBUG    (training.gan) Step 12/20 completed in 973 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:38] DEBUG    (training.gan) Step 13/20 completed in 983 milliseconds (average: 980 ms)                                                                                                 gan.py:778
+[00:52:39] DEBUG    (training.gan) Step 14/20 completed in 972 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:40] DEBUG    (training.gan) Step 15/20 completed in 983 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:41] DEBUG    (training.gan) Step 16/20 completed in 971 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:42] DEBUG    (training.gan) Step 17/20 completed in 983 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:43] DEBUG    (training.gan) Step 18/20 completed in 973 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:44] DEBUG    (training.gan) Step 19/20 completed in 982 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:45] DEBUG    (training.gan) Step 20/20 completed in 971 milliseconds (average: 979 ms)                                                                                                 gan.py:778
+[00:52:46] DEBUG    (training.gan) Computing validation loss...                                                                                                                               gan.py:516
+[00:53:07] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:581
+                    Generator Loss                             2.2e+04                                                                                                                                  
+                    Generator Labeler Loss                     9.2e+02                                                                                                                                  
+                    Generator Antilabeler Loss                 9.3e+02                                                                                                                                  
+                    Generator Total Loss                       2.3e+04                                                                                                                                  
+                    Critic Total Loss                           -7e+04                                                                                                                                  
+                    Critic Fake Loss                          -2.2e+04                                                                                                                                  
+                    Critic Real Loss                          -1.1e+05                                                                                                                                  
+                    Critic Gradient Penalty Loss               6.6e+04                                                                                                                                  
+                    Total Loss                                -4.4e+04                                                                                                                                  
+                    Labeler Real Loss                               23                                                                                                                                  
+                    Labeler Fake Loss                          9.2e+02                                                                                                                                  
+                    Antilabeler Loss                           9.3e+02                                                                                                                                  
+                    Validation Generator Loss                  2.5e+04                                                                                                                                  
+                    Validation Generator Total Loss            2.5e+04                                                                                                                                  
+                    Validation Critic Fake Loss               -2.5e+04                                                                                                                                  
+                    Validation Critic Real Loss               -1.4e+05                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss    8.2e+04                                                                                                                                  
+                    Validation Critic Total Loss              -8.3e+04                                                                                                                                  
+                    Validation Total Loss                     -5.8e+04                                                                                                                                  
+           DEBUG    (training.gan) Step 20:                                                                                                                                                   gan.py:582
+                    Generator LR               8.9e-07                                                                                                                                                  
+                    Critic LR                    0.001                                                                                                                                                  
+                    Labeler LR                  0.0001                                                                                                                                                  
+                    Antilabeler LR              0.0001                                                                                                                                                  
+                    Generator Avg Abs Weight     0.044                                                                                                                                                  
+                    Critic Avg Abs Weight        0.011                                                                                                                                                  
+           DEBUG    (training.gan) Generating UMAP plots...                                                                                                                                   gan.py:625
+[00:53:08] DEBUG    (training.gan) Step 20: Computing Random Forest AUROC...                                                                                                                  gan.py:660
+[00:53:12] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:672
+           INFO     (GRouNdGAN CLI) Finished                                                                                                                                                 main.py:141
+[08/21/26 00:54:00] INFO     Loading checkpoint from      count-parameters.py:48
+                             'results/14000/checkpoints/s                       
+                             tep_20.pth' on cuda                                
+[08/21/26 00:54:02] INFO     Parameter counts:            count-parameters.py:60
+                             gen_state_dict                                     
+                             48.64M parameters                                  
+                             crit_state_dict                                    
+                             14.99M parameters                                  
+                             labeler_state_dict                                 
+                             36.03M parameters                                  
+                             antilabeler_state_dict                             
+                             36.03M parameters                                  
+                             step                                               
+                             1 parameters                                       
+                             gen_optimizer_state_dict                           
+                             36.11M parameters                                  
+                             crit_optimizer_state_dict                          
+                             44.98M parameters                                  
+                             labeler_optimizer_state_dict                       
+                             108.06M parameters                                 
+                             antilabeler_optimizer_state_                       
+                             dict  108.06M parameters                           
+                             gen_scheduler_state_dict                           
+                             19 parameters                                      
+                             crit_scheduler_state_dict                          
+                             7 parameters                                       
+                    INFO     Successfully saved parameter count-parameters.py:64
+                             counts to                                          
+                             'results/14000/params-size.j                       
+                             son'                                               

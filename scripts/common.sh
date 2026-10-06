@@ -1,4 +1,4 @@
-CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale.worktrees/dedup}"
+CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale}"
 CONFIG="${CONFIG:-causal_gan.cfg}"
 POSTGRES_DIR="${POSTGRES_DIR:-$PWD/postgres}"
 
@@ -32,6 +32,11 @@ export TORCHINDUCTOR_FORCE_DISABLE_CACHES=0
 export GROUNDSCALE_LOGLEVEL=${GROUNDSCALE_LOGLEVEL:-INFO}
 export GROUNDSCALE_NO_TQDM=${GROUNDSCALE_NO_TQDM:-0}
 export LOGLEVEL=${LOGLEVEL:-WARNING}
+
+export PYTHON="apptainer exec --nv 'docker://milos7250/groundscale:latest' python"
+python(){
+    apptainer exec --nv 'docker://milos7250/groundscale:latest' python "$@"
+}
 
 if [[ -f "$POSTGRES_DIR/.env" ]]; then
     set -a

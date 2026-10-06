@@ -101,7 +101,7 @@ def click_options(func: Callable[..., Any]) -> Callable[..., Any]:
             "create_grn",
             is_flag=True,
             default=False,
-            help="Infer a GRN from preprocessed data using GRNBoost2 and appropriately format as causal graph",
+            help="Infer a GRN from preprocessed data using GRNBoost2 or RustScenic and appropriately format as causal graph",
         ),
         click.option("--train", is_flag=True, default=False, help="Start or resume model training"),
         click.option(

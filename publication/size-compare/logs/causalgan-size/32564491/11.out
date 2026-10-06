@@ -1,0 +1,690 @@
+Running command on n23-64-512-nagini
+[14:31:14] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (randomness) Logger randomness initialized.                                                                                                                           loggers.py:100
+           INFO     (randomness) Initial random seed: 63362487                                                                                                                          randomness.py:11
+           INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+[14:31:16] DEBUG    (preprocessing.grn_accessor) Logger preprocessing.grn_accessor initialized.                                                                                           loggers.py:100
+[14:31:21] DEBUG    (preprocessing.preprocess) Logger preprocessing.preprocess initialized.                                                                                               loggers.py:100
+           INFO     (preprocessing.preprocess) Loading data...                                                                                                                          preprocess.py:26
+[14:31:26] INFO     (preprocessing.preprocess) Shuffling data...                                                                                                                        preprocess.py:33
+           INFO     (preprocessing.preprocess) Clustering data...                                                                                                                       preprocess.py:43
+[14:32:21] INFO     (preprocessing.preprocess) Filtering data...                                                                                                                        preprocess.py:61
+[14:32:24] INFO     (preprocessing.preprocess) Subsetting highly variable genes...                                                                                                      preprocess.py:71
+[14:32:26] INFO     (preprocessing.preprocess) Saving datasets...                                                                                                                      preprocess.py:109
+           INFO     (preprocessing.preprocess) Successfully preprocessed and saved dataset.                                                                                            preprocess.py:117
+           INFO     (preprocessing.preprocess) Train set (66579 cells, 6500 genes): results/6500/train.h5ad                                                                            preprocess.py:118
+           INFO     (preprocessing.preprocess) Validation set (1000 cells, 6500 genes): results/6500/validation.h5ad                                                                   preprocess.py:121
+           INFO     (preprocessing.preprocess) Test set (1000 cells, 6500 genes): results/6500/test.h5ad                                                                               preprocess.py:122
+           INFO     (GRouNdGAN CLI) Finished                                                                                                                                                 main.py:141
+Running command on n23-64-512-nagini
+[14:32:28] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+[14:32:29] DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (randomness) Logger randomness initialized.                                                                                                                           loggers.py:100
+           INFO     (randomness) Initial random seed: 1708905416                                                                                                                        randomness.py:11
+           INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+[14:32:30] DEBUG    (preprocessing.grn_accessor) Logger preprocessing.grn_accessor initialized.                                                                                           loggers.py:100
+[14:32:34] DEBUG    (preprocessing.grn_creation) Logger preprocessing.grn_creation initialized.                                                                                           loggers.py:100
+[14:32:36] INFO     (preprocessing.grn_creation) Starting GRN inference using 506 TFs.                                                                                                grn_creation.py:71
+preparing dask client
+           INFO     (distributed.http.proxy) To route to workers diagnostics web server please install jupyter-server-proxy: python -m pip install jupyter-server-proxy                      proxy.py:86
+           INFO     (distributed.scheduler) State start                                                                                                                                scheduler.py:1765
+           INFO     (distributed.scheduler)   Scheduler at:     tcp://127.0.0.1:35455                                                                                                  scheduler.py:4281
+           INFO     (distributed.scheduler)   dashboard at:  http://127.0.0.1:8787/status                                                                                              scheduler.py:4296
+           INFO     (distributed.scheduler) Registering Worker plugin shuffle                                                                                                          scheduler.py:8176
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:34967'                                                                                                     nanny.py:368
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:39851'                                                                                                     nanny.py:368
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:34673'                                                                                                     nanny.py:368
+           INFO     (distributed.nanny)         Start Nanny at: 'tcp://127.0.0.1:41491'                                                                                                     nanny.py:368
+[14:32:37] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+[14:32:37] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+[14:32:37] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+[14:32:37] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:36411                                                                                                worker.py:1463
+           INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:38239                                                                                                worker.py:1463
+           INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:36337                                                                                                worker.py:1463
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:36411                                                                                                worker.py:1464
+           INFO     (distributed.worker)       Start worker at:      tcp://127.0.0.1:42049                                                                                                worker.py:1463
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:38239                                                                                                worker.py:1464
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:36337                                                                                                worker.py:1464
+           INFO     (distributed.worker)           Worker name:                          0                                                                                                worker.py:1467
+           INFO     (distributed.worker)          Listening to:      tcp://127.0.0.1:42049                                                                                                worker.py:1464
+           INFO     (distributed.worker)           Worker name:                          2                                                                                                worker.py:1467
+           INFO     (distributed.worker)           Worker name:                          1                                                                                                worker.py:1467
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:38663                                                                                                worker.py:1469
+           INFO     (distributed.worker)           Worker name:                          3                                                                                                worker.py:1467
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:32841                                                                                                worker.py:1469
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:38449                                                                                                worker.py:1469
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:35455                                                                                                worker.py:1470
+           INFO     (distributed.worker)          dashboard at:            127.0.0.1:44421                                                                                                worker.py:1469
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:35455                                                                                                worker.py:1470
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:35455                                                                                                worker.py:1470
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker) Waiting to connect to:      tcp://127.0.0.1:35455                                                                                                worker.py:1470
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1471
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)               Threads:                          4                                                                                                worker.py:1472
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32564616/dask-scratch-space/worker-9zz25spv                                                                   worker.py:1478
+           INFO     (distributed.worker)                Memory:                  16.00 GiB                                                                                                worker.py:1474
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32564616/dask-scratch-space/worker-kky4c8bl                                                                   worker.py:1478
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32564616/dask-scratch-space/worker-k68wa6mw                                                                   worker.py:1478
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+           INFO     (distributed.worker)       Local Directory: /tmp/mmicik_32564616/dask-scratch-space/worker-an0cghk_                                                                   worker.py:1478
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1191
+[14:32:37] INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:38239 name: 2                                                                                        scheduler.py:4629
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:38239                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36210                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:35455                                                                                                worker.py:1258
+           INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:36411 name: 0                                                                                        scheduler.py:4629
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:36411                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:35455                                                                                              core.py:883
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36204                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:35455                                                                                                worker.py:1258
+           INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:42049 name: 3                                                                                        scheduler.py:4629
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:42049                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:35455                                                                                              core.py:883
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36220                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:35455                                                                                                worker.py:1258
+           INFO     (distributed.scheduler) Register worker addr: tcp://127.0.0.1:36337 name: 1                                                                                        scheduler.py:4629
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.scheduler) Starting worker compute stream, tcp://127.0.0.1:36337                                                                                      scheduler.py:6218
+           INFO     (distributed.worker) Starting Worker plugin shuffle                                                                                                                   worker.py:1893
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:35455                                                                                              core.py:883
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36212                                                                                              core.py:883
+           INFO     (distributed.worker)         Registered to:      tcp://127.0.0.1:35455                                                                                                worker.py:1258
+           INFO     (distributed.worker) -------------------------------------------------                                                                                                worker.py:1259
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:35455                                                                                              core.py:883
+           INFO     (distributed.scheduler) Receive client connection: Client-9c18bfaf-9c9b-11f1-a1d0-84160cef6f10                                                                     scheduler.py:5953
+           INFO     (distributed.core) Starting established connection to tcp://127.0.0.1:36230                                                                                              core.py:883
+parsing input
+creating dask graph
+4 partitions
+computing dask graph
+shutting down client and local cluster
+[14:45:06] INFO     (distributed.scheduler) Remove client Client-9c18bfaf-9c9b-11f1-a1d0-84160cef6f10                                                                                  scheduler.py:5998
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36230; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove client Client-9c18bfaf-9c9b-11f1-a1d0-84160cef6f10                                                                                  scheduler.py:5998
+           INFO     (distributed.scheduler) Close client connection: Client-9c18bfaf-9c9b-11f1-a1d0-84160cef6f10                                                                       scheduler.py:5990
+           INFO     (distributed.scheduler) Retire worker addresses (stimulus_id='retire-workers-1787233506.2263918') (0, 1, 2, 3)                                                     scheduler.py:7609
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:34967'. Reason: nanny-close                                                                                       nanny.py:611
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:39851'. Reason: nanny-close                                                                                       nanny.py:611
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+[14:45:06] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:36411. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:34673'. Reason: nanny-close                                                                                       nanny.py:611
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+[14:45:06] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:36337. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.nanny) Closing Nanny at 'tcp://127.0.0.1:41491'. Reason: nanny-close                                                                                       nanny.py:611
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:35455 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.nanny) Nanny asking worker to close. Reason: nanny-close                                                                                                   nanny.py:858
+[14:45:06] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:38239. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:35455 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36204; closing.                                                                                          core.py:908
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36212; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:36411 name: 0 (stimulus_id='handle-worker-cleanup-1787233506.242782')                                  scheduler.py:5439
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:35455 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:36337 name: 1 (stimulus_id='handle-worker-cleanup-1787233506.2446203')                                 scheduler.py:5439
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36210; closing.                                                                                          core.py:908
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:38239 name: 2 (stimulus_id='handle-worker-cleanup-1787233506.248593')                                  scheduler.py:5439
+[14:45:06] INFO     (distributed.worker) Stopping worker at tcp://127.0.0.1:42049. Reason: nanny-close                                                                                    worker.py:1567
+           INFO     (distributed.worker) Removing Worker plugin shuffle                                                                                                                   worker.py:1909
+           INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:39851' closed.                                                                                                            nanny.py:626
+           INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:34967' closed.                                                                                                            nanny.py:626
+           INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:34673' closed.                                                                                                            nanny.py:626
+           ERROR    (distributed.worker) Failed to communicate with scheduler during heartbeat.                                                                                           worker.py:1314
+                    ╭──────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────╮               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/comm/tcp.py:226 in read                                                                                       │               
+                    │                                                                                                                                                                   │               
+                    │   223 │   │   try:                                                                                                                                                │               
+                    │   224 │   │   │   # Don't store multiple numpy or parquet buffers into the same buffer, or                                                                        │               
+                    │   225 │   │   │   # none will be released until all are released.                                                                                                 │               
+                    │ ❱ 226 │   │   │   frames_nosplit_nbytes_bin = await stream.read_bytes(fmt_size)                                                                                   │               
+                    │   227 │   │   │   (frames_nosplit_nbytes,) = struct.unpack(fmt, frames_nosplit_nbytes_bin)                                                                        │               
+                    │   228 │   │   │   frames_nosplit = await read_bytes_rw(stream, frames_nosplit_nbytes)                                                                             │               
+                    │   229 │   │   │   frames, buffers_nbytes = unpack_frames(frames_nosplit, partial=True)                                                                            │               
+                    │                                                                                                                                                                   │               
+                    │ ╭──────────────────────────────────────────────── locals ────────────────────────────────────────────────╮                                                        │               
+                    │ │ deserializers = None                                                                                   │                                                        │               
+                    │ │           fmt = 'Q'                                                                                    │                                                        │               
+                    │ │      fmt_size = 8                                                                                      │                                                        │               
+                    │ │          self = <TCP (closed) ConnectionPool local=tcp://127.0.0.1:36276 remote=tcp://127.0.0.1:35455> │                                                        │               
+                    │ │        stream = <tornado.iostream.IOStream object at 0x7f5e4f130650>                                   │                                                        │               
+                    │ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                        │               
+                    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯               
+                    StreamClosedError: Stream is closed                                                                                                                                                 
+                                                                                                                                                                                                        
+                    The above exception was the direct cause of the following exception:                                                                                                                
+                                                                                                                                                                                                        
+                    ╭──────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────╮               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/worker.py:1273 in heartbeat                                                                                   │               
+                    │                                                                                                                                                                   │               
+                    │   1270 │   │   logger.debug("Heartbeat: %s", self.address)                                                                                                        │               
+                    │   1271 │   │   try:                                                                                                                                               │               
+                    │   1272 │   │   │   start = time()                                                                                                                                 │               
+                    │ ❱ 1273 │   │   │   response = await retry_operation(                                                                                                              │               
+                    │   1274 │   │   │   │   self.scheduler.heartbeat_worker,                                                                                                           │               
+                    │   1275 │   │   │   │   address=self.contact_address,                                                                                                              │               
+                    │   1276 │   │   │   │   now=start,                                                                                                                                 │               
+                    │                                                                                                                                                                   │               
+                    │ ╭────────────────────────────────────────────────────────── locals ──────────────────────────────────────────────────────────╮                                    │               
+                    │ │  self = <Worker 'tcp://127.0.0.1:42049', name: 3, status: closing, stored: 0, running: 0/4, ready: 0, comm: 0, waiting: 0> │                                    │               
+                    │ │ start = 1787233506.2892692                                                                                                 │                                    │               
+                    │ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                    │               
+                    │                                                                                                                                                                   │               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/utils_comm.py:416 in retry_operation                                                                          │               
+                    │                                                                                                                                                                   │               
+                    │   413 │   retry_delay_max = parse_timedelta(                                                                                                                      │               
+                    │   414 │   │   dask.config.get("distributed.comm.retry.delay.max"), default="s"                                                                                    │               
+                    │   415 │   )                                                                                                                                                       │               
+                    │ ❱ 416 │   return await retry(                                                                                                                                     │               
+                    │   417 │   │   partial(coro, *args, **kwargs),                                                                                                                     │               
+                    │   418 │   │   count=retry_count,                                                                                                                                  │               
+                    │   419 │   │   delay_min=retry_delay_min,                                                                                                                          │               
+                    │                                                                                                                                                                   │               
+                    │ ╭─────────────────────────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────────────────────────╮  │               
+                    │ │            args = ()                                                                                                                                         │  │               
+                    │ │          kwargs = {                                                                                                                                          │  │               
+                    │ │                   │   'address': 'tcp://127.0.0.1:42049',                                                                                                    │  │               
+                    │ │                   │   'now': 1787233506.2892692,                                                                                                             │  │               
+                    │ │                   │   'metrics': {                                                                                                                           │  │               
+                    │ │                   │   │   'task_counts': Counter(),                                                                                                          │  │               
+                    │ │                   │   │   'bandwidth': {'total': 181795159.5735699, 'workers': {}, 'types': {}},                                                             │  │               
+                    │ │                   │   │   'digests_total_since_heartbeat': {                                                                                                 │  │               
+                    │ │                   │   │   │   'latency': 0.001287221908569336,                                                                                               │  │               
+                    │ │                   │   │   │   'profile-duration': 5.221366882324219e-05,                                                                                     │  │               
+                    │ │                   │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'count'): 4,                                                                  │  │               
+                    │ │                   │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                                                           │  │               
+                    │ │                   │   │   │   ('execute', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,                                              │  │               
+                    │ │                   │   │   │   ('execute', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986,                                         │  │               
+                    │ │                   │   │   │   ('execute', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,                                              │  │               
+                    │ │                   │   │   │   ('execute', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352,                                                   │  │               
+                    │ │                   │   │   │   'tick-duration': 0.5202271938323975,                                                                                           │  │               
+                    │ │                   │   │   │   ('get-data', 'memory-read', 'count'): 1,                                                                                       │  │               
+                    │ │                   │   │   │   ... +5                                                                                                                         │  │               
+                    │ │                   │   │   },                                                                                                                                 │  │               
+                    │ │                   │   │   'managed_bytes': 0,                                                                                                                │  │               
+                    │ │                   │   │   'spilled_bytes': {'memory': 0, 'disk': 0},                                                                                         │  │               
+                    │ │                   │   │   'transfer': {                                                                                                                      │  │               
+                    │ │                   │   │   │   'incoming_bytes': 0,                                                                                                           │  │               
+                    │ │                   │   │   │   'incoming_count': 0,                                                                                                           │  │               
+                    │ │                   │   │   │   'incoming_count_total': 311,                                                                                                   │  │               
+                    │ │                   │   │   │   'outgoing_bytes': 0,                                                                                                           │  │               
+                    │ │                   │   │   │   'outgoing_count': 0,                                                                                                           │  │               
+                    │ │                   │   │   │   'outgoing_count_total': 277                                                                                                    │  │               
+                    │ │                   │   │   },                                                                                                                                 │  │               
+                    │ │                   │   │   'event_loop_interval': 0.02324265103007472,                                                                                        │  │               
+                    │ │                   │   │   'cpu': 20.0,                                                                                                                       │  │               
+                    │ │                   │   │   'memory': 636854272,                                                                                                               │  │               
+                    │ │                   │   │   'time': 1787233505.7696629,                                                                                                        │  │               
+                    │ │                   │   │   ... +3                                                                                                                             │  │               
+                    │ │                   │   },                                                                                                                                     │  │               
+                    │ │                   │   'executing': {},                                                                                                                       │  │               
+                    │ │                   │   'extensions': {                                                                                                                        │  │               
+                    │ │                   │   │   'spans': {                                                                                                                         │  │               
+                    │ │                   │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'count'): 4,                          │  │               
+                    │ │                   │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                   │  │               
+                    │ │                   │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,      │  │               
+                    │ │                   │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986, │  │               
+                    │ │                   │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,      │  │               
+                    │ │                   │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352            │  │               
+                    │ │                   │   │   },                                                                                                                                 │  │               
+                    │ │                   │   │   'shuffle': {}                                                                                                                      │  │               
+                    │ │                   │   }                                                                                                                                      │  │               
+                    │ │                   }                                                                                                                                          │  │               
+                    │ │       operation = None                                                                                                                                       │  │               
+                    │ │     retry_count = 0                                                                                                                                          │  │               
+                    │ │ retry_delay_max = 20                                                                                                                                         │  │               
+                    │ │ retry_delay_min = 1                                                                                                                                          │  │               
+                    │ ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯  │               
+                    │                                                                                                                                                                   │               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/utils_comm.py:395 in retry                                                                                    │               
+                    │                                                                                                                                                                   │               
+                    │   392 │   │   │   if jitter_fraction > 0:                                                                                                                         │               
+                    │   393 │   │   │   │   delay *= 1 + random.random() * jitter_fraction                                                                                              │               
+                    │   394 │   │   │   await asyncio.sleep(delay)                                                                                                                      │               
+                    │ ❱ 395 │   return await coro()                                                                                                                                     │               
+                    │   396                                                                                                                                                             │               
+                    │   397                                                                                                                                                             │               
+                    │   398 # ParamSpec is not supported here due to the additional "operation" kwarg                                                                                   │               
+                    │                                                                                                                                                                   │               
+                    │ ╭─────────────────────────────────────────────────────────────────────────── locals ────────────────────────────────────────────────────────────────────────────╮ │               
+                    │ │                coro = functools.partial(<function PooledRPCCall.__getattr__.<locals>.send_recv_from_rpc at 0x7f5dbd504e00>, address='tcp://127.0.0.1:42049',  │ │               
+                    │ │                       now=1787233506.2892692, metrics={'task_counts': Counter(), 'bandwidth': {'total': 181795159.5735699, 'workers': {}, 'types': {}},       │ │               
+                    │ │                       'digests_total_since_heartbeat': {'latency': 0.001287221908569336, 'profile-duration': 5.221366882324219e-05, ('execute',               │ │               
+                    │ │                       'repartitiontofewer', 'memory-read', 'count'): 4, ('execute', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392, ('execute',      │ │               
+                    │ │                       'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178, ('execute', 'repartitiontofewer', 'thread-noncpu', 'seconds'):    │ │               
+                    │ │                       0.00039448851873657986, ('execute', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466, ('execute',                   │ │               
+                    │ │                       'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352, 'tick-duration': 0.5202271938323975, ('get-data', 'memory-read',       │ │               
+                    │ │                       'count'): 1, ('get-data', 'memory-read', 'bytes'): 18391117, ('get-data', 'offload', 'seconds'): 7.3740011430345476e-06, ('get-data',   │ │               
+                    │ │                       'serialize', 'seconds'): 0.0570109100008267, ('get-data', 'compress', 'seconds'): 6.061000021873042e-06, ('get-data', 'network',        │ │               
+                    │ │                       'seconds'): 0.023915663161460543}, 'managed_bytes': 0, 'spilled_bytes': {'memory': 0, 'disk': 0}, 'transfer': {'incoming_bytes': 0,     │ │               
+                    │ │                       'incoming_count': 0, 'incoming_count_total': 311, 'outgoing_bytes': 0, 'outgoing_count': 0, 'outgoing_count_total': 277},               │ │               
+                    │ │                       'event_loop_interval': 0.02324265103007472, 'cpu': 20.0, 'memory': 636854272, 'time': 1787233505.7696629, 'host_net_io': {'read_bps':   │ │               
+                    │ │                       20014679.27406229, 'write_bps': 20014679.27406229}, 'host_disk_io': {'read_bps': 0.0, 'write_bps': 0.0}, 'num_fds': 26}, executing={},  │ │               
+                    │ │                       extensions={'spans': {('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'count'): 4, ('execute', │ │               
+                    │ │                       'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392, ('execute',                            │ │               
+                    │ │                       'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178, ('execute',               │ │               
+                    │ │                       'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986, ('execute',          │ │               
+                    │ │                       'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466, ('execute',               │ │               
+                    │ │                       'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352}, 'shuffle': {}})               │ │               
+                    │ │               count = 0                                                                                                                                       │ │               
+                    │ │           delay_max = 20                                                                                                                                      │ │               
+                    │ │           delay_min = 1                                                                                                                                       │ │               
+                    │ │     jitter_fraction = 0.1                                                                                                                                     │ │               
+                    │ │           operation = None                                                                                                                                    │ │               
+                    │ │ retry_on_exceptions = (<class 'OSError'>, <class 'OSError'>)                                                                                                  │ │               
+                    │ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯ │               
+                    │                                                                                                                                                                   │               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/core.py:1259 in send_recv_from_rpc                                                                            │               
+                    │                                                                                                                                                                   │               
+                    │   1256 │   │   │   comm = await self.pool.connect(self.addr)                                                                                                      │               
+                    │   1257 │   │   │   prev_name, comm.name = comm.name, "ConnectionPool." + key                                                                                      │               
+                    │   1258 │   │   │   try:                                                                                                                                           │               
+                    │ ❱ 1259 │   │   │   │   return await send_recv(comm=comm, op=key, **kwargs)                                                                                        │               
+                    │   1260 │   │   │   finally:                                                                                                                                       │               
+                    │   1261 │   │   │   │   self.pool.reuse(self.addr, comm)                                                                                                           │               
+                    │   1262 │   │   │   │   comm.name = prev_name                                                                                                                      │               
+                    │                                                                                                                                                                   │               
+                    │ ╭──────────────────────────────────────────────────────────────────────── locals ────────────────────────────────────────────────────────────────────────╮        │               
+                    │ │      comm = <TCP (closed) ConnectionPool local=tcp://127.0.0.1:36276 remote=tcp://127.0.0.1:35455>                                                     │        │               
+                    │ │       key = 'heartbeat_worker'                                                                                                                         │        │               
+                    │ │    kwargs = {                                                                                                                                          │        │               
+                    │ │             │   'address': 'tcp://127.0.0.1:42049',                                                                                                    │        │               
+                    │ │             │   'now': 1787233506.2892692,                                                                                                             │        │               
+                    │ │             │   'metrics': {                                                                                                                           │        │               
+                    │ │             │   │   'task_counts': Counter(),                                                                                                          │        │               
+                    │ │             │   │   'bandwidth': {'total': 181795159.5735699, 'workers': {}, 'types': {}},                                                             │        │               
+                    │ │             │   │   'digests_total_since_heartbeat': {                                                                                                 │        │               
+                    │ │             │   │   │   'latency': 0.001287221908569336,                                                                                               │        │               
+                    │ │             │   │   │   'profile-duration': 5.221366882324219e-05,                                                                                     │        │               
+                    │ │             │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'count'): 4,                                                                  │        │               
+                    │ │             │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                                                           │        │               
+                    │ │             │   │   │   ('execute', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,                                              │        │               
+                    │ │             │   │   │   ('execute', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986,                                         │        │               
+                    │ │             │   │   │   ('execute', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,                                              │        │               
+                    │ │             │   │   │   ('execute', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352,                                                   │        │               
+                    │ │             │   │   │   'tick-duration': 0.5202271938323975,                                                                                           │        │               
+                    │ │             │   │   │   ('get-data', 'memory-read', 'count'): 1,                                                                                       │        │               
+                    │ │             │   │   │   ... +5                                                                                                                         │        │               
+                    │ │             │   │   },                                                                                                                                 │        │               
+                    │ │             │   │   'managed_bytes': 0,                                                                                                                │        │               
+                    │ │             │   │   'spilled_bytes': {'memory': 0, 'disk': 0},                                                                                         │        │               
+                    │ │             │   │   'transfer': {                                                                                                                      │        │               
+                    │ │             │   │   │   'incoming_bytes': 0,                                                                                                           │        │               
+                    │ │             │   │   │   'incoming_count': 0,                                                                                                           │        │               
+                    │ │             │   │   │   'incoming_count_total': 311,                                                                                                   │        │               
+                    │ │             │   │   │   'outgoing_bytes': 0,                                                                                                           │        │               
+                    │ │             │   │   │   'outgoing_count': 0,                                                                                                           │        │               
+                    │ │             │   │   │   'outgoing_count_total': 277                                                                                                    │        │               
+                    │ │             │   │   },                                                                                                                                 │        │               
+                    │ │             │   │   'event_loop_interval': 0.02324265103007472,                                                                                        │        │               
+                    │ │             │   │   'cpu': 20.0,                                                                                                                       │        │               
+                    │ │             │   │   'memory': 636854272,                                                                                                               │        │               
+                    │ │             │   │   'time': 1787233505.7696629,                                                                                                        │        │               
+                    │ │             │   │   ... +3                                                                                                                             │        │               
+                    │ │             │   },                                                                                                                                     │        │               
+                    │ │             │   'executing': {},                                                                                                                       │        │               
+                    │ │             │   'extensions': {                                                                                                                        │        │               
+                    │ │             │   │   'spans': {                                                                                                                         │        │               
+                    │ │             │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'count'): 4,                          │        │               
+                    │ │             │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                   │        │               
+                    │ │             │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,      │        │               
+                    │ │             │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986, │        │               
+                    │ │             │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,      │        │               
+                    │ │             │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352            │        │               
+                    │ │             │   │   },                                                                                                                                 │        │               
+                    │ │             │   │   'shuffle': {}                                                                                                                      │        │               
+                    │ │             │   }                                                                                                                                      │        │               
+                    │ │             }                                                                                                                                          │        │               
+                    │ │ prev_name = 'ConnectionPool'                                                                                                                           │        │               
+                    │ │      self = <pooled rpc to 'tcp://127.0.0.1:35455'>                                                                                                    │        │               
+                    │ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯        │               
+                    │                                                                                                                                                                   │               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/core.py:1018 in send_recv                                                                                     │               
+                    │                                                                                                                                                                   │               
+                    │   1015 │   try:                                                                                                                                                   │               
+                    │   1016 │   │   await comm.write(msg, serializers=serializers, on_error="raise")                                                                                   │               
+                    │   1017 │   │   if reply:                                                                                                                                          │               
+                    │ ❱ 1018 │   │   │   response = await comm.read(deserializers=deserializers)                                                                                        │               
+                    │   1019 │   │   else:                                                                                                                                              │               
+                    │   1020 │   │   │   response = None                                                                                                                                │               
+                    │   1021 │   except (asyncio.TimeoutError, OSError):                                                                                                                │               
+                    │                                                                                                                                                                   │               
+                    │ ╭────────────────────────────────────────────────────────────────────────── locals ──────────────────────────────────────────────────────────────────────────╮    │               
+                    │ │          comm = <TCP (closed) ConnectionPool local=tcp://127.0.0.1:36276 remote=tcp://127.0.0.1:35455>                                                     │    │               
+                    │ │ deserializers = None                                                                                                                                       │    │               
+                    │ │   force_close = True                                                                                                                                       │    │               
+                    │ │        kwargs = {                                                                                                                                          │    │               
+                    │ │                 │   'op': 'heartbeat_worker',                                                                                                              │    │               
+                    │ │                 │   'address': 'tcp://127.0.0.1:42049',                                                                                                    │    │               
+                    │ │                 │   'now': 1787233506.2892692,                                                                                                             │    │               
+                    │ │                 │   'metrics': {                                                                                                                           │    │               
+                    │ │                 │   │   'task_counts': Counter(),                                                                                                          │    │               
+                    │ │                 │   │   'bandwidth': {'total': 181795159.5735699, 'workers': {}, 'types': {}},                                                             │    │               
+                    │ │                 │   │   'digests_total_since_heartbeat': {                                                                                                 │    │               
+                    │ │                 │   │   │   'latency': 0.001287221908569336,                                                                                               │    │               
+                    │ │                 │   │   │   'profile-duration': 5.221366882324219e-05,                                                                                     │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'count'): 4,                                                                  │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                                                           │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,                                              │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986,                                         │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,                                              │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352,                                                   │    │               
+                    │ │                 │   │   │   'tick-duration': 0.5202271938323975,                                                                                           │    │               
+                    │ │                 │   │   │   ('get-data', 'memory-read', 'count'): 1,                                                                                       │    │               
+                    │ │                 │   │   │   ... +5                                                                                                                         │    │               
+                    │ │                 │   │   },                                                                                                                                 │    │               
+                    │ │                 │   │   'managed_bytes': 0,                                                                                                                │    │               
+                    │ │                 │   │   'spilled_bytes': {'memory': 0, 'disk': 0},                                                                                         │    │               
+                    │ │                 │   │   'transfer': {                                                                                                                      │    │               
+                    │ │                 │   │   │   'incoming_bytes': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'incoming_count': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'incoming_count_total': 311,                                                                                                   │    │               
+                    │ │                 │   │   │   'outgoing_bytes': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'outgoing_count': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'outgoing_count_total': 277                                                                                                    │    │               
+                    │ │                 │   │   },                                                                                                                                 │    │               
+                    │ │                 │   │   'event_loop_interval': 0.02324265103007472,                                                                                        │    │               
+                    │ │                 │   │   'cpu': 20.0,                                                                                                                       │    │               
+                    │ │                 │   │   'memory': 636854272,                                                                                                               │    │               
+                    │ │                 │   │   'time': 1787233505.7696629,                                                                                                        │    │               
+                    │ │                 │   │   ... +3                                                                                                                             │    │               
+                    │ │                 │   },                                                                                                                                     │    │               
+                    │ │                 │   'executing': {},                                                                                                                       │    │               
+                    │ │                 │   'extensions': {                                                                                                                        │    │               
+                    │ │                 │   │   'spans': {                                                                                                                         │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'count'): 4,                          │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                   │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,      │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986, │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,      │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352            │    │               
+                    │ │                 │   │   },                                                                                                                                 │    │               
+                    │ │                 │   │   'shuffle': {}                                                                                                                      │    │               
+                    │ │                 │   },                                                                                                                                     │    │               
+                    │ │                 │   'reply': True                                                                                                                          │    │               
+                    │ │                 }                                                                                                                                          │    │               
+                    │ │           msg = {                                                                                                                                          │    │               
+                    │ │                 │   'op': 'heartbeat_worker',                                                                                                              │    │               
+                    │ │                 │   'address': 'tcp://127.0.0.1:42049',                                                                                                    │    │               
+                    │ │                 │   'now': 1787233506.2892692,                                                                                                             │    │               
+                    │ │                 │   'metrics': {                                                                                                                           │    │               
+                    │ │                 │   │   'task_counts': Counter(),                                                                                                          │    │               
+                    │ │                 │   │   'bandwidth': {'total': 181795159.5735699, 'workers': {}, 'types': {}},                                                             │    │               
+                    │ │                 │   │   'digests_total_since_heartbeat': {                                                                                                 │    │               
+                    │ │                 │   │   │   'latency': 0.001287221908569336,                                                                                               │    │               
+                    │ │                 │   │   │   'profile-duration': 5.221366882324219e-05,                                                                                     │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'count'): 4,                                                                  │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                                                           │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,                                              │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986,                                         │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,                                              │    │               
+                    │ │                 │   │   │   ('execute', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352,                                                   │    │               
+                    │ │                 │   │   │   'tick-duration': 0.5202271938323975,                                                                                           │    │               
+                    │ │                 │   │   │   ('get-data', 'memory-read', 'count'): 1,                                                                                       │    │               
+                    │ │                 │   │   │   ... +5                                                                                                                         │    │               
+                    │ │                 │   │   },                                                                                                                                 │    │               
+                    │ │                 │   │   'managed_bytes': 0,                                                                                                                │    │               
+                    │ │                 │   │   'spilled_bytes': {'memory': 0, 'disk': 0},                                                                                         │    │               
+                    │ │                 │   │   'transfer': {                                                                                                                      │    │               
+                    │ │                 │   │   │   'incoming_bytes': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'incoming_count': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'incoming_count_total': 311,                                                                                                   │    │               
+                    │ │                 │   │   │   'outgoing_bytes': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'outgoing_count': 0,                                                                                                           │    │               
+                    │ │                 │   │   │   'outgoing_count_total': 277                                                                                                    │    │               
+                    │ │                 │   │   },                                                                                                                                 │    │               
+                    │ │                 │   │   'event_loop_interval': 0.02324265103007472,                                                                                        │    │               
+                    │ │                 │   │   'cpu': 20.0,                                                                                                                       │    │               
+                    │ │                 │   │   'memory': 636854272,                                                                                                               │    │               
+                    │ │                 │   │   'time': 1787233505.7696629,                                                                                                        │    │               
+                    │ │                 │   │   ... +3                                                                                                                             │    │               
+                    │ │                 │   },                                                                                                                                     │    │               
+                    │ │                 │   'executing': {},                                                                                                                       │    │               
+                    │ │                 │   'extensions': {                                                                                                                        │    │               
+                    │ │                 │   │   'spans': {                                                                                                                         │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'count'): 4,                          │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'memory-read', 'bytes'): 18401392,                   │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-cpu', 'seconds'): 0.023845289999940178,      │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'thread-noncpu', 'seconds'): 0.00039448851873657986, │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'executor', 'seconds'): 0.00036627447843784466,      │    │               
+                    │ │                 │   │   │   ('execute', 'a4269851-35a4-4ad2-8ba0-a1035cf73bed', 'repartitiontofewer', 'other', 'seconds'): 0.012604022002051352            │    │               
+                    │ │                 │   │   },                                                                                                                                 │    │               
+                    │ │                 │   │   'shuffle': {}                                                                                                                      │    │               
+                    │ │                 │   },                                                                                                                                     │    │               
+                    │ │                 │   'reply': True                                                                                                                          │    │               
+                    │ │                 }                                                                                                                                          │    │               
+                    │ │  please_close = False                                                                                                                                      │    │               
+                    │ │         reply = True                                                                                                                                       │    │               
+                    │ │   serializers = None                                                                                                                                       │    │               
+                    │ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯    │               
+                    │                                                                                                                                                                   │               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/comm/tcp.py:237 in read                                                                                       │               
+                    │                                                                                                                                                                   │               
+                    │   234 │   │   except (StreamClosedError, SSLError) as e:                                                                                                          │               
+                    │   235 │   │   │   self.stream = None                                                                                                                              │               
+                    │   236 │   │   │   self._closed = True                                                                                                                             │               
+                    │ ❱ 237 │   │   │   convert_stream_closed_error(self, e)                                                                                                            │               
+                    │   238 │   │   except BaseException:                                                                                                                               │               
+                    │   239 │   │   │   # Some OSError, CancelledError or another "low-level" exception.                                                                                │               
+                    │   240 │   │   │   # We do not really know what was already read from the underlying                                                                               │               
+                    │                                                                                                                                                                   │               
+                    │ ╭──────────────────────────────────────────────── locals ────────────────────────────────────────────────╮                                                        │               
+                    │ │ deserializers = None                                                                                   │                                                        │               
+                    │ │           fmt = 'Q'                                                                                    │                                                        │               
+                    │ │      fmt_size = 8                                                                                      │                                                        │               
+                    │ │          self = <TCP (closed) ConnectionPool local=tcp://127.0.0.1:36276 remote=tcp://127.0.0.1:35455> │                                                        │               
+                    │ │        stream = <tornado.iostream.IOStream object at 0x7f5e4f130650>                                   │                                                        │               
+                    │ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                        │               
+                    │                                                                                                                                                                   │               
+                    │ /opt/conda/lib/python3.11/site-packages/distributed/comm/tcp.py:137 in convert_stream_closed_error                                                                │               
+                    │                                                                                                                                                                   │               
+                    │   134 │   if hasattr(exc, "real_error"):                                                                                                                          │               
+                    │   135 │   │   # The stream was closed because of an underlying OS error                                                                                           │               
+                    │   136 │   │   if exc.real_error is None:                                                                                                                          │               
+                    │ ❱ 137 │   │   │   raise CommClosedError(f"in {obj}: {exc}") from exc                                                                                              │               
+                    │   138 │   │   exc = exc.real_error                                                                                                                                │               
+                    │   139 │                                                                                                                                                           │               
+                    │   140 │   if isinstance(exc, ssl.SSLError):                                                                                                                       │               
+                    │                                                                                                                                                                   │               
+                    │ ╭─────────────────────────────────────────── locals ───────────────────────────────────────────╮                                                                  │               
+                    │ │ exc = StreamClosedError('Stream is closed')                                                  │                                                                  │               
+                    │ │ obj = <TCP (closed) ConnectionPool local=tcp://127.0.0.1:36276 remote=tcp://127.0.0.1:35455> │                                                                  │               
+                    │ ╰──────────────────────────────────────────────────────────────────────────────────────────────╯                                                                  │               
+                    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯               
+                    CommClosedError: in <TCP (closed) ConnectionPool.heartbeat_worker local=tcp://127.0.0.1:36276 remote=tcp://127.0.0.1:35455>: Stream is closed                                       
+           INFO     (distributed.core) Received 'close-stream' from tcp://127.0.0.1:36220; closing.                                                                                          core.py:908
+           INFO     (distributed.core) Connection to tcp://127.0.0.1:35455 has been closed.                                                                                                  core.py:893
+           INFO     (distributed.scheduler) Remove worker addr: tcp://127.0.0.1:42049 name: 3 (stimulus_id='handle-worker-cleanup-1787233506.8301935')                                 scheduler.py:5439
+           INFO     (distributed.scheduler) Lost all workers                                                                                                                           scheduler.py:5577
+[14:45:07] INFO     (distributed.nanny) Nanny at 'tcp://127.0.0.1:41491' closed.                                                                                                            nanny.py:626
+           INFO     (distributed.scheduler) Closing scheduler. Reason: unknown                                                                                                         scheduler.py:4338
+           INFO     (distributed.scheduler) Scheduler closing all comms                                                                                                                scheduler.py:4366
+finished
+[14:45:08] INFO     (preprocessing.grn_creation) Successfully saved GRN inferred by GRNBoost2 GRN to results/6500/inferred_grnboost2.csv                                              grn_creation.py:74
+           INFO     (preprocessing.grn_creation) Creating top 15 GRN from top TFs                                                                                                     grn_creation.py:94
+           INFO     (preprocessing.grn_creation) All targets have regulators; no targets with no regulators included in the causal graph.                                            grn_creation.py:134
+[14:45:09] INFO     (preprocessing.grn_creation) Causal graph info:                                                                                                                  grn_creation.py:160
+                              ``TFs``     506                                                                                                                                                           
+                          ``Targets``    5994                                                                                                                                                           
+                                Genes    6500                                                                                                                                                           
+                       Possible Edges 3032964                                                                                                                                                           
+                        Imposed Edges   89910                                                                                                                                                           
+                    GRN density Edges    3.0%                                                                                                                                                           
+           INFO     (preprocessing.grn_creation) Successfully saved GRouNdGAN causal graph to results/6500/causal_graph.pkl                                                          grn_creation.py:182
+           INFO     (GRouNdGAN CLI) Finished                                                                                                                                                 main.py:141
+Running command on n23-64-512-nagini
+[14:45:13] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdGAN CLI) Logger GRouNdGAN CLI initialized.                                                                                                                     loggers.py:100
+           DEBUG    (randomness) Logger randomness initialized.                                                                                                                           loggers.py:100
+           INFO     (randomness) Initial random seed: 1262030218                                                                                                                        randomness.py:11
+           INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+           INFO     (GRouNdGAN CLI) Initializing training libraries...                                                                                                                        main.py:77
+[14:45:20] INFO     (randomness) Using seed 781759803 for PyTorch random number generation.                                                                                             randomness.py:42
+[14:45:36] DEBUG    (evaluation.MMD) Logger evaluation.MMD initialized.                                                                                                                   loggers.py:100
+           DEBUG    (evaluate) Logger evaluate initialized.                                                                                                                               loggers.py:100
+[14:45:38] DEBUG    (training.gan) Logger training.gan initialized.                                                                                                                       loggers.py:100
+           INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:727
+           DEBUG    (training.gan) Initializing data loaders...                                                                                                                                gan.py:87
+           DEBUG    (training.gan) Initializing optimizers...                                                                                                                                  gan.py:94
+           DEBUG    (training.gan) Initializing schedulers...                                                                                                                                 gan.py:112
+           DEBUG    (training.gan) Initializing UMAP...                                                                                                                                       gan.py:130
+[14:45:47] DEBUG    (training.gan) Saving model graph...                                                                                                                                      gan.py:734
+[14:45:49] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:749
+[14:46:24] DEBUG    (training.gan) Step 0/20 completed in 34811 milliseconds (average: nan ms)                                                                                                gan.py:778
+[14:46:43] DEBUG    (training.gan) Step 1/20 completed in 19315 milliseconds (average: nan ms)                                                                                                gan.py:778
+           DEBUG    (training.gan) Step 2/20 completed in 36 milliseconds (average: 37 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 3/20 completed in 37 milliseconds (average: 37 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 4/20 completed in 37 milliseconds (average: 37 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 5/20 completed in 37 milliseconds (average: 37 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 6/20 completed in 41 milliseconds (average: 38 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 7/20 completed in 43 milliseconds (average: 39 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 8/20 completed in 42 milliseconds (average: 40 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 9/20 completed in 40 milliseconds (average: 40 ms)                                                                                                    gan.py:778
+           DEBUG    (training.gan) Step 10/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+[14:46:44] DEBUG    (training.gan) Step 11/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 12/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 13/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 14/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 15/20 completed in 39 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 16/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 17/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 18/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 19/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Step 20/20 completed in 40 milliseconds (average: 40 ms)                                                                                                   gan.py:778
+           DEBUG    (training.gan) Computing validation loss...                                                                                                                               gan.py:516
+[14:47:02] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:581
+                    Generator Loss                             2.9e+03                                                                                                                                  
+                    Generator Total Loss                       2.9e+03                                                                                                                                  
+                    Critic Total Loss                         -5.8e+03                                                                                                                                  
+                    Critic Fake Loss                          -2.9e+03                                                                                                                                  
+                    Critic Real Loss                          -3.6e+03                                                                                                                                  
+                    Critic Gradient Penalty Loss               7.8e+02                                                                                                                                  
+                    Total Loss                                -2.6e+03                                                                                                                                  
+                    Validation Generator Loss                    5e+03                                                                                                                                  
+                    Validation Generator Total Loss              5e+03                                                                                                                                  
+                    Validation Critic Fake Loss                 -5e+03                                                                                                                                  
+                    Validation Critic Real Loss               -6.6e+03                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss    1.8e+03                                                                                                                                  
+                    Validation Critic Total Loss              -9.8e+03                                                                                                                                  
+                    Validation Total Loss                     -4.8e+03                                                                                                                                  
+           DEBUG    (training.gan) Step 20:                                                                                                                                                   gan.py:582
+                    Generator LR               8.9e-08                                                                                                                                                  
+                    Critic LR                    1e-05                                                                                                                                                  
+                    Generator Avg Abs Weight     0.038                                                                                                                                                  
+                    Critic Avg Abs Weight        0.016                                                                                                                                                  
+           DEBUG    (training.gan) Generating UMAP plots...                                                                                                                                   gan.py:625
+[14:47:06] DEBUG    (training.gan) Step 20: Computing Random Forest AUROC...                                                                                                                  gan.py:660
+[14:47:08] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:672
+[14:47:09] DEBUG    (training.gan) Logger training.gan initialized.                                                                                                                       loggers.py:100
+           INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:727
+           DEBUG    (training.gan) Initializing data loaders...                                                                                                                                gan.py:87
+[14:47:10] DEBUG    (training.gan) Initializing optimizers...                                                                                                                                  gan.py:94
+           DEBUG    (training.gan) Initializing schedulers...                                                                                                                                 gan.py:112
+           DEBUG    (training.gan) Initializing UMAP...                                                                                                                                       gan.py:130
+[14:47:13] DEBUG    (training.gan) Saving model graph...                                                                                                                                      gan.py:734
+[14:47:14] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:749
+[14:48:39] DEBUG    (training.gan) Step 0/20 completed in 85056 milliseconds (average: nan ms)                                                                                                gan.py:778
+[14:49:32] DEBUG    (training.gan) Step 1/20 completed in 53746 milliseconds (average: nan ms)                                                                                                gan.py:778
+[14:49:33] DEBUG    (training.gan) Step 2/20 completed in 467 milliseconds (average: 467 ms)                                                                                                  gan.py:778
+           DEBUG    (training.gan) Step 3/20 completed in 468 milliseconds (average: 468 ms)                                                                                                  gan.py:778
+[14:49:34] DEBUG    (training.gan) Step 4/20 completed in 468 milliseconds (average: 468 ms)                                                                                                  gan.py:778
+           DEBUG    (training.gan) Step 5/20 completed in 473 milliseconds (average: 469 ms)                                                                                                  gan.py:778
+[14:49:35] DEBUG    (training.gan) Step 6/20 completed in 469 milliseconds (average: 469 ms)                                                                                                  gan.py:778
+           DEBUG    (training.gan) Step 7/20 completed in 473 milliseconds (average: 470 ms)                                                                                                  gan.py:778
+[14:49:36] DEBUG    (training.gan) Step 8/20 completed in 471 milliseconds (average: 470 ms)                                                                                                  gan.py:778
+           DEBUG    (training.gan) Step 9/20 completed in 472 milliseconds (average: 471 ms)                                                                                                  gan.py:778
+[14:49:37] DEBUG    (training.gan) Step 10/20 completed in 470 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+           DEBUG    (training.gan) Step 11/20 completed in 473 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+[14:49:38] DEBUG    (training.gan) Step 12/20 completed in 471 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+           DEBUG    (training.gan) Step 13/20 completed in 471 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+           DEBUG    (training.gan) Step 14/20 completed in 472 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+[14:49:39] DEBUG    (training.gan) Step 15/20 completed in 472 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+           DEBUG    (training.gan) Step 16/20 completed in 473 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+[14:49:40] DEBUG    (training.gan) Step 17/20 completed in 471 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+           DEBUG    (training.gan) Step 18/20 completed in 471 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+[14:49:41] DEBUG    (training.gan) Step 19/20 completed in 471 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+           DEBUG    (training.gan) Step 20/20 completed in 470 milliseconds (average: 471 ms)                                                                                                 gan.py:778
+[14:49:42] DEBUG    (training.gan) Computing validation loss...                                                                                                                               gan.py:516
+[14:49:55] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:581
+                    Generator Loss                               4e+04                                                                                                                                  
+                    Generator Labeler Loss                     3.6e+03                                                                                                                                  
+                    Generator Antilabeler Loss                 3.6e+03                                                                                                                                  
+                    Generator Total Loss                       4.7e+04                                                                                                                                  
+                    Critic Total Loss                         -2.5e+05                                                                                                                                  
+                    Critic Fake Loss                            -4e+04                                                                                                                                  
+                    Critic Real Loss                          -4.4e+05                                                                                                                                  
+                    Critic Gradient Penalty Loss               2.3e+05                                                                                                                                  
+                    Total Loss                                -1.9e+05                                                                                                                                  
+                    Labeler Real Loss                          2.1e+02                                                                                                                                  
+                    Labeler Fake Loss                          3.6e+03                                                                                                                                  
+                    Antilabeler Loss                           3.6e+03                                                                                                                                  
+                    Validation Generator Loss                  4.4e+04                                                                                                                                  
+                    Validation Generator Total Loss            4.4e+04                                                                                                                                  
+                    Validation Critic Fake Loss               -4.4e+04                                                                                                                                  
+                    Validation Critic Real Loss               -5.8e+05                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss    3.1e+05                                                                                                                                  
+                    Validation Critic Total Loss              -3.1e+05                                                                                                                                  
+                    Validation Total Loss                     -2.7e+05                                                                                                                                  
+           DEBUG    (training.gan) Step 20:                                                                                                                                                   gan.py:582
+                    Generator LR               8.9e-07                                                                                                                                                  
+                    Critic LR                    0.001                                                                                                                                                  
+                    Labeler LR                  0.0001                                                                                                                                                  
+                    Antilabeler LR              0.0001                                                                                                                                                  
+                    Generator Avg Abs Weight     0.044                                                                                                                                                  
+                    Critic Avg Abs Weight        0.017                                                                                                                                                  
+[14:49:56] DEBUG    (training.gan) Generating UMAP plots...                                                                                                                                   gan.py:625
+[14:49:57] DEBUG    (training.gan) Step 20: Computing Random Forest AUROC...                                                                                                                  gan.py:660
+[14:50:00] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:672
+           INFO     (GRouNdGAN CLI) Finished                                                                                                                                                 main.py:141
+[08/20/26 14:50:48] INFO     Loading checkpoint from      count-parameters.py:48
+                             'results/6500/checkpoints/st                       
+                             ep_20.pth' on cuda                                 
+[08/20/26 14:50:49] INFO     Parameter counts:            count-parameters.py:60
+                             gen_state_dict                                     
+                             22.9M parameters                                   
+                             crit_state_dict                                    
+                             7.31M parameters                                   
+                             labeler_state_dict                                 
+                             21.03M parameters                                  
+                             antilabeler_state_dict                             
+                             21.03M parameters                                  
+                             step                                               
+                             1 parameters                                       
+                             gen_optimizer_state_dict                           
+                             16.71M parameters                                  
+                             crit_optimizer_state_dict                          
+                             21.94M parameters                                  
+                             labeler_optimizer_state_dict                       
+                             63.06M parameters                                  
+                             antilabeler_optimizer_state_                       
+                             dict  63.06M parameters                            
+                             gen_scheduler_state_dict                           
+                             19 parameters                                      
+                             crit_scheduler_state_dict                          
+                             7 parameters                                       
+                    INFO     Successfully saved parameter count-parameters.py:64
+                             counts to                                          
+                             'results/6500/params-size.js                       
+                             on'                                                

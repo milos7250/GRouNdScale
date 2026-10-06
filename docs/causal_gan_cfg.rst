@@ -23,6 +23,7 @@
 
         [GRN Preparation]
         TFs = data/raw/Homo_sapiens_TF.csv
+        method = grnboost2 ; "grnboost2" for GRNBoost2/Arboreto, "rustscenic" for RustScenic
         k = 15 ; k is the number of top most important TFs per gene to include in the GRN 
         Inferred GRN = data/processed/PBMC/inferred_grnboost2.csv
 
@@ -68,7 +69,7 @@
         [GRN Benchmarking]
         grn to benchmark = path/to/inferred/grn.csv
         ground truth save path = data/generated/
-        plots save path = notebooks/generated/
+        plots save path = results/GRouNdScale/
         compute precision at k = False
         k = 5
         compute pr = True

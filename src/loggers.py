@@ -194,5 +194,6 @@ if not __set_up:
 
     # Set up specific loggers
     setup_logger("optuna")
+    logging.getLogger("dotenv.main").setLevel(logging.CRITICAL)
 
     __set_up = True

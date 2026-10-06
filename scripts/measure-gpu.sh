@@ -12,12 +12,12 @@
 set -exuo pipefail
 
 export CONFIG="${CONFIG:-causal_gan.cfg}"
-export CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale.worktrees/dedup}"
+export CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale}"
 export GROUNDSCALE_LOGLEVEL=DEBUG
 export GROUNDSCALE_NO_TQDM=1
-export PYTHON="$APPS/conda/envs/groundscale/bin/python"
+export PYTHON="apptainer exec --nv 'docker://milos7250/groundscale:latest' python"
 python(){
-    "$APPS/conda/envs/groundscale/bin/python" "$@"
+    apptainer exec --nv 'docker://milos7250/groundscale:latest' python "$@"
 }
 export RESULTS_DIR="results-measure-gpu"
 
