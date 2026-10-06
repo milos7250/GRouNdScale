@@ -102,6 +102,7 @@ def preprocess(cfg: ConfigParser) -> None:
     )["highly_variable"]  # pyright: ignore[reportOptionalSubscript]
 
     del anndata.layers["normalized"]
+    del anndata.uns["log1p"]
     anndata = anndata[:, hvgs].copy()  # only keep highly variable genes
 
     cells_no, genes_no = anndata.shape

@@ -20,6 +20,22 @@ preprocessing.preprocess module
    :undoc-members:
    :show-inheritance:
 
+preprocessing.run\_arboreto module
+----------------------------------
+
+.. automodule:: preprocessing.run_arboreto
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+preprocessing.run\_rustscenic module
+------------------------------------
+
+.. automodule:: preprocessing.run_rustscenic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

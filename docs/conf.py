@@ -145,6 +145,11 @@ nitpick_ignore_regex = [
     (r"py:class", r"'?\)"),
     (r"py:class", r"pandas\.core\..*"),
     (r"py:class", r"anndata\._core\..*"),
+    # String annotations on the GRN inference backends. The modules import
+    # pandas/scanpy lazily inside the functions so that the standalone
+    # scripts stay cheap to import, which leaves these unresolvable at runtime.
+    (r"py:class", r"pd\.DataFrame"),
+    (r"py:class", r"sc\.AnnData"),
     (r"py:class", r"preprocessing\.grn_creation\._T"),
     (r"py:class", r"hyperparameter_optimization\._T"),
     (r"py:obj", r"hyperparameter_optimization\._T"),

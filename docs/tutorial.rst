@@ -16,7 +16,7 @@ The command requires a configuration file and accepts the following flags:
 
 * ``--config PATH`` (required): Path to the configuration file.
 * ``--preprocess``: Preprocess raw data for GAN training.
-* ``--create-grn``: Infer a GRN with GRNBoost2 and format it as a causal graph.
+* ``--create-grn``: Infer a GRN with GRNBoost2 or RustScenic and format it as a causal graph.
 * ``--train``: Start or resume model training.
 * ``--optimize-hyperparameters``: Start or resume Optuna hyperparameter optimization.
 * ``--generate``: Simulate single-cell RNA-seq data in silico.
@@ -215,16 +215,16 @@ Once completed, you will see a success message. Train, validation, and test sets
     
     [11:13:56] INFO     (randomness) Initial random seed: 564061517                                                          randomness.py:11
                INFO     (randomness) Using seed 564061517 for Python and NumPy random number generation.                     randomness.py:25
-    [11:14:04] INFO     (preprocessing.preprocess) Loading data...                                                           preprocess.py:26
-    [11:14:08] INFO     (preprocessing.preprocess) Shuffling data...                                                         preprocess.py:33
-               INFO     (preprocessing.preprocess) Clustering data...                                                        preprocess.py:43
-    [11:15:05] INFO     (preprocessing.preprocess) Filtering data...                                                         preprocess.py:61
-    [11:15:07] INFO     (preprocessing.preprocess) Subsetting highly variable genes...                                       preprocess.py:71
-    [11:15:09] INFO     (preprocessing.preprocess) Saving datasets...                                                       preprocess.py:109
-    [11:15:11] INFO     (preprocessing.preprocess) Successfully preprocessed and saved dataset.                             preprocess.py:117
-               INFO     (preprocessing.preprocess) Train set (48189 cells, 15000 genes): data/Col0_0h_scVI_train.h5ad       preprocess.py:118
-               INFO     (preprocessing.preprocess) Validation set (10326 cells, 15000 genes): data/Col0_0h_scVI_val.h5ad    preprocess.py:121
-               INFO     (preprocessing.preprocess) Test set (10326 cells, 15000 genes): data/Col0_0h_scVI_test.h5ad         preprocess.py:122
+    [11:14:04] INFO     (preprocessing.preprocess) Loading data...                                                           preprocess.py:28
+    [11:14:08] INFO     (preprocessing.preprocess) Shuffling data...                                                         preprocess.py:35
+               INFO     (preprocessing.preprocess) Clustering data...                                                        preprocess.py:45
+    [11:15:05] INFO     (preprocessing.preprocess) Filtering data...                                                         preprocess.py:79
+    [11:15:07] INFO     (preprocessing.preprocess) Subsetting highly variable genes...                                       preprocess.py:89
+    [11:15:09] INFO     (preprocessing.preprocess) Saving datasets...                                                       preprocess.py:128
+    [11:15:11] INFO     (preprocessing.preprocess) Successfully preprocessed and saved dataset.                             preprocess.py:136
+               INFO     (preprocessing.preprocess) Train set (48189 cells, 15000 genes): data/Col0_0h_scVI_train.h5ad       preprocess.py:137
+               INFO     (preprocessing.preprocess) Validation set (10326 cells, 15000 genes): data/Col0_0h_scVI_val.h5ad    preprocess.py:140
+               INFO     (preprocessing.preprocess) Test set (10326 cells, 15000 genes): data/Col0_0h_scVI_test.h5ad         preprocess.py:141
                INFO     (GRouNdScale CLI) Finished                                                                                  main.py:141
 
 GRN Creation 
@@ -233,7 +233,7 @@ GRN Creation
 .. note:: 
     GRN creation isn't needed for scGAN, cscGAN, and cWGAN; you can skip the ``--create-grn`` command.
 
-This command uses GRNBoost2 (Moerman et al., 2018) to infer a GRN on the preprocessed train set. It then converts it into the a format that GRouNdScale accepts.  
+This command infers a GRN on the preprocessed train set and then converts it into the a format that GRouNdScale accepts. The inference backend is selected with the ``[GRN Preparation]/method`` option, which accepts either ``grnboost2`` (the default) or ``rustscenic``.
 
 In addition to what was required in the previous step, you need to provide the following arguments:
 
@@ -241,6 +241,7 @@ In addition to what was required in the previous step, you need to provide the f
 
     [GRN Preparation]
     TFs = data/raw/Homo_sapiens_TF.csv
+    method = grnboost2 ; "grnboost2" for GRNBoost2/Arboreto, "rustscenic" for RustScenic
     k = 15 ; k is the number of top most important TFs per gene to include in the GRN 
     Inferred GRN = data/processed/PBMC/inferred_grnboost2.csv
 
@@ -254,10 +255,13 @@ In addition to what was required in the previous step, you need to provide the f
     [Data]
     causal graph = data/processed/PBMC/causal_graph.pkl ; where to write the created GRN
 
+``method`` is case-insensitive and defaults to ``grnboost2`` when it is omitted, so existing configurations keep their previous behaviour. Any other value raises an error. The backend's package is imported only when its method is selected, so the default path does not pay the import cost of the alternative.
+
 By default, the top k most important regulating TFs of each gene will be included in the GRN (``strategy = top``). Alternatively, you can construct two separate GRNs, each containing half of these top k TFs per gene. By first setting ``strategy = neg ctr`` and then ``strategy = pos ctr``, you generate two GRNs with identical densities and structural properties, based on the odd/even positions of the TFs in each gene’s ranked list. This strategy can be useful for controlled comparative analyses as both GRNs are equally sparse and are derived from the same underlying ranking.
 
 The ``TFs`` option is optional. When it is omitted, all genes in the
-preprocessed training data are passed to GRNBoost2 as candidate regulators.
+preprocessed training data are passed to the selected backend as candidate
+regulators.
 Because this produces genes in both regulator and target roles, GRouNdScale
 compares each gene's total outgoing edge importance (where it is a ``TF``)
 with its total incoming edge importance (where it is a ``target``). A gene is
@@ -265,7 +269,7 @@ selected as a TF when its outgoing importance is greater than its incoming
 importance. Only edges from selected TFs to non-TF targets are retained.
 
 If the file specified by ``Inferred GRN`` already exists, GRouNdScale skips
-GRNBoost2 and reads the existing file instead. The file must contain the
+inference and reads the existing file instead. The file must contain the
 columns ``TF``, ``target``, and ``importance``. This makes it possible to
 reuse an inferred GRN or provide a GRN generated by another method.
 
@@ -273,6 +277,63 @@ GRN creation also removes genes that cannot be represented in the selected
 bipartite graph; the train, validation, and test files are rewritten with the
 retained genes so the generated causal-graph indices remain aligned with the
 data.
+
+
+Choosing a Backend
+^^^^^^^^^^^^^^^^^^
+
+Both backends return edges sorted by descending ``importance`` and write the
+same three columns (``TF``, ``target``, and ``importance``), so everything
+after inference — the top-k selection, the positive/negative control
+strategies, the bipartite filtering, and the causal-graph construction — behaves
+identically regardless of which one you pick. They differ in implementation,
+in how they consume the preprocessed data, and in their resource use:
+
+* ``grnboost2`` runs GRNBoost2 (Moerman et al., 2018) through Arboreto on the
+  library-size-normalized expression matrix exactly as it is written by
+  preprocessing.
+* ``rustscenic`` runs RustScenic (Kahraman, 2026), a Rust reimplementation of
+  the same gradient-boosted tree model, with out-of-bag early stopping and
+  multi-threaded execution. It works on its own copy of the data and applies its
+  own normalization (library size 10,000) followed by ``log1p`` before
+  inference. The preprocessed files are left untouched, so the same preprocessed
+  dataset can be used to infer GRNs with either backend for comparison.
+* ``rustscenic`` sizes its Rayon thread pool from the ``OMP_NUM_THREADS``
+  environment variable recommended above, and pins the BLAS/OpenMP thread
+  counts to ``1`` for the duration of the inference so the thread pools do not
+  oversubscribe each other. Leave ``OMP_NUM_THREADS`` unset to use 8 threads.
+
+Both backends are installed by ``requirements.txt`` and are therefore available
+in the Docker and Apptainer images as well as in the Conda environment.
+
+Running Inference Standalone
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each backend is also a self-contained script that infers a GRN from an
+``.h5ad`` file and writes it to a CSV, without building a causal graph:
+
+.. code-block:: console
+
+    $ python src/preprocessing/run_arboreto.py data/processed/PBMC/PBMC68k_train.h5ad \
+        data/raw/Homo_sapiens_TF.csv --out data/processed/PBMC/inferred_grnboost2.csv
+    $ python src/preprocessing/run_rustscenic.py data/processed/PBMC/PBMC68k_train.h5ad \
+        data/raw/Homo_sapiens_TF.csv --out data/processed/PBMC/inferred_rustscenic.csv
+
+The arguments are the input ``.h5ad`` file and a path to a file containing TF
+names in a column named ``Symbol``. The delimiter is detected automatically, so
+the same tab-separated list that ``[GRN Preparation]/TFs`` accepts works here
+unchanged, as does a comma-separated one. Pass the literal ``all`` (the default)
+instead to treat every gene as a candidate regulator. Use ``--out`` to set the
+output path and ``--seed`` to set the random seed. To use the resulting CSV in
+GRouNdScale, point ``[GRN Preparation]/Inferred GRN`` at it and run
+``--create-grn``, which will reuse the existing file instead of running
+inference again.
+
+.. note::
+
+    Unlike ``[GRN Preparation]/TFs``, the scripts do not filter the TF names
+    down to the genes present in the dataset, so check the TF list against your
+    ``.h5ad`` file's ``var_names`` before passing it in.
 
 
 Run using::
@@ -287,7 +348,7 @@ Once done, you will see success messages and the properties of the created GRN.
 
     [09:25:19] INFO     (randomness) Initial random seed: 297847097                                                                       randomness.py:11
                INFO     (randomness) Using seed 297847097 for Python and NumPy random number generation.                                  randomness.py:25
-    [09:25:33] INFO     (preprocessing.grn_creation) Starting GRN inference using all TFs.                                              grn_creation.py:71
+    [09:25:33] INFO     (preprocessing.grn_creation) Starting GRN inference using grnboost2 with all TFs.                                 grn_creation.py:73
     preparing dask client
     Using 63 TFs for GRN inference.
     preparing dask client
@@ -297,25 +358,25 @@ Once done, you will see success messages and the properties of the created GRN.
     computing dask graph
     shutting down client and local cluster
     finished
-    [00:10:44] INFO     (preprocessing.grn_creation) Successfully saved GRN inferred by GRNBoost2 GRN to data/inferred_grnboost2.csv    grn_creation.py:74
+    [00:10:44] INFO     (preprocessing.grn_creation) Successfully saved GRN inferred by grnboost2 to data/inferred_grnboost2.csv      grn_creation.py:76
     [00:10:46] INFO     (preprocessing.grn_accessor) Filtered GRN to bipartite graph with 5053 TFs and 9939 targets.                   grn_accessor.py:139
-               INFO     (preprocessing.grn_creation) Creating top 15 GRN from top TFs                                                   grn_creation.py:94
-    [00:10:47] INFO     (preprocessing.grn_creation) Included 8 targets with no regulators in the causal graph                         grn_creation.py:126
-    [00:10:50] INFO     (preprocessing.grn_creation) Causal graph info:                                                                grn_creation.py:160
+               INFO     (preprocessing.grn_creation) Creating top 15 GRN from top TFs                                                   grn_creation.py:96
+    [00:10:47] INFO     (preprocessing.grn_creation) Included 8 targets with no regulators in the causal graph                         grn_creation.py:128
+    [00:10:50] INFO     (preprocessing.grn_creation) Causal graph info:                                                                grn_creation.py:161
                                   ``TFs``     5053
                               ``Targets``     9947
                                     Genes    15000
                            Possible Edges 50262191
                             Imposed Edges   148889
                         GRN density Edges     0.3%
-               INFO     (preprocessing.grn_creation) Successfully saved GRouNdScale causal graph to data/causal_graph.pkl                grn_creation.py:180
+               INFO     (preprocessing.grn_creation) Successfully saved GRouNdScale causal graph to data/causal_graph.pkl                grn_creation.py:181
                INFO     (GRouNdScale CLI) Finished     
     
 The causal graph will be written to the path specified by ``[Data]/causal graph`` in the config file.
 
 .. warning:: 
 
-    The GRNBoost2 inference step can take a long time depending on the number of highly variable genes defined in the preprocessing step. Larger datasets will benefit from more CPU cores and memory allocated to the GRN creation step.
+    The inference step can take a long time depending on the number of highly variable genes defined in the preprocessing step. Larger datasets will benefit from more CPU cores and memory allocated to the GRN creation step.
 
 Imposing Custom GRNs 
 ^^^^^^^^^^^^^^^^^^^^
@@ -697,7 +758,7 @@ Then run:
 
 .. tip::
 
-    The ``scripts/benchmark_grn.sh`` script can be used to infer the GRN using grnboost2 and PIDC from the generated data and benchmark them against the ground truth GRN.
+    The ``scripts/benchmark.sh`` script can be used to infer the GRN using grnboost2 and PIDC from the generated data and benchmark them against the ground truth GRN.
 
 
 Exporting Ground Truth GRN 
@@ -780,3 +841,5 @@ Paul, F., Arkin, Y., Giladi, A., Jaitin, D. A., Kenigsberg, E., Keren-Shaul, H.,
 Zheng, G., Terry, J. M., Belgrader, P., Ryvkin, P., Bent, Z., Wilson, R. J., Ziraldo, S. B., Wheeler, T. D., McDermott, G. P., Zhu, J., Gregory, M., Shuga, J., Montesclaros, L., Underwood, J. G., Masquelier, D. A., Nishimura, S. Y., Schnall-Levin, M., Wyatt, P., Hindson, C. M., . . . Bielas, J. H. (2017). Massively parallel digital transcriptional profiling of single cells. Nature Communications, 8(1). https://doi.org/10.1038/ncomms14049
 
 Moerman, T., Aibar, S., González-Blas, C. B., Simm, J., Moreau, Y., Aerts, J., & Aerts, S. (2018). GRNBoost2 and Arboreto: efficient and scalable inference of gene regulatory networks. Bioinformatics, 35(12), 2159–2161. https://doi.org/10.1093/bioinformatics/bty916
+
+Kahraman, E. (2026). rustscenic: a Rust and Python implementation of SCENIC-style regulatory-network analysis (Version 0.5.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22679755

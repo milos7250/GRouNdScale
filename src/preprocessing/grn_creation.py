@@ -5,11 +5,8 @@ from itertools import chain
 from pathlib import Path
 from typing import TypeVar
 
-import numpy as np
 import pandas as pd
 import scanpy as sc
-from arboreto.algo import grnboost2
-from scipy import sparse
 
 from loggers import setup_logger
 from randomness import random_seed
@@ -28,7 +25,8 @@ def unique_list(seq: Iterable[_T], /) -> list[_T]:
 
 def create_GRN(cfg: ConfigParser) -> None:
     """
-    Infers a GRN using GRNBoost2 and uses it to construct a causal graph to impose onto GRouNdScale.
+    Infers a GRN using the backend selected by ``[GRN Preparation]/method``
+    (``grnboost2`` or ``rustscenic``) and uses it to construct a causal graph to impose onto GRouNdScale.
 
     Parameters
     ----------
@@ -60,20 +58,24 @@ def create_GRN(cfg: ConfigParser) -> None:
         TFs = pd.read_csv(cfg.get("GRN Preparation", "TFs"), sep="\t")["Symbol"]
         TFs = [tf for tf in TFs if tf in gene_names]
 
-    x = real_cells.X.toarray() if sparse.issparse(real_cells.X) else real_cells.X  # pyright: ignore[reportOptionalMemberAccess, reportAttributeAccessIssue]
-    X = np.array(x)
-
-    # preparing GRNBoost2's input
+    # infer GRN if it doesn't already exist
     if not Path(cfg.get("GRN Preparation", "Inferred GRN")).exists():
-        real_cells_df = pd.DataFrame(X, columns=gene_names)
+        grn_method = cfg.get("GRN Preparation", "method", fallback="grnboost2").lower()
+        if grn_method == "grnboost2":
+            from .run_arboreto import infer_grn
+        elif grn_method == "rustscenic":
+            from .run_rustscenic import infer_grn
+        else:
+            raise ValueError(
+                f"GRN inference method {grn_method} not supported. Please choose 'grnboost2' or 'rustscenic'."
+            )
 
-        # we can optionally pass a list of TFs to GRNBoost2
-        logger.info(f"Starting GRN inference using {len(TFs) if TFs != 'all' else 'all'} TFs.")
-        inferred_grn = grnboost2(real_cells_df, tf_names=TFs, verbose=True, seed=random_seed)  # pyright: ignore[reportArgumentType]
+        logger.info(f"Starting GRN inference using {grn_method} with {len(TFs) if TFs != 'all' else 'all'} TFs.")
+        inferred_grn = infer_grn(real_cells, tf_names=TFs, seed=random_seed)
         inferred_grn.to_csv(cfg.get("GRN Preparation", "Inferred GRN"))
-        logger.info(f"Successfully saved GRN inferred by GRNBoost2 GRN to {cfg.get('GRN Preparation', 'Inferred GRN')}")
+        logger.info(f"Successfully saved GRN inferred by {grn_method} to {cfg.get('GRN Preparation', 'Inferred GRN')}")
     else:
-        logger.info(f"Using already existing GRNBoost2 GRN at {cfg.get('GRN Preparation', 'Inferred GRN')}")
+        logger.info(f"Using already existing GRN at {cfg.get('GRN Preparation', 'Inferred GRN')}")
 
     # read GRN csv output, group TFs regulating genes, sort by importance
     real_grn = GRNAccessor.from_csv(Path(cfg.get("GRN Preparation", "Inferred GRN")))
@@ -142,11 +144,10 @@ def create_GRN(cfg: ConfigParser) -> None:
 
     if not genes == gene_names.to_list():
         # overwrite train, validation, and test datasets when some genes were excluded from the dataset
-        real_cells = real_cells[:, genes]
         real_cells.uns["GRouNdScale_was_subsetted"] = True
         real_cells_val.uns["GRouNdScale_was_subsetted"] = True
         real_cells_test.uns["GRouNdScale_was_subsetted"] = True
-        real_cells.write_h5ad(cfg.get("Data", "train"))
+        real_cells[:, genes].write_h5ad(cfg.get("Data", "train"))
         real_cells_val[:, genes].write_h5ad(cfg.get("Data", "validation"))
         real_cells_test[:, genes].write_h5ad(cfg.get("Data", "test"))
         logger.warning(
