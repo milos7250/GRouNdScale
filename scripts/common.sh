@@ -1,4 +1,4 @@
-CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale.worktrees/dedup}"
+CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale}"
 CONFIG="${CONFIG:-causal_gan.cfg}"
 POSTGRES_DIR="${POSTGRES_DIR:-$PWD/postgres}"
 

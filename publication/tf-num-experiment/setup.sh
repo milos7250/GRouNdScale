@@ -9,7 +9,7 @@
 set -exuo pipefail
 
 export CONFIG="causal_gan.cfg";
-export CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdGAN.worktrees/dedup}"
+export CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale}"
 export GROUNDSCALE_LOGLEVEL=DEBUG
 export GROUNDSCALE_NO_TQDM=1
 export PYTHON="apptainer exec --nv 'docker://milos7250/groundscale:latest' python"

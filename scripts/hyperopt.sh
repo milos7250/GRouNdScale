@@ -11,7 +11,7 @@
 #SBATCH --array=0-20%8
 
 set -euo pipefail
-CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale.worktrees/dedup}"
+CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale}"
 source "$CODE_ROOT/scripts/common.sh"
 
 # Sleep random amount of time to avoid race conditions when creating optuna study
