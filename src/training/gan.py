@@ -95,7 +95,7 @@ class GANTrainer:
     def _init_optimizers(self) -> None:
         self.logger.debug("Initializing optimizers...")
         self.optimizers["gen"] = AdamW(
-            filter(lambda p: p.requires_grad, self.gan.gen.parameters()),
+            filter(lambda p: p.requires_grad, self.modules["gen"].parameters()),
             lr=torch.tensor(self.training_args["gen_alpha_0"], device=self.gan.device),
             betas=(self.training_args["beta1"], self.training_args["beta2"]),
             amsgrad=True,
@@ -103,7 +103,7 @@ class GANTrainer:
         )
 
         self.optimizers["crit"] = AdamW(
-            filter(lambda p: p.requires_grad, self.gan.crit.parameters()),
+            filter(lambda p: p.requires_grad, self.modules["crit"].parameters()),
             lr=torch.tensor(self.training_args["crit_alpha_0"], device=self.gan.device),
             betas=(self.training_args["beta1"], self.training_args["beta2"]),
             amsgrad=True,
@@ -566,12 +566,12 @@ class GANTrainer:
         if is_ddp_initialized() and os.environ.get("RANK", "0") != "0":
             return  # Only log stats on rank 0 in DDP to avoid conflicts
 
-        gen_params = [v for k, v in self.gan.gen.named_parameters() if "_lsn" not in k]
+        gen_params = [v for k, v in self.modules["gen"].named_parameters() if "_lsn" not in k]
         gen_total_sum = sum(p.detach().abs().sum().item() for p in gen_params)
         gen_total_n = sum(p.numel() for p in gen_params)
         gen_mean_abs_weight = gen_total_sum / gen_total_n if gen_total_n else 0.0
 
-        crit_params = list(self.gan.crit.parameters())
+        crit_params = list(self.modules["crit"].parameters())
         crit_total_sum = sum(p.detach().abs().sum().item() for p in crit_params)
         crit_total_n = sum(p.numel() for p in crit_params)
         crit_mean_abs_weight = crit_total_sum / crit_total_n if crit_total_n else 0.0

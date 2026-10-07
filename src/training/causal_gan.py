@@ -43,14 +43,14 @@ class CausalGANTrainer(GANTrainer):
     def _init_optimizers(self) -> None:
         super()._init_optimizers()
         self.optimizers["labeler"] = AdamW(
-            filter(lambda p: p.requires_grad, self.gan.labeler.parameters()),
+            filter(lambda p: p.requires_grad, self.modules["labeler"].parameters()),
             lr=torch.tensor(self.training_args["labeler_alpha"], device=self.gan.device),
             betas=(self.training_args["beta1"], self.training_args["beta2"]),
             amsgrad=True,
             fused=True,
         )
         self.optimizers["antilabeler"] = AdamW(
-            filter(lambda p: p.requires_grad, self.gan.antilabeler.parameters()),
+            filter(lambda p: p.requires_grad, self.modules["antilabeler"].parameters()),
             lr=torch.tensor(self.training_args["antilabeler_alpha"], device=self.gan.device),
             betas=(self.training_args["beta1"], self.training_args["beta2"]),
             amsgrad=True,
