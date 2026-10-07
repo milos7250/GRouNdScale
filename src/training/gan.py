@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from time import time_ns
-from typing import TYPE_CHECKING, TypedDict
+from typing import TYPE_CHECKING, Any, TypedDict
 
 import numpy as np
 import pandas as pd
@@ -77,6 +77,9 @@ class GANTrainer:
             if not is_ddp_initialized() or os.environ.get("RANK") == "0"
             else {}
         )  # Only initialize summary writers on rank 0 to avoid conflicts in DDP
+        
+        # Save a reference to the validation generator for evaluation purposes, needs to be compiled separately
+        self.valid_gen = self.gan.gen
 
         self.step = 0
         self.compiled = False
@@ -141,6 +144,7 @@ class GANTrainer:
                 self._generator_step = torch.compile(
                     self._generator_step, fullgraph=True, mode="max-autotune-no-cudagraphs"
                 )
+                self.valid_gen = torch.compile(self.valid_gen, fullgraph=True, mode="max-autotune-no-cudagraphs")
             if compile_modules and is_ddp_initialized():
                 for key, module in self.modules.items():
                     self.modules[key] = DDP(
@@ -671,6 +675,33 @@ class GANTrainer:
         self.logger.info(f"Step {self.step}: Computed Random Forest AUROC: {rf_auroc:.3f}")
         return rf_auroc
 
+    def _generate_cells(
+        self,
+        cells_no: int,
+        checkpoint: Path | None = None,
+        *args: "Any",
+        **kwargs: "Any",
+    ) -> tuple[np.ndarray, np.ndarray | None]:
+        """
+        A wrapper around the GAN's generate_cells method to use the compiled generator to avoid eager evaluation
+        which would otherwise increase the memory usage for large models.
+
+        Parameters
+        ----------
+        cells_no
+            Number of cells to generate.
+
+        Returns
+        -------
+        tuple[np.ndarray, np.ndarray | None]
+            Tuple of Gene expression matrix of generated cells and None (dummy labels).
+        """
+        orig_gen = self.gan.gen
+        self.gan.gen = self.valid_gen  # pyright: ignore[reportAttributeAccessIssue] # use the compiled generator for faster generation
+        fake_cells, fake_labels = self.gan.generate_cells(cells_no)
+        self.gan.gen = orig_gen  # restore the original generator
+        return fake_cells, fake_labels
+
     def _ignore_first_n_in_running_average(self) -> int:
         """
         Determines the number of initial steps to ignore when computing the running average time per step.
@@ -705,7 +736,7 @@ class GANTrainer:
             self.logger.error(f"Error saving summary at step {self.step}: {e}")
 
         if any([run_umap, run_rf_auroc]):
-            fake_cells, fake_labels = self.gan.generate_cells(len(self.loaders["valid"].dataset))
+            fake_cells, fake_labels = self._generate_cells(len(self.loaders["valid"].dataset))
             try:
                 if run_umap:
                     self._log_umap_plots(fake_cells, fake_labels=fake_labels)

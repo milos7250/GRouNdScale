@@ -133,8 +133,7 @@ class CausalGANTrainer(GANTrainer):
         torch.compiler.cudagraph_mark_step_begin()
 
         with torch.no_grad():
-            fake_noise = self.gan.generate_noise(self.gan.batch_size, self.gan.latent_dim, self.gan.device)
-            fake = self.gan.gen(fake_noise)
+            _, _, fake = self._generator_step()
 
         losses: dict[str, float] = {}
         # train anti-labeler
