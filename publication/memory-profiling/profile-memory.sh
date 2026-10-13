@@ -8,7 +8,7 @@
 #SBATCH --partition=gpu
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=24G
-#SBATCH --array=2-2%3
+#SBATCH --array=1-18%4
 
 set -euo pipefail
 
@@ -25,20 +25,20 @@ on_exit() {
 }
 trap on_exit EXIT
 
-export SIZE=$(( SLURM_ARRAY_TASK_ID * 500))
+export SIZE=$(( SLURM_ARRAY_TASK_ID * 1000))
 export PYTHON="apptainer exec --nv 'docker://milos7250/groundscale:latest' python"
 python(){
     apptainer exec --nv 'docker://milos7250/groundscale:latest' python "$@"
 }
 
-NUM_GENES="$(eval "$PYTHON" "../../scripts/inspect_h5ad.py" "../size-compare/results/${SIZE}/train.h5ad" |grep -oE '\([0-9]+, [0-9]+\)' |cut -d',' -f2 | grep -oE '[0-9]+')"
+NUM_GENES="$(eval "$PYTHON" "../../scripts/inspect_h5ad.py" "../size-compare/data/processed/${SIZE}/train.h5ad" |grep -oE '\([0-9]+, [0-9]+\)' |cut -d',' -f2 | grep -oE '[0-9]+')"
 export NUM_GENES
 
 python "../../scripts/measure-gpu-usage.py" --output "results/${SIZE}/gpu-usage.csv" &
 PID=$!
 
 python \
-    profile_memory.py \
+    profile-memory.py \
     "$SIZE-compile"
 
 kill -SIGINT "$PID"
