@@ -43,14 +43,14 @@ class CausalGANTrainer(GANTrainer):
     def _init_optimizers(self) -> None:
         super()._init_optimizers()
         self.optimizers["labeler"] = AdamW(
-            filter(lambda p: p.requires_grad, self.gan.labeler.parameters()),
+            filter(lambda p: p.requires_grad, self.modules["labeler"].parameters()),
             lr=torch.tensor(self.training_args["labeler_alpha"], device=self.gan.device),
             betas=(self.training_args["beta1"], self.training_args["beta2"]),
             amsgrad=True,
             fused=True,
         )
         self.optimizers["antilabeler"] = AdamW(
-            filter(lambda p: p.requires_grad, self.gan.antilabeler.parameters()),
+            filter(lambda p: p.requires_grad, self.modules["antilabeler"].parameters()),
             lr=torch.tensor(self.training_args["antilabeler_alpha"], device=self.gan.device),
             betas=(self.training_args["beta1"], self.training_args["beta2"]),
             amsgrad=True,
@@ -133,8 +133,7 @@ class CausalGANTrainer(GANTrainer):
         torch.compiler.cudagraph_mark_step_begin()
 
         with torch.no_grad():
-            fake_noise = self.gan.generate_noise(self.gan.batch_size, self.gan.latent_dim, self.gan.device)
-            fake = self.gan.gen(fake_noise)
+            _, _, fake = self._generator_step()
 
         losses: dict[str, float] = {}
         # train anti-labeler

@@ -7,11 +7,12 @@ import socket
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import Literal
 
 import torch
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent / "src"))
+sys.path.insert(0, str(HERE.parent.parent / "src"))
 
 from main import main  # noqa: E402
 
@@ -65,19 +66,29 @@ def trace_handler(prof: torch.profiler.profile):
     prof.export_memory_timeline(str(HERE / f"{FILE_PREFIX}.html"), device="cuda:0")
     
 
-def patch_gan_trainer():
-    """Patch the CausalGANTrainer to record memory history during generator training."""
+def patch_gan_trainer(module: Literal["gen", "crit"]):
+    """Patch the CausalGANTrainer to start recording memory history."""
     from training.causal_gan import CausalGANTrainer
 
+    _train_critic = CausalGANTrainer._train_critic
     _train_generator = CausalGANTrainer._train_generator
 
     def _train_generator_with_memory_tracking(self: CausalGANTrainer):
         """Wrap the generator forward pass to track memory usage."""
-        if self.step > 2:
+        if self.step == 3:
             start_record_memory_history()
         return _train_generator(self)
 
-    CausalGANTrainer._train_generator = _train_generator_with_memory_tracking
+    def _train_critic_with_memory_tracking(self: CausalGANTrainer, real_cells: torch.Tensor, real_labels: torch.Tensor, c_lambda: float):
+        """Wrap the critic forward pass to track memory usage."""
+        if self.step == 3:
+            start_record_memory_history()
+        return _train_critic(self, real_cells, real_labels, c_lambda)
+
+    if module == "gen":
+        CausalGANTrainer._train_generator = _train_generator_with_memory_tracking
+    elif module == "crit":
+        CausalGANTrainer._train_critic = _train_critic_with_memory_tracking
 
 
 if __name__ == "__main__":
@@ -85,7 +96,7 @@ if __name__ == "__main__":
     os.chdir(HERE)  # Config data/checkpoint paths are relative to mem-profile2/.
 
     if "compile" in FILE_PREFIX:
-        patch_gan_trainer()
+        patch_gan_trainer("crit")
     else:
         start_record_memory_history()
     try:

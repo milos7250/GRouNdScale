@@ -7,8 +7,8 @@
 #SBATCH --gpus=a100:1
 #SBATCH --partition=gpu
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=128G
-#SBATCH --array=33-50%3
+#SBATCH --mem=48G
+#SBATCH --array=1-18%4
 
 set -exuo pipefail
 
@@ -16,10 +16,7 @@ export CONFIG="causal_gan.cfg";
 export CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale}"
 export GROUNDSCALE_LOGLEVEL=DEBUG
 export GROUNDSCALE_NO_TQDM=1
-export PYTHON="apptainer exec --nv 'docker://milos7250/groundscale:latest' python"
-python(){
-    apptainer exec --nv 'docker://milos7250/groundscale:latest' python "$@"
-}
+source "$CODE_ROOT/scripts/common.sh"
 
 # SLURM_ARRAY_JOB_ID=${SLURM_ARRAY_JOB_ID:-999999999999}
 # SLURM_ARRAY_TASK_ID=${SLURM_ARRAY_TASK_ID:-5}
@@ -38,20 +35,24 @@ on_exit() {
 }
 trap on_exit EXIT
 
-export SIZE=$((1000 + 500 * SLURM_ARRAY_TASK_ID))
+export SIZE=$((1000 * SLURM_ARRAY_TASK_ID))
 export NUM_GENES=$SIZE
+export RESULTS_DIR="results/${SIZE}"
 
-"$CODE_ROOT/scripts/preprocess.sh"
-"$CODE_ROOT/scripts/create-grn.sh"
+# Do not preprocess or create GRN if they already exist
+if [[ ! -f "$RESULTS_DIR/causal_graph.pkl" ]]; then
+    "$CODE_ROOT/scripts/preprocess.sh"
+    "$CODE_ROOT/scripts/create-grn.sh"
+fi
 
-NUM_GENES="$(eval "$PYTHON" "$CODE_ROOT/../..//inspect_h5ad.py" "results/${SIZE}/train.h5ad" |grep -oE '\([0-9]+, [0-9]+\)' |cut -d',' -f2 | grep -oE '[0-9]+')"
+NUM_GENES="$(eval "$PYTHON" "$CODE_ROOT/scripts/inspect_h5ad.py" "$RESULTS_DIR/train.h5ad" |grep -oE '\([0-9]+, [0-9]+\)' |cut -d',' -f2 | grep -oE '[0-9]+')"
 export NUM_GENES
 
-python "$CODE_ROOT/scripts/measure-gpu-usage.py" --output "results/${SIZE}/gpu-usage.csv" &
+python "$CODE_ROOT/scripts/measure-gpu-usage.py" --output "$RESULTS_DIR/gpu-usage.csv" &
 PID=$!
 
 "$CODE_ROOT/scripts/train.sh"
 
 kill -SIGINT "$PID"
 
-python "$CODE_ROOT/scripts/count-parameters.py" --checkpoint "results/${SIZE}/checkpoints/step_20.pth" --out "results/${SIZE}/params-size.json"
+python "$CODE_ROOT/scripts/count-parameters.py" --checkpoint "$RESULTS_DIR/checkpoints/step_20.pth" --out "$RESULTS_DIR/params-size.json"

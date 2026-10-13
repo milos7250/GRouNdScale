@@ -1,0 +1,137 @@
+Running command on n23-64-512-nagini
+Running command on n23-64-512-nagini
+[22:52:54] DEBUG    (optuna) Logger optuna initialized.                                                                                                                                   loggers.py:100
+           DEBUG    (GRouNdScale CLI) Logger GRouNdScale CLI initialized.                                                                                                                 loggers.py:100
+           DEBUG    (randomness) Logger randomness initialized.                                                                                                                           loggers.py:100
+           INFO     (randomness) Initial random seed: 1974428120                                                                                                                        randomness.py:11
+[22:52:55] INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.                                                                                    randomness.py:25
+           INFO     (GRouNdScale CLI) Initializing training libraries...                                                                                                                      main.py:77
+[22:52:56] INFO     (randomness) Using seed 781759803 for PyTorch random number generation.                                                                                             randomness.py:42
+[22:53:08] DEBUG    (evaluation.MMD) Logger evaluation.MMD initialized.                                                                                                                   loggers.py:100
+           DEBUG    (evaluate) Logger evaluate initialized.                                                                                                                               loggers.py:100
+[22:53:10] DEBUG    (training.gan) Logger training.gan initialized.                                                                                                                       loggers.py:100
+           INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:757
+           DEBUG    (training.gan) Initializing data loaders...                                                                                                                                gan.py:89
+           DEBUG    (training.gan) Initializing optimizers...                                                                                                                                  gan.py:96
+           DEBUG    (training.gan) Initializing schedulers...                                                                                                                                 gan.py:114
+           DEBUG    (training.gan) Initializing UMAP...                                                                                                                                       gan.py:132
+[22:53:19] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:785
+[22:55:44] DEBUG    (training.gan) Step 0/20 completed in 145191 milliseconds (average: nan ms)                                                                                               gan.py:814
+[22:56:11] DEBUG    (training.gan) Step 1/20 completed in 27148 milliseconds (average: nan ms)                                                                                                gan.py:814
+           DEBUG    (training.gan) Step 2/20 completed in 19 milliseconds (average: 19 ms)                                                                                                    gan.py:814
+           DEBUG    (training.gan) Step 3/20 completed in 17 milliseconds (average: 18 ms)                                                                                                    gan.py:814
+           DEBUG    (training.gan) Step 4/20 completed in 18 milliseconds (average: 19 ms)                                                                                                    gan.py:814
+           DEBUG    (training.gan) Step 5/20 completed in 18 milliseconds (average: 19 ms)                                                                                                    gan.py:814
+           DEBUG    (training.gan) Step 6/20 completed in 19 milliseconds (average: 19 ms)                                                                                                    gan.py:814
+[22:56:12] DEBUG    (training.gan) Step 7/20 completed in 18 milliseconds (average: 19 ms)                                                                                                    gan.py:814
+           DEBUG    (training.gan) Step 8/20 completed in 18 milliseconds (average: 19 ms)                                                                                                    gan.py:814
+           DEBUG    (training.gan) Step 9/20 completed in 18 milliseconds (average: 19 ms)                                                                                                    gan.py:814
+           DEBUG    (training.gan) Step 10/20 completed in 19 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 11/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 12/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 13/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 14/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 15/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 16/20 completed in 17 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 17/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 18/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 19/20 completed in 18 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Step 20/20 completed in 17 milliseconds (average: 19 ms)                                                                                                   gan.py:814
+           DEBUG    (training.gan) Computing validation loss...                                                                                                                               gan.py:519
+[22:58:11] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:584
+                    Generator Loss                             4.7e+03                                                                                                                                  
+                    Generator Total Loss                       4.7e+03                                                                                                                                  
+                    Critic Total Loss                         -1.8e+04                                                                                                                                  
+                    Critic Fake Loss                          -4.5e+03                                                                                                                                  
+                    Critic Real Loss                          -1.7e+04                                                                                                                                  
+                    Critic Gradient Penalty Loss               3.1e+03                                                                                                                                  
+                    Total Loss                                -1.3e+04                                                                                                                                  
+                    Validation Generator Loss                  6.1e+03                                                                                                                                  
+                    Validation Generator Total Loss            6.1e+03                                                                                                                                  
+                    Validation Critic Fake Loss               -6.1e+03                                                                                                                                  
+                    Validation Critic Real Loss               -4.2e+04                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss      7e+03                                                                                                                                  
+                    Validation Critic Total Loss              -4.1e+04                                                                                                                                  
+                    Validation Total Loss                     -3.5e+04                                                                                                                                  
+           DEBUG    (training.gan) Step 20:                                                                                                                                                   gan.py:585
+                    Generator LR               1e-05                                                                                                                                                    
+                    Critic LR                  1e-05                                                                                                                                                    
+                    Generator Avg Abs Weight   0.039                                                                                                                                                    
+                    Critic Avg Abs Weight      0.019                                                                                                                                                    
+[22:58:47] DEBUG    (training.gan) Generating UMAP plots...                                                                                                                                   gan.py:628
+[22:58:51] DEBUG    (training.gan) Step 20: Computing Random Forest AUROC...                                                                                                                  gan.py:663
+[22:58:53] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:675
+[22:58:54] DEBUG    (training.gan) Logger training.gan initialized.                                                                                                                       loggers.py:100
+           INFO     (training.gan) Initializing training...                                                                                                                                   gan.py:757
+           DEBUG    (training.gan) Initializing data loaders...                                                                                                                                gan.py:89
+[22:58:55] DEBUG    (training.gan) Initializing optimizers...                                                                                                                                  gan.py:96
+           DEBUG    (training.gan) Initializing schedulers...                                                                                                                                 gan.py:114
+           DEBUG    (training.gan) Initializing UMAP...                                                                                                                                       gan.py:132
+[22:58:56] INFO     (training.gan) Starting training loop...                                                                                                                                  gan.py:785
+[23:05:37] DEBUG    (training.gan) Step 0/20 completed in 401440 milliseconds (average: nan ms)                                                                                               gan.py:814
+[23:07:12] DEBUG    (training.gan) Step 1/20 completed in 94444 milliseconds (average: nan ms)                                                                                                gan.py:814
+           DEBUG    (training.gan) Step 2/20 completed in 364 milliseconds (average: 364 ms)                                                                                                  gan.py:814
+[23:07:13] DEBUG    (training.gan) Step 3/20 completed in 336 milliseconds (average: 351 ms)                                                                                                  gan.py:814
+           DEBUG    (training.gan) Step 4/20 completed in 348 milliseconds (average: 350 ms)                                                                                                  gan.py:814
+           DEBUG    (training.gan) Step 5/20 completed in 353 milliseconds (average: 351 ms)                                                                                                  gan.py:814
+[23:07:14] DEBUG    (training.gan) Step 6/20 completed in 341 milliseconds (average: 349 ms)                                                                                                  gan.py:814
+           DEBUG    (training.gan) Step 7/20 completed in 352 milliseconds (average: 350 ms)                                                                                                  gan.py:814
+           DEBUG    (training.gan) Step 8/20 completed in 346 milliseconds (average: 349 ms)                                                                                                  gan.py:814
+[23:07:15] DEBUG    (training.gan) Step 9/20 completed in 345 milliseconds (average: 349 ms)                                                                                                  gan.py:814
+           DEBUG    (training.gan) Step 10/20 completed in 347 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+           DEBUG    (training.gan) Step 11/20 completed in 351 milliseconds (average: 349 ms)                                                                                                 gan.py:814
+[23:07:16] DEBUG    (training.gan) Step 12/20 completed in 342 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+           DEBUG    (training.gan) Step 13/20 completed in 353 milliseconds (average: 349 ms)                                                                                                 gan.py:814
+           DEBUG    (training.gan) Step 14/20 completed in 345 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+[23:07:17] DEBUG    (training.gan) Step 15/20 completed in 349 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+           DEBUG    (training.gan) Step 16/20 completed in 348 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+[23:07:18] DEBUG    (training.gan) Step 17/20 completed in 347 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+           DEBUG    (training.gan) Step 18/20 completed in 346 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+           DEBUG    (training.gan) Step 19/20 completed in 351 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+[23:07:19] DEBUG    (training.gan) Step 20/20 completed in 345 milliseconds (average: 348 ms)                                                                                                 gan.py:814
+           DEBUG    (training.gan) Computing validation loss...                                                                                                                               gan.py:519
+[23:07:35] INFO     (training.gan) Step 20:                                                                                                                                                   gan.py:584
+                    Generator Loss                             4.9e+03                                                                                                                                  
+                    Generator Labeler Loss                     1.3e+03                                                                                                                                  
+                    Generator Antilabeler Loss                 1.4e+03                                                                                                                                  
+                    Generator Total Loss                       7.6e+03                                                                                                                                  
+                    Critic Total Loss                         -3.1e+05                                                                                                                                  
+                    Critic Fake Loss                          -5.4e+03                                                                                                                                  
+                    Critic Real Loss                          -5.8e+05                                                                                                                                  
+                    Critic Gradient Penalty Loss               2.8e+05                                                                                                                                  
+                    Total Loss                                  -3e+05                                                                                                                                  
+                    Labeler Real Loss                          1.5e+02                                                                                                                                  
+                    Labeler Fake Loss                          1.2e+03                                                                                                                                  
+                    Antilabeler Loss                           1.2e+03                                                                                                                                  
+                    Validation Generator Loss                 -2.9e+02                                                                                                                                  
+                    Validation Generator Total Loss           -2.9e+02                                                                                                                                  
+                    Validation Critic Fake Loss                2.9e+02                                                                                                                                  
+                    Validation Critic Real Loss               -7.5e+05                                                                                                                                  
+                    Validation Critic Gradient Penalty Loss    3.8e+05                                                                                                                                  
+                    Validation Critic Total Loss              -3.8e+05                                                                                                                                  
+                    Validation Total Loss                     -3.8e+05                                                                                                                                  
+           DEBUG    (training.gan) Step 20:                                                                                                                                                   gan.py:585
+                    Generator LR               0.0001                                                                                                                                                   
+                    Critic LR                   0.001                                                                                                                                                   
+                    Labeler LR                 0.0001                                                                                                                                                   
+                    Antilabeler LR             0.0001                                                                                                                                                   
+                    Generator Avg Abs Weight    0.045                                                                                                                                                   
+                    Critic Avg Abs Weight       0.019                                                                                                                                                   
+[23:08:32] DEBUG    (training.gan) Generating UMAP plots...                                                                                                                                   gan.py:628
+[23:08:33] DEBUG    (training.gan) Step 20: Computing Random Forest AUROC...                                                                                                                  gan.py:663
+[23:08:36] INFO     (training.gan) Step 20: Computed Random Forest AUROC: 1.000                                                                                                               gan.py:675
+           INFO     (GRouNdScale CLI) Finished                                                                                                                                               main.py:141
+[10/07/26 23:08:42] INFO     Loading checkpoint from 'results4/5000/checkpoints/step_20.pth' on cuda                                                                              count-parameters.py:48
+[10/07/26 23:08:44] INFO     Parameter counts:                                                                                                                                    count-parameters.py:60
+                             gen_state_dict                    17.83M parameters                                                                                                                        
+                             crit_state_dict                    5.78M parameters                                                                                                                        
+                             labeler_state_dict                18.03M parameters                                                                                                                        
+                             antilabeler_state_dict            18.03M parameters                                                                                                                        
+                             step                                   1 parameters                                                                                                                        
+                             gen_optimizer_state_dict           12.9M parameters                                                                                                                        
+                             crit_optimizer_state_dict         17.33M parameters                                                                                                                        
+                             labeler_optimizer_state_dict      54.06M parameters                                                                                                                        
+                             antilabeler_optimizer_state_dict  54.06M parameters                                                                                                                        
+                             gen_scheduler_state_dict               6 parameters                                                                                                                        
+                             crit_scheduler_state_dict              6 parameters                                                                                                                        
+                    INFO     Successfully saved parameter counts to 'results4/5000/params-size.json'                                                                              count-parameters.py:64

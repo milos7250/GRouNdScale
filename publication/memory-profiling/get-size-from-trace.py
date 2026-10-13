@@ -24,16 +24,40 @@ Both segment vocabularies occur in this repository: runs with
 `expandable_segments=True` runs emit `segment_map`/`segment_unmap`. A reserved
 walk that only knows `segment_alloc` reports zero for the latter.
 
-Note that `_record_memory_history(max_entries=...)` writes into a fixed-size
-ring buffer. A trace holding exactly `max_entries` events has wrapped and lost
-its oldest entries, so the allocated series underflows below zero and the peak
-is only a lower bound. Such snapshots are detected and reported as truncated.
+TRACES THAT START MID-RUN
+-------------------------
+Recording can be enabled part-way through a job -- the compiled runs here start
+only once torch inductor has finished compiling, so all the memory held at that
+point predates the trace. A naive walk then reports cumulative allocated going
+negative and badly under-reports the peak.
+
+This follows PyTorch's own memory-visualiser semantics
+(`torch/utils/viz/process_alloc_data.js`) instead, which recover the missing
+head exactly:
+
+* blocks are paired with their frees by address, so a `free_completed` with no
+  matching `alloc` identifies a block that was already live when the trace
+  opened -- its size is pre-loaded at t=0;
+* blocks the segment snapshot still reports as `active_allocated` but which the
+  trace never mentions are pre-loaded too (mem-viz calls these "ghosts");
+* reserved is seeded from the snapshot, which mem-viz notes is unaffected by
+  ring-buffer overflow: `baseline = snapshot_total - net_trace_delta`, then the
+  traced segment deltas are replayed on top.
+
+With that baseline in place the series starts at the real occupancy and its
+maximum is the true peak, so truncated traces need no special-casing downstream.
+On `traces/1000-compile-genes.pickle` this reproduces mem-viz's figure of
+993,270,184 bytes.
+
+Note that `free_requested` and `free_completed` are emitted for each
+deallocation and share an address; only `free_completed` is matched, or every
+free would be counted twice.
 
 Usage::
 
-    python get-size-from-trace.py                        # every mem-profile2/*.pickle
-    python get-size-from-trace.py mem-profile2/1000-genes.pickle
-    python get-size-from-trace.py --out-dir mem-profile2 mem-profile2/*.pickle
+    python get-size-from-trace.py                        # every traces/*.pickle
+    python get-size-from-trace.py traces/1000-genes.pickle
+    python get-size-from-trace.py --out-dir . traces/*.pickle
 """
 
 from __future__ import annotations
@@ -64,6 +88,7 @@ BYTES_PER_MIB = 1024**2
 
 ALLOC_ACTION = "alloc"
 FREE_ACTION = "free_requested"
+FREE_COMPLETED_ACTION = "free_completed"
 SEGMENT_UP_ACTIONS = frozenset({"segment_alloc", "segment_map"})
 SEGMENT_DOWN_ACTIONS = frozenset({"segment_free", "segment_unmap"})
 
@@ -83,6 +108,7 @@ METRIC_TITLES = {"allocated": "Peak allocated", "reserved": "Peak reserved"}
 
 # Where the per-run nvidia-smi samples live, relative to this script.
 SMI_DIRNAME = "results-compile"
+# SMI_DIRNAME = "../size-compare2/results4"
 SMI_FILENAME = "gpu-usage.csv"
 
 
@@ -106,17 +132,22 @@ class Snapshot:
     underflows: int
     expandable_segments: bool
     raw_events: int
+    initial_allocated: int = 0
+    ghost_blocks: int = 0
 
     @property
     def truncated(self) -> bool:
-        """True when the ring buffer wrapped, making the peak a lower bound.
+        """True when the trace does not begin at the program's first allocation.
+
+        Recording can be started late on purpose -- the compiled runs here begin
+        only after torch inductor has finished compiling -- so the trace has no
+        record of blocks that were already live when it opened. Those blocks are
+        reconstructed (see `load_snapshot`), so the peaks remain exact rather than
+        being lower bounds.
 
         Detected from cumulative allocated going negative: a `free` was recorded
-        whose matching `alloc` had already been evicted. Event count alone is not a
-        usable signal, because `_record_memory_history(max_entries=N)` varies with
-        the run -- the compile traces here hold >300k events with no underflow and
-        are demonstrably complete, so comparing against a fixed cap would
-        misreport them.
+        whose matching `alloc` was never seen. Event count alone is not a usable
+        signal, because `_record_memory_history(max_entries=N)` varies per run.
         """
         return self.underflows > 0
 
@@ -196,7 +227,7 @@ def load_snapshot(path: Path) -> Snapshot:
     """Reconstruct the allocated and reserved timelines from one snapshot pickle."""
     with path.open("rb") as handle:
         raw: dict[str, Any] = pickle.load(handle)
-        
+
     if isinstance(raw, Snapshot):
         return raw  # already processed and cached
 
@@ -204,35 +235,97 @@ def load_snapshot(path: Path) -> Snapshot:
     if not traces:
         raise ValueError(f"{path}: snapshot carries no device_traces, so no timeline can be reconstructed")
     trace = traces[0]
+    segments = raw.get("segments") or []
 
-    times_s: list[float] = []
-    allocated: list[int] = []
-    reserved: list[int] = []
-    allocated_total = 0
-    reserved_total = 0
+    # --- allocated: mem-viz reconstruction, handles traces starting mid-run ---
+    elements: list[int] = []
+    initially: list[int] = []
+    actions: list[int] = []
+    action_times: list[float] = []
+    addr_to_alloc: dict[int, int] = {}
     underflows = 0
     start_us = trace[0]["time_us"]
 
     for event in trace:
         action = event["action"]
-        size = event["size"]
         if action == ALLOC_ACTION:
-            allocated_total += size
+            elements.append(event["size"])
+            addr_to_alloc[event["addr"]] = len(elements) - 1
+            actions.append(len(elements) - 1)
+            action_times.append((event["time_us"] - start_us) / 1e6)
+        elif action == FREE_COMPLETED_ACTION:
+            if event["addr"] in addr_to_alloc:
+                actions.append(addr_to_alloc.pop(event["addr"]))
+                action_times.append((event["time_us"] - start_us) / 1e6)
+            else:
+                # No alloc in the trace: this block was live when recording began.
+                elements.append(event["size"])
+                initially.append(len(elements) - 1)
+                actions.append(len(elements) - 1)
+                action_times.append((event["time_us"] - start_us) / 1e6)
         elif action == FREE_ACTION:
-            allocated_total -= size
-            if allocated_total < 0:
-                underflows += 1
-        elif action in SEGMENT_UP_ACTIONS:
-            reserved_total += size
-        elif action in SEGMENT_DOWN_ACTIONS:
-            reserved_total -= size
+            continue  # shares its address with free_completed; see module docstring
+
+    # Blocks the snapshot still holds as allocated but the trace never saw.
+    ghost_blocks = 0
+    for segment in segments:
+        for block in segment["blocks"]:
+            if block["state"] == "active_allocated" and block["address"] not in addr_to_alloc:
+                elements.append(block["requested_size"])
+                initially.append(len(elements) - 1)
+                ghost_blocks += 1
+
+    live = set(initially)
+    allocated_total = sum(elements[elem] for elem in initially)
+    initial_allocated = allocated_total
+
+    times_s: list[float] = []
+    allocated: list[int] = []
+    for elem, when in zip(actions, action_times, strict=True):
+        size = elements[elem]
+        if elem not in live:
+            live.add(elem)
+            allocated_total += size
         else:
-            # `free_completed` marks a block returning to its segment's free list; it
-            # changes neither the live byte totals nor any segment's capacity.
-            continue
-        times_s.append((event["time_us"] - start_us) / 1e6)
+            live.discard(elem)
+            allocated_total -= size
+        times_s.append(when)
         allocated.append(allocated_total)
-        reserved.append(reserved_total)
+
+    # --- reserved: segments, with the same mid-run-start treatment ---
+    #
+    # A trace opened late contains few or no segment events, because the segments
+    # were obtained before recording started. The snapshot is unaffected by that
+    # (mem-viz notes the segment array is always complete), so it supplies the
+    # endpoint: baseline = snapshot_total - net_delta_from_trace, and the traced
+    # deltas are replayed on top. This mirrors the `initial = snapshot_total -
+    # net_trace_delta` formula mem-viz uses to seed private-pool envelopes.
+    reserved_times: list[float] = []
+    reserved_deltas: list[int] = []
+    net_segment_delta = 0
+    for event in trace:
+        action = event["action"]
+        if action in SEGMENT_UP_ACTIONS:
+            delta = event["size"]
+        elif action in SEGMENT_DOWN_ACTIONS:
+            delta = -event["size"]
+        else:
+            continue
+        net_segment_delta += delta
+        reserved_deltas.append(delta)
+        reserved_times.append((event["time_us"] - start_us) / 1e6)
+
+    snapshot_reserved = sum(segment["total_size"] for segment in segments)
+    # Negative would mean the trace saw more segment churn than the snapshot's
+    # endpoint accounts for, i.e. segments already released again.
+    reserved_baseline = max(snapshot_reserved - net_segment_delta, 0)
+
+    reserved_times = [0.0, *reserved_times]
+    reserved = [reserved_baseline]
+    running = reserved_baseline
+    for delta in reserved_deltas:
+        running += delta
+        reserved.append(running)
 
     settings = raw.get("allocator_settings") or {}
     return Snapshot(
@@ -244,6 +337,8 @@ def load_snapshot(path: Path) -> Snapshot:
         underflows=underflows,
         expandable_segments=bool(settings.get("expandable_segments", False)),
         raw_events=len(trace),
+        initial_allocated=initial_allocated,
+        ghost_blocks=ghost_blocks,
     )
 
 
@@ -260,7 +355,7 @@ def _mark_peak(axes: Axes, snap: Snapshot, metric: str, colour: str) -> None:
     # cannot run off the axes or slide under the legend.
     near_right_edge = index > 0.7 * len(snap.times_s)
     axes.annotate(
-        f"{metric} peak {peak:.2f} GiB" + (" (lower bound)" if snap.truncated else ""),
+        f"{metric} peak {peak:.2f} GiB",
         xy=(x, y),
         xytext=(-8, 8) if near_right_edge else (8, 8),
         textcoords="offset points",
@@ -309,8 +404,9 @@ def plot_timeline(snapshots: list[Snapshot], out_path: Path, log_y: bool) -> Non
     for index, snap in enumerate(snapshots):
         if snap.truncated:
             axes.annotate(
-                f"{snap.path.stem}: trace truncated ({snap.raw_events} events, "
-                f"{snap.underflows} underflows) - peak is a lower bound",
+                f"{snap.path.stem}: trace started mid-run - "
+                f"{snap.initial_allocated / BYTES_PER_GIB:.2f} GiB reconstructed at t=0 "
+                f"({snap.ghost_blocks} snapshot ghosts)",
                 xy=(0.01, -0.22 - 0.06 * index),
                 xycoords="axes fraction",
                 fontsize=8,
@@ -325,7 +421,7 @@ def plot_timeline(snapshots: list[Snapshot], out_path: Path, log_y: bool) -> Non
 def _timeline_title(snapshots: list[Snapshot]) -> str:
     if len(snapshots) == 1:
         snap = snapshots[0]
-        suffix = " [TRUNCATED]" if snap.truncated else ""
+        suffix = " [recording started mid-run]" if snap.truncated else ""
         return f"{snap.path.stem}: CUDA memory timeline{suffix}"
     return "CUDA memory timelines"
 
@@ -416,22 +512,24 @@ def plot_peaks_vs_genes(snapshots: list[Snapshot], out_path: Path, log_y: bool) 
 def load_theory_model() -> tuple[list[int], Any, Any, Any, float]:
     """Import the analytic model from the repository root.
 
-    Returns `(gene counts, theoretical_gib, theory_curves, compute_smi, smi overhead)`.
-    Imported lazily so the timeline and peaks-only paths still work if
-    `gpu_memory_model.py` is absent.
+    Returns `(gene counts, theoretical_gib, theory_curves, compute_smi,
+    smi overhead GiB)`. Imported lazily so the timeline and peaks-only paths still
+    work if `gpu_memory_model.py` is absent.
     """
     root = Path(__file__).resolve().parent.parent / "theoretical-size"
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
     try:
-        from gpu_memory_model import SIZES, compute_smi, theoretical_gib, theory_curves
+        from gpu_memory_model import (
+            SIZES,
+            SMI_OVERHEAD_GIB,
+            compute_smi,
+            theoretical_gib,
+            theory_curves,
+        )
     except ImportError as error:  # pragma: no cover - depends on checkout layout
         raise SystemExit(f"cannot import gpu_memory_model from {root}: it holds the analytic memory model") from error
-    try:
-        from gpu_memory_model import SMI_OVERHEAD_BYTES
-    except ImportError:  # pragma: no cover - older model without the constant
-        SMI_OVERHEAD_BYTES = 0
-    return sorted(SIZES), theoretical_gib, theory_curves, compute_smi, SMI_OVERHEAD_BYTES
+    return sorted(SIZES), theoretical_gib, theory_curves, compute_smi, SMI_OVERHEAD_GIB
 
 
 def plot_measured_vs_theory(
@@ -447,11 +545,11 @@ def plot_measured_vs_theory(
     measured reserved peak. Markers appear only where a snapshot exists, so the
     dense series stops at 2000 genes (OOM) while its model curve keeps climbing.
 
-    Two further curves describe the compiled runs: whole-device peak from
-    `nvidia-smi`, and that peak less the fixed context/arena overhead, which is the
-    quantity the allocator figures should be compared against.
+    Two further curves describe the compiled runs: the whole-device peak from
+    `nvidia-smi`, and the model's prediction for it (`compute_smi`, which applies a
+    fitted device-side overhead to the compiled allocator peak).
     """
-    theory_sizes, _, theory_curves, compute_smi, smi_overhead = load_theory_model()
+    theory_sizes, _, theory_curves, compute_smi, smi_overhead_gib = load_theory_model()
     grouped = group_by_variant(snapshots)
     figure, axes = plt.subplots(figsize=(11.5, 6.5))
 
@@ -466,7 +564,7 @@ def plot_measured_vs_theory(
         for metric, style, suffix in (("allocated", "-o", "allocated"), ("reserved", "--s", "reserved")):
             values = [run.peak(metric) / BYTES_PER_GIB for run in runs]
             # No per-point labels here: with ~30 points they overlap into mush.
-            # Exact values are in the stdout table and maxima-corrected.json.
+            # Exact values are in the stdout table and maxima.json.
             axes.plot(x, values, style, color=colour, markersize=6, linewidth=1.4, label=f"{variant} measured {suffix}")
 
     if smi_peaks:
@@ -481,15 +579,18 @@ def plot_measured_vs_theory(
             linewidth=1.3,
             label="compile nvidia-smi peak",
         )
+        # Undo the model's device-side overhead to recover the allocator-comparable
+        # quantity, which should land on the compile curve. smi_gib is already in
+        # GiB, matching the offset.
         axes.plot(
             smi_genes,
-            [value - smi_overhead / BYTES_PER_GIB for value in smi_gib],
+            [value - smi_overhead_gib for value in smi_gib],
             ":D",
             color="tab:red",
             markersize=4,
             linewidth=1.3,
             alpha=0.45,
-            label="  less fixed overhead",
+            label="  less device overhead",
         )
         model_smi = [(g, compute_smi(g) / BYTES_PER_GIB) for g in smi_genes if g in set(theory_sizes)]
         if model_smi:
@@ -539,9 +640,9 @@ def summarise(snapshots: list[Snapshot], smi_peaks: dict[int, int]) -> dict[str,
             "genes": snap.label.genes,
             "variant": snap.label.variant,
             "expandable_segments": snap.expandable_segments,
-            "truncated": snap.truncated,
-            "peak_is_lower_bound": snap.truncated,
-            "underflow_events": snap.underflows,
+            "trace_started_mid_run": snap.truncated,
+            "initial_allocated_B": snap.initial_allocated,
+            "ghost_blocks": snap.ghost_blocks,
             "trace_events": snap.raw_events,
             "span_s": round(snap.span_s, 3),
             "peak_allocated_B": snap.peak("allocated"),
@@ -552,9 +653,11 @@ def summarise(snapshots: list[Snapshot], smi_peaks: dict[int, int]) -> dict[str,
     }
     payload: dict[str, Any] = {
         "_note": (
-            "Peaks are exact maxima over every traced event, not maxima over a "
-            "downsampled series. Entries with peak_is_lower_bound=true come from a "
-            "trace that reached max_entries and wrapped; their peaks are underestimates."
+            "Peaks are exact maxima, following PyTorch mem-viz semantics: blocks are "
+            "matched to frees by address, and blocks already live when the trace "
+            "opened are reconstructed from unmatched frees plus snapshot ghosts. "
+            "initial_allocated_B is that reconstructed baseline at t=0, non-zero for "
+            "traces that started recording mid-run."
         ),
         "B": {name: info["peak_allocated_B"] for name, info in details.items()},
         "MiB": {name: info["peak_allocated_B"] / BYTES_PER_MIB for name, info in details.items()},
@@ -584,7 +687,7 @@ def print_table(snapshots: list[Snapshot], smi_peaks: dict[int, int] | None = No
     for snap in snapshots:
         flags = []
         if snap.truncated:
-            flags.append(f"TRUNCATED ({snap.underflows} underflows)")
+            flags.append(f"mid-run start (+{snap.initial_allocated / BYTES_PER_GIB:.2f} GiB baseline)")
         if snap.expandable_segments:
             flags.append("expandable_segments")
         smi = smi_peaks.get(snap.label.genes or -1)
@@ -608,7 +711,7 @@ def report_theory_agreement(snapshots: list[Snapshot], smi_peaks: dict[int, int]
     the well-behaved runs.
     """
     try:
-        _, theoretical_gib, _, _, smi_overhead = load_theory_model()
+        _, theoretical_gib, _, _, smi_overhead_gib = load_theory_model()
     except SystemExit as error:  # pragma: no cover - depends on checkout layout
         print(f"skipping model agreement check: {error}", file=sys.stderr)
         return
@@ -644,25 +747,26 @@ def report_theory_agreement(snapshots: list[Snapshot], smi_peaks: dict[int, int]
     # compile runs, so pairing them with eager `new`/`orig` reserved would be
     # meaningless. (That mismatch is what made an earlier version report a large
     # negative "overhead".)
-    compile_reserved = {
-        snap.label.genes: snap.peak("reserved")
+    compile_allocated = {
+        snap.label.genes: snap.peak("allocated")
         for snap in group_by_variant(snapshots)[VARIANT_COMPILE]
         if snap.label.genes is not None
     }
-    gaps = [
-        (smi_peaks[genes] - compile_reserved[genes]) / BYTES_PER_GIB
+    pairs = [
+        (smi_peaks[genes] / BYTES_PER_GIB, compile_allocated[genes] / BYTES_PER_GIB)
         for genes in sorted(smi_peaks)
-        if genes in compile_reserved
+        if genes in compile_allocated
     ]
-    if not gaps:
+    if not pairs:
         print("\nnvidia-smi samples found, but no matching compile traces to compare against")
         return
-    mean = sum(gaps) / len(gaps)
-    spread = max(abs(value - mean) for value in gaps)
+    errors = [(smi_overhead_gib + alloc - measured) / measured for measured, alloc in pairs]
     print(
-        f"\nnvidia-smi minus allocator reserved, over {len(gaps)} compile runs: "
-        f"fixed cost {mean:.3f} +/- {spread:.3f} GiB "
-        f"[model constant {smi_overhead / BYTES_PER_GIB:.3f} GiB]"
+        f"\nnvidia-smi vs model (smi = allocated + {smi_overhead_gib:.4f} GiB), "
+        f"over {len(pairs)} compile runs: "
+        f"max |rel| {max(abs(e) for e in errors) * 100:.2f}%, "
+        f"rms {(sum(e * e for e in errors) / len(errors)) ** 0.5 * 100:.2f}% "
+        f"[anchored on 1000 genes, so larger runs diverge]"
     )
 
 
@@ -680,7 +784,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=None,
         help="where to write the figure and JSON (default: the traces directory's parent)",
     )
-    parser.add_argument("--json-name", default="maxima-corrected.json", help="summary JSON file name")
+    parser.add_argument("--json-name", default="maxima.json", help="summary JSON file name")
     parser.add_argument("--log-y", action="store_true", help="use a logarithmic y-axis")
     parser.add_argument(
         "--with-theory",

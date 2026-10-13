@@ -51,15 +51,28 @@ N = 1
 # Fraction of the generator's `temp` requirement that survives torch.compile.
 # Inductor fuses the elementwise work into the spmm/scatter kernels, so the
 # full-size temporaries the eager model predicts are largely not materialised.
+#
 # Least-squares fitted against the measured peaks in
-# mem-profile2/traces/*-compile-genes.pickle over 1000..16500 genes; it
-# reproduces them to within 8.2% at 1000 genes and under 2% above 4000.
-TEMP_FACTOR_COMPILE = 0.02504
+# mem-profile2/traces/*-compile-genes.pickle (18 runs, 1000..17789 genes), with the
+# compiled peak modelled as `sum(model + opt) + gen.grad + TEMP_FACTOR_COMPILE *
+# gen.temp` -- i.e. the generator-training step, where the other components are
+# resident but not being optimised. See `compute_compile`. Reproduces the
+# measurements to within 8% at 1000 genes and under 1% above 10000.
+TEMP_FACTOR_COMPILE = 0.094
 
-# nvidia-smi reports total device usage, so it exceeds the caching allocator's
-# reserved bytes by a roughly constant CUDA-context plus inductor-arena cost.
-# Measured as 6.195 +/- 0.001 GiB across all 33 compile runs.
-SMI_OVERHEAD_BYTES = int(6.195 * 1024**3)
+# nvidia-smi reports whole-device usage, which exceeds what the caching allocator
+# reports. Modelled as a single additive constant, anchored so that
+# `compute_smi(1000)` reproduces the measured nvidia-smi peak of the 1000-gene
+# compile run exactly (7.329102 - 0.851464 = 6.477638 GiB).
+#
+# Treat this as an empirical offset, not a physical constant. Part of it is the
+# genuine CUDA context (~0.5 GiB) and autotuning workspaces; the rest is coverage,
+# since the traces begin at critic step 3 (see profile-memory.py) and span under 1%
+# of a ~15-minute run while nvidia-smi samples the whole job. That is why the
+# measured gap drifts from 6.46 GiB at 2000 genes to 6.79 GiB at 17000, and the
+# prediction under-shoots by up to 3.6% across the range. The drift is a coverage
+# artefact, not a scaling law.
+SMI_OVERHEAD_GIB = 6.4776
 
 # Number of genes -> (F, G), the fixed and gene-varying input dimensions.
 SIZES: dict[int, tuple[int, int]] = {
@@ -95,6 +108,8 @@ SIZES: dict[int, tuple[int, int]] = {
     15500: (1118, 14382),
     16000: (1131, 14869),
     16500: (1146, 15354),
+    17000: (1165, 15835),
+    17789: (1192, 16597),
 }
 
 
@@ -374,9 +389,20 @@ def compute_all(batch_size: int, F: int, G: int, k: int = K, w: int = W, d: int 
 def compute_compile(batch_size: int, F: int, G: int, k: int = K, w: int = W, d: int = D, n: int = N) -> int:
     """Peak memory in bytes for the compiled (`compile`) sparse implementation.
 
-    Identical to the eager sparse estimate apart from `TEMP_FACTOR_COMPILE` on the
-    generator's temporaries: everything resident (parameters, gradients, optimizer
-    state, sparse coordinates) is unaffected by fusion.
+    The peak occurs during *generator* training, and that determines which terms
+    each component contributes:
+
+    * the generator additionally holds its gradients and its backward
+      temporaries, and
+    * the causal controller, critic and both discriminators are merely resident --
+      they are not being optimised at this point, so they contribute parameters
+      and optimizer state but no gradients and no temporaries.
+
+    Among the generator's own transient terms, fusion changes the temporaries:
+    they shrink to `TEMP_FACTOR_COMPILE` of the eager requirement. The generator's
+    activations are folded into the fused kernels rather than materialised, so
+    they drop out. Both were fitted against the measured compile peaks; see
+    `TEMP_FACTOR_COMPILE`.
     """
     gen_sparse = compute_sparse_gen(batch_size, F, G, k, w, d, n)
     cc = compute_cc(F, G, batch_size)
@@ -386,19 +412,18 @@ def compute_compile(batch_size: int, F: int, G: int, k: int = K, w: int = W, d: 
 
     return (
         sum(p["model"] + p["opt"] for p in [gen_sparse, cc, crit, labeler, antilabeler])
-        + TEMP_FACTOR_COMPILE * gen_sparse["temp"]
-        + gen_sparse["act"]
         + gen_sparse["grad"]
+        + TEMP_FACTOR_COMPILE * gen_sparse["temp"]
     )
 
 
 def compute_smi(num_genes: int, batch_size: int = BATCH_SIZE) -> float:
     """Predicted peak `nvidia-smi` usage in bytes for a compiled run.
 
-    nvidia-smi counts the whole device, so this is the compiled peak plus a fixed
-    context/arena overhead rather than an allocator figure.
+    nvidia-smi counts the whole device rather than allocator bytes, so this is the
+    compiled peak plus an empirical offset. See `SMI_OVERHEAD_GIB`.
     """
-    return theoretical_gib_bytes(num_genes, "compile", batch_size) + SMI_OVERHEAD_BYTES
+    return theoretical_gib_bytes(num_genes, "compile", batch_size) + int(SMI_OVERHEAD_GIB * 1024**3)
 
 
 def to_gib(num_bytes: float) -> float:
