@@ -180,6 +180,13 @@ if not __set_up:
     warnings.filterwarnings("ignore", message=r".*Using an existing study with name .* instead of creating a new one.*")
     warnings.filterwarnings("ignore", message=r".*Trial [0-9]+ pruned.*")
     warnings.filterwarnings("ignore", message=r".*Rich is experimental/alpha.*", category=TqdmExperimentalWarning)
+    warnings.filterwarnings(
+        "ignore",
+        message=r".*`torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.*",
+        category=FutureWarning,
+        module="torch.jit._script",
+        lineno=1491,
+    )
 
     # Setup plotting variables
     plt.rcParams.update({
@@ -195,5 +202,6 @@ if not __set_up:
     # Set up specific loggers
     setup_logger("optuna")
     logging.getLogger("dotenv.main").setLevel(logging.CRITICAL)
+    logging.getLogger("torch._inductor.scheduler").setLevel(logging.ERROR)
 
     __set_up = True
