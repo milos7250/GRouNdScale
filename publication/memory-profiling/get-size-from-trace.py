@@ -95,13 +95,13 @@ SEGMENT_DOWN_ACTIONS = frozenset({"segment_free", "segment_unmap"})
 # Matches `1000-genes.pickle`, `2000-genes-orig.pickle`, `3000-compile-genes.pickle`.
 SNAPSHOT_NAME = re.compile(r"^(?P<genes>\d+)-(?P<kind>genes-orig|compile-genes|genes).*$")
 
-VARIANT_NEW = "new"
-VARIANT_ORIG = "orig"
-VARIANT_COMPILE = "compile"
+VARIANT_SPARSE = "sparse"
+VARIANT_DENSE = "dense"
+VARIANT_COMPILED_SPARSE = "compiled sparse"
 VARIANT_STYLE = {
-    VARIANT_NEW: "tab:blue",
-    VARIANT_ORIG: "tab:orange",
-    VARIANT_COMPILE: "tab:green",
+    VARIANT_SPARSE: "tab:blue",
+    VARIANT_DENSE: "tab:orange",
+    VARIANT_COMPILED_SPARSE: "tab:green",
 }
 
 METRIC_TITLES = {"allocated": "Peak allocated", "reserved": "Peak reserved"}
@@ -117,7 +117,7 @@ class RunLabel:
     """Run identity inferred from a snapshot file name."""
 
     genes: int | None
-    variant: str | None  # VARIANT_NEW, VARIANT_ORIG, VARIANT_COMPILE, or None
+    variant: str | None  # VARIANT_SPARSE, VARIANT_DENSE, VARIANT_COMPILED_SPARSE, or None
 
 
 @dataclass
@@ -161,9 +161,9 @@ class Snapshot:
 
 
 VARIANT_BY_KIND = {
-    "genes": VARIANT_NEW,
-    "genes-orig": VARIANT_ORIG,
-    "compile-genes": VARIANT_COMPILE,
+    "genes": VARIANT_SPARSE,
+    "genes-orig": VARIANT_DENSE,
+    "compile-genes": VARIANT_COMPILED_SPARSE,
 }
 
 
@@ -577,7 +577,7 @@ def plot_measured_vs_theory(
             color="tab:red",
             markersize=4,
             linewidth=1.3,
-            label="compile nvidia-smi peak",
+            label="compiled sparse nvidia-smi peak",
         )
         # Undo the model's device-side overhead to recover the allocator-comparable
         # quantity, which should land on the compile curve. smi_gib is already in
@@ -749,7 +749,7 @@ def report_theory_agreement(snapshots: list[Snapshot], smi_peaks: dict[int, int]
     # negative "overhead".)
     compile_allocated = {
         snap.label.genes: snap.peak("allocated")
-        for snap in group_by_variant(snapshots)[VARIANT_COMPILE]
+        for snap in group_by_variant(snapshots)[VARIANT_COMPILED_SPARSE]
         if snap.label.genes is not None
     }
     pairs = [

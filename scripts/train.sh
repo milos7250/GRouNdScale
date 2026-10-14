@@ -3,7 +3,7 @@
 #SBATCH --output=logs/causalgan-train/%A.out
 #SBATCH --error=logs/causalgan-train/%A.err
 #SBATCH --nodes=1
-#SBATCH --nodelist=n23-64-512-aragog,n23-64-512-buckbeak,n23-64-512-crookshanks,n23-64-512-dobby,n23-64-512-fawkes,n23-64-512-nagini,n23-64-1024-hedwig,n24-64-384-angel,n24-64-384-anya,n24-64-384-darla,n24-64-384-drusilla,n24-64-384-lorne,n24-64-384-spike
+#SBATCH --nodelist=n24-64-384-angel,n24-64-384-anya,n23-64-512-aragog,n23-64-512-buckbeak,n23-64-512-crookshanks,n24-64-384-darla,n23-64-512-dobby,n24-64-384-drusilla,n23-64-512-fawkes,n23-64-1024-hedwig,n24-64-384-lorne,n23-64-512-nagini,n24-64-384-spike
 #SBATCH --gpus=a100:1
 #SBATCH --partition=gpu
 #SBATCH --cpus-per-task=16

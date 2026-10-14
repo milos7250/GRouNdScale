@@ -52,27 +52,33 @@ N = 1
 # Inductor fuses the elementwise work into the spmm/scatter kernels, so the
 # full-size temporaries the eager model predicts are largely not materialised.
 #
-# Least-squares fitted against the measured peaks in
+# Fraction of the generator's `temp` and `act` requirements that survive
+# torch.compile. Inductor fuses the elementwise work into the spmm/scatter kernels,
+# so the full-size temporaries and activations the eager model predicts are largely
+# not materialised.
+#
+# Fitted against the measured peaks in
 # mem-profile2/traces/*-compile-genes.pickle (18 runs, 1000..17789 genes), with the
 # compiled peak modelled as `sum(model + opt) + gen.grad + TEMP_FACTOR_COMPILE *
-# gen.temp` -- i.e. the generator-training step, where the other components are
-# resident but not being optimised. See `compute_compile`. Reproduces the
-# measurements to within 8% at 1000 genes and under 1% above 10000.
-TEMP_FACTOR_COMPILE = 0.094
+# (gen.temp + gen.act)` -- i.e. the generator-training step, where the other
+# components are resident but not being optimised. See `compute_compile`.
+# Chosen to minimise the worst-case error across the range rather than by plain
+# least squares, since the latter is dominated by the largest runs: reproduces the
+# measurements to within 4.9% everywhere, versus 8.0% for the LSQ value.
+TEMP_FACTOR_COMPILE = 0.093222
 
 # nvidia-smi reports whole-device usage, which exceeds what the caching allocator
 # reports. Modelled as a single additive constant, anchored so that
 # `compute_smi(1000)` reproduces the measured nvidia-smi peak of the 1000-gene
-# compile run exactly (7.329102 - 0.851464 = 6.477638 GiB).
+# compile run exactly (7.329102 - 0.879380 = 6.449722 GiB).
 #
 # Treat this as an empirical offset, not a physical constant. Part of it is the
 # genuine CUDA context (~0.5 GiB) and autotuning workspaces; the rest is coverage,
 # since the traces begin at critic step 3 (see profile-memory.py) and span under 1%
-# of a ~15-minute run while nvidia-smi samples the whole job. That is why the
-# measured gap drifts from 6.46 GiB at 2000 genes to 6.79 GiB at 17000, and the
-# prediction under-shoots by up to 3.6% across the range. The drift is a coverage
-# artefact, not a scaling law.
-SMI_OVERHEAD_GIB = 6.4776
+# of a ~15-minute run while nvidia-smi samples the whole job. Anchoring on the
+# smallest run keeps the prediction within 2% across the whole range; the residual
+# drift is a coverage artefact, not a scaling law.
+SMI_OVERHEAD_GIB = 6.4497
 
 # Number of genes -> (F, G), the fixed and gene-varying input dimensions.
 SIZES: dict[int, tuple[int, int]] = {
@@ -134,7 +140,7 @@ def compute_gen(batch_size: int, F: int, G: int, k: int, w: int, d: int, n: int)
     gen = T + (l_i + l_h + l_o) + bnorm_state  # Extra ls for masks
 
     grad = T
-    opt = 3 * T  # two Adam moments plus the parameter itself, all FP32
+    opt = 3 * T  # two Adam moments plus AMSGrad, all FP32
 
     act = FLOAT_BYTES * batch_size * ((d + 1) * H + O)  # activations for linear layers
     act += FLOAT_BYTES * batch_size * ((d + 1) * H)  # linear-layer inputs, saved for backward
@@ -180,7 +186,7 @@ def compute_sparse_gen(batch_size: int, F: int, G: int, k: int, w: int, d: int, 
 
     # One (index, value) pair per nonzero weight, both held as int64: 16 bytes per
     # weight against 4 for the FP32 tensor of the same shape. `l_i + d*l_h + l_o` is
-    # already that FP32 byte count, hence the divison and multiplication by the int64 size.
+    # already that FP32 byte count, hence the division and multiplication by the int64 size.
     coords = 2 * (l_i + d * l_h + l_o) // FLOAT_BYTES * INT64_BYTES
 
     bnorm_train = FLOAT_BYTES * 2 * (d + 1) * H  # bias and weight
@@ -355,7 +361,6 @@ def compute_labeler(F: int, G: int, batch_size: int) -> dict[str, int]:
 def compute_antilabeler(F: int, G: int, batch_size: int) -> dict[str, int]:
     """Antilabeler memory, in bytes. Architecturally identical to the labeler."""
     return compute_labeler(F, G, batch_size)
-    all()
 
 
 def compute_all(batch_size: int, F: int, G: int, k: int = K, w: int = W, d: int = D, n: int = N) -> tuple[int, int]:
@@ -398,11 +403,10 @@ def compute_compile(batch_size: int, F: int, G: int, k: int = K, w: int = W, d: 
       they are not being optimised at this point, so they contribute parameters
       and optimizer state but no gradients and no temporaries.
 
-    Among the generator's own transient terms, fusion changes the temporaries:
-    they shrink to `TEMP_FACTOR_COMPILE` of the eager requirement. The generator's
-    activations are folded into the fused kernels rather than materialised, so
-    they drop out. Both were fitted against the measured compile peaks; see
-    `TEMP_FACTOR_COMPILE`.
+    Among the generator's own transient terms, fusion shrinks both the backward
+    temporaries and the activations to `TEMP_FACTOR_COMPILE` of their eager
+    requirement -- the fused kernels keep far less live than the elementwise chain
+    would. Fitted against the measured compile peaks; see `TEMP_FACTOR_COMPILE`.
     """
     gen_sparse = compute_sparse_gen(batch_size, F, G, k, w, d, n)
     cc = compute_cc(F, G, batch_size)
@@ -413,7 +417,7 @@ def compute_compile(batch_size: int, F: int, G: int, k: int = K, w: int = W, d: 
     return (
         sum(p["model"] + p["opt"] for p in [gen_sparse, cc, crit, labeler, antilabeler])
         + gen_sparse["grad"]
-        + TEMP_FACTOR_COMPILE * gen_sparse["temp"]
+        + TEMP_FACTOR_COMPILE * (gen_sparse["temp"] + gen_sparse["act"])
     )
 
 
@@ -423,7 +427,7 @@ def compute_smi(num_genes: int, batch_size: int = BATCH_SIZE) -> float:
     nvidia-smi counts the whole device rather than allocator bytes, so this is the
     compiled peak plus an empirical offset. See `SMI_OVERHEAD_GIB`.
     """
-    return theoretical_gib_bytes(num_genes, "compile", batch_size) + int(SMI_OVERHEAD_GIB * 1024**3)
+    return theoretical_gib_bytes(num_genes, "compiled sparse", batch_size) + int(SMI_OVERHEAD_GIB * 1024**3)
 
 
 def to_gib(num_bytes: float) -> float:
@@ -437,20 +441,20 @@ def to_mib(num_bytes: float) -> float:
 def theoretical_gib_bytes(num_genes: int, variant: str, batch_size: int = BATCH_SIZE) -> float:
     """Estimated peak memory in bytes for `num_genes` under `variant`.
 
-    `variant` is `"orig"` for the dense masked-linear implementation, `"new"` for the
-    sparse one, or `"compile"` for the sparse implementation under torch.compile.
-    These match the snapshot file-name infixes.
+    `variant` is `"dense"` for the dense masked-linear implementation, `"sparse"` for
+    the sparse one, or `"compiled sparse"` for the sparse implementation under
+    torch.compile. These match the snapshot file-name infixes.
     """
     if num_genes not in SIZES:
         raise KeyError(f"no (F, G) entry for {num_genes} genes; add one to SIZES")
     F, G = SIZES[num_genes]
-    if variant == "orig":
+    if variant == "dense":
         return compute_all(batch_size, F, G)[0]
-    if variant == "new":
+    if variant == "sparse":
         return compute_all(batch_size, F, G)[1]
-    if variant == "compile":
+    if variant == "compiled sparse":
         return compute_compile(batch_size, F, G)
-    raise ValueError(f"unknown variant {variant!r}; expected 'orig', 'new' or 'compile'")
+    raise ValueError(f"unknown variant {variant!r}; expected 'dense', 'sparse' or 'compiled sparse'")
 
 
 def theoretical_gib(num_genes: int, variant: str, batch_size: int = BATCH_SIZE) -> float:

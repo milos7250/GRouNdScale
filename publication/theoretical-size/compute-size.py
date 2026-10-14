@@ -9,10 +9,11 @@ script, so the two figures read as a set.
 
 Three configurations are plotted, all from `theory_curves`:
 
-* `orig` -- the dense masked-linear implementation.
-* `new` -- the sparse implementation.
-* `compile` -- the sparse implementation under torch.compile, whose generator
-  temporaries are largely fused away (`TEMP_FACTOR_COMPILE`).
+* `dense` -- the dense masked-linear implementation.
+* `sparse` -- the sparse implementation.
+* `compiled sparse` -- the sparse implementation under torch.compile, whose
+  generator temporaries and activations are largely fused away
+  (`TEMP_FACTOR_COMPILE`).
 
 `nvidia-smi` is drawn for the compiled runs as well, since it reports whole-device
 usage rather than allocator bytes and so sits well above every allocator curve.
@@ -49,7 +50,7 @@ from gpu_memory_model import (
 )
 
 # Same palette as get-size-from-trace.py, so variant identity carries across figures.
-VARIANT_COLOURS = {"orig": "tab:orange", "new": "tab:blue", "compile": "tab:green"}
+VARIANT_COLOURS = {"dense": "tab:orange", "sparse": "tab:blue", "compiled sparse": "tab:green"}
 VARIANTS = tuple(VARIANT_COLOURS)
 GPU_LIMIT_GIB = 80.0
 
@@ -128,7 +129,7 @@ axes.plot(
     color="tab:red",
     markersize=4,
     linewidth=1.3,
-    label="compile nvidia-smi peak (model)",
+    label="compiled sparse nvidia-smi",
 )
 
 axes.axhline(GPU_LIMIT_GIB, color="0.35", linestyle=":", linewidth=1.4, label=f"{GPU_LIMIT_GIB:.0f} GiB GPU limit")
