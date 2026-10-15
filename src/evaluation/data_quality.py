@@ -304,15 +304,15 @@ def compute_RF_AUROC(
     plt.plot(fpr, tpr, "b", label=f"AUC = {roc_auc:0.2f}")
     plt.legend(loc="lower right")
     plt.plot([0, 1], [0, 1], "r--")
-    plt.xlim([0, 1])
-    plt.ylim([0, 1])
+    plt.xlim((0, 1))
+    plt.ylim((0, 1))
     plt.ylabel("True Positive Rate")
     plt.xlabel("False Positive Rate")
 
     return roc_auc, plt.gcf()
 
 
-def evaluate(cfg: ConfigParser) -> None:
+def evaluate(cfg: ConfigParser) -> dict[str, float]:
     """
     Assess the data quality of the simulated dataset.
 
@@ -333,6 +333,11 @@ def evaluate(cfg: ConfigParser) -> None:
     ----------
     cfg
         Parser for config file containing program params.
+
+    Returns
+    -------
+    dict[str, float]
+        The computed metrics, keyed by name. Also written to ``evaluation_results.json`` in the output directory.
     """
     output_dir = Path(cfg.get("EXPERIMENT", "output directory"))
     plt.rcParams.update({"savefig.dpi": 600})
@@ -432,3 +437,31 @@ def evaluate(cfg: ConfigParser) -> None:
 
     with open(output_dir / "evaluation_results.json", "w") as f:
         json.dump(results, f, indent=2)
+
+    return results
+
+
+def aggregate_evaluations(runs: list[dict[str, float]], output_path: Path) -> None:
+    """
+    Report the mean and sample standard deviation of each metric across repeated evaluations.
+
+    Parameters
+    ----------
+    runs
+        Metrics returned by `evaluate`, one dictionary per run. All runs must contain the same keys.
+    output_path
+        Path of the JSON file the summary is written to.
+    """
+    logger.info(f"Aggregating results from {len(runs)} runs...")
+    
+    metrics: dict[str, dict[str, float | list[float]]] = {}
+    for key in runs[0]:
+        values = np.array([run[key] for run in runs], dtype=float)
+        mean, std = float(values.mean()), float(values.std(ddof=1))
+        metrics[key] = {"mean": mean, "std": std, "values": values.tolist()}
+        logger.info(f"{key}: {mean:.6g} +/- {std:.6g}")
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w") as f:
+        json.dump({"n_runs": len(runs), "metrics": metrics}, f, indent=2)
+    logger.info(f"Evaluation range summary saved to {output_path}")

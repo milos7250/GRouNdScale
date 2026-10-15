@@ -21,12 +21,13 @@ The command requires a configuration file and accepts the following flags:
 * ``--optimize-hyperparameters``: Start or resume Optuna hyperparameter optimization.
 * ``--generate``: Simulate single-cell RNA-seq data in silico.
 * ``--evaluate``: Evaluate the quality of the simulated dataset.
+* ``--evaluate-range N``: Repeat generation and evaluation ``N`` times (``N`` an integer, at least 2) and report the mean and standard deviation of each metric. See `Repeated Evaluation with Uncertainty Estimates`_.
 * ``--benchmark-grn``: Evaluate an inferred GRN against the ground-truth GRN.
 * ``--perturb``: Run a perturbation experiment with a trained model.
 
-The eight operation flags can be combined where appropriate. Hyperparameter
-optimization must be run separately from generation, evaluation, GRN
-benchmarking, and perturbation.
+The operation flags can be combined where appropriate. Hyperparameter
+optimization must be run separately from training, generation, evaluation,
+repeated evaluation (``--evaluate-range``), GRN benchmarking, and perturbation.
 
 .. note:: 
 
@@ -562,7 +563,10 @@ separate command after optimization completes.
 In-silico Single-Cell Simulation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One training is done, populate the ``[EXPERIMENT]/checkpoint`` field with the path of the ``.pth`` checkpoint you want to use in the config file (usually the latest). 
+One training is done, populate the ``[EXPERIMENT]/checkpoint`` field with the path of the ``.pth`` checkpoint you want to use in the config file (usually the latest).
+
+.. note::
+    If you changed the output directory, make sure to update the ``[CC Model]/checkpoint`` field as well.
 
 .. code-block:: ini 
 
@@ -673,6 +677,141 @@ To run the evaluation with the specified configuration, use the following comman
 
           Example saved RF ROC plot
 
+
+Repeated Evaluation with Uncertainty Estimates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A single call to ``--evaluate`` gives one value per metric, with no indication of how much that value depends on the random noise used to generate the simulated cells. ``--evaluate-range N`` repeats generation and evaluation ``N`` times and reports the mean and sample standard deviation of each metric.
+
+.. code-block:: sh
+
+    $ python src/main.py --config configs/causal_gan.cfg --evaluate-range 5
+
+``--evaluate-range`` is a separate step. It does **not** imply ``--generate`` or ``--evaluate``, so the command above only runs the repeated generation and evaluation. It can be combined with the other operation flags, except ``--optimize-hyperparameters``.
+
+Argument
+^^^^^^^^
+
+``N`` must be an integer of at least 2. A single run has no sample standard deviation, so ``--evaluate-range 1`` is rejected by the CLI. Values such as ``0``, negative numbers, and non-integers are also rejected.
+
+What each run does
+^^^^^^^^^^^^^^^^^^
+
+For each run ``i`` from 1 to ``N``, the CLI:
+
+1. Copies the configuration in memory. The original configuration and the rest of the pipeline are not changed.
+2. Overrides three paths in the copy so that each run writes to its own location:
+
+   * ``[EXPERIMENT] output directory`` is set to ``<output directory>/evaluate_range/run_<i>/``, zero-padded to three digits (``run_001``, ``run_002``, and so on).
+   * ``[Generation] generation path`` is set to ``<run directory>/simulated.h5ad``.
+   * ``[Evaluation] simulated data path`` is set to the same ``simulated.h5ad``.
+
+   These overrides apply even if the configuration sets these paths explicitly. The original values are not used for the repeated runs. Missing ``[Generation]`` and ``[Evaluation]`` sections are created in the copy.
+
+3. Saves the interpolated copy of the configuration to the run directory, using the same file name as the configuration file.
+4. Generates ``[Generation] number of cells to generate`` cells with the trained model (from ``[EXPERIMENT] checkpoint`` if set), writing them to the run's ``simulated.h5ad``.
+5. Runs the metrics selected in the ``[Evaluation]`` section on that file. The results are written to ``evaluation_results.json`` in the run directory, as with ``--evaluate``.
+
+After all runs finish, the mean and sample standard deviation (ddof = 1) of each metric are logged, and a summary is written to ``<output directory>/evaluation_range_summary.json``.
+
+Seeding
+^^^^^^^
+
+The random seed is set once, before the first run, from ``[EXPERIMENT] random seed``, using the same behavior as the other pipeline steps. Each run then draws new noise from the PyTorch random number generator, so the runs differ from one another. The whole set of runs is reproducible: running the same command with the same seed and configuration produces the same ``N`` runs in the same order. An individual run cannot be reproduced on its own by changing the seed.
+
+Output layout
+^^^^^^^^^^^^^
+
+With ``[EXPERIMENT] output directory = results/GRouNdScale`` and ``--evaluate-range 3``, the output is:
+
+.. code-block:: text
+
+    results/GRouNdScale/
+    ├── causal_gan.cfg                        # original configuration (copied by every CLI run)
+    ├── evaluation_range_summary.json         # mean and standard deviation of each metric
+    └── evaluate_range/
+        ├── run_001/
+        │   ├── causal_gan.cfg                # configuration with this run's paths
+        │   ├── simulated.h5ad
+        │   ├── evaluation_results.json
+        │   ├── UMAP/                         # only if plot umap = True or compute miLISI = True
+        │   └── RF.png, RF.pdf                # only if compute rf auroc = True
+        ├── run_002/
+        └── run_003/
+
+The per-run directories are kept, so each simulated dataset and its plots can be inspected. Nothing is deleted, and re-running the command overwrites files in the existing ``run_<i>`` directories.
+
+Summary file
+^^^^^^^^^^^^
+
+``evaluation_range_summary.json`` contains the number of runs and, for each metric, its mean, sample standard deviation, and the per-run values in run order. The metric keys are the same ones written to ``evaluation_results.json``. Part of a summary file from the same ``--evaluate-range 3`` run is shown below:
+
+.. code-block:: json
+
+    {
+      "n_runs": 3,
+      "metrics": {
+        "euclidean_distance_real_vs_fake": {
+          "mean": 226.75662740071616,
+          "std": 30.658474883551786,
+          "values": [
+            225.4805145263672,
+            258.0332336425781,
+            196.75613403320312
+          ]
+        }
+      }
+    }
+
+Console output
+^^^^^^^^^^^^^^
+
+During the loop, the per-run metric messages from the evaluation and MMD modules are suppressed, so the log shows only the progress of each run. The per-run values are still in each run's ``evaluation_results.json`` and in the summary. After the loop, the log prints the mean and sample standard deviation of each metric in the form ``<metric>: <mean> +/- <std>``, followed by the path of the summary file. The output below is from the same ``--evaluate-range 3`` run:
+
+.. code-block:: text
+
+    [11:11:25] INFO     (randomness) Initial random seed: 2029050818                                             randomness.py:11
+               INFO     (randomness) Using seed 781759803 for Python and NumPy random number generation.         randomness.py:25
+    [11:11:40] INFO     (randomness) Using seed 781759803 for PyTorch random number generation.                  randomness.py:42
+               INFO     (GRouNdScale CLI) Evaluation range run 1/3: generating 10000 cells...                         main.py:162
+    [11:11:46] INFO     (GRouNdScale CLI) Evaluation range run 1/3: evaluating...                                     main.py:170
+    [11:12:06] INFO     (GRouNdScale CLI) Evaluation range run 2/3: generating 10000 cells...                         main.py:162
+    [11:12:07] INFO     (GRouNdScale CLI) Evaluation range run 2/3: evaluating...                                     main.py:170
+    [11:12:16] INFO     (GRouNdScale CLI) Evaluation range run 3/3: generating 10000 cells...                         main.py:162
+    [11:12:17] INFO     (GRouNdScale CLI) Evaluation range run 3/3: evaluating...                                     main.py:170
+    [11:12:25] INFO     (evaluate) Aggregating results from 3 runs...                                         data_quality.py:455
+               INFO     (evaluate) euclidean_distance_real_vs_fake: 226.757 +/- 30.6585                       data_quality.py:462
+               INFO     (evaluate) euclidean_distance_control: 239.847 +/- 0                                  data_quality.py:462
+               INFO     (evaluate) cosine_distance_real_vs_fake: 0.000349998 +/- 5.36534e-05                  data_quality.py:462
+               INFO     (evaluate) cosine_distance_control: 0.000625968 +/- 0                                 data_quality.py:462
+               INFO     (evaluate) rf_auroc: 0.488944 +/- 0.000477744                                         data_quality.py:462
+               INFO     (evaluate) mmd_real_vs_fake: 0.00569 +/- 0.000422624                                  data_quality.py:462
+               INFO     (evaluate) mmd_control: 0.0100881 +/- 7.97634e-06                                     data_quality.py:462
+               INFO     (evaluate) miLISI_real_vs_fake: 1.84306 +/- 0.00785702                                data_quality.py:462
+               INFO     (evaluate) miLISI_control: 1.83141 +/- 0                                              data_quality.py:462
+               INFO     (evaluate) Evaluation range summary saved to results/evaluation_range_summary.json    data_quality.py:467
+    [11:12:25] INFO     (GRouNdScale CLI) Finished                                                                    main.py:189
+
+In this run, the RF AUROC varies very little (standard deviation about 0.0005), while the real-vs-fake Euclidean distance varies by about 14% of its mean (30.7 on 226.8). The control metrics have a standard deviation of 0, as expected.
+
+Which metrics are included
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The summary contains the metrics enabled in the ``[Evaluation]`` section, exactly as ``--evaluate`` would compute them. If no metric is enabled, the summary is written with an empty ``metrics`` object.
+
+Interpreting the standard deviations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* The standard deviations of the ``*_real_vs_fake`` metrics show how much each metric varies because of generation randomness alone.
+* The control metrics (``*_control``) are computed only from the real test set, split into two halves. Their inputs and the evaluation seeds do not change between runs, so their standard deviation is zero or near zero. Do not read a small control standard deviation as evidence that the simulation is stable.
+* With small ``N``, the standard deviation is itself a rough estimate. Use a larger ``N`` when you need a tight estimate of the spread.
+
+Relationship to other steps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* ``--evaluate-range`` does not change the output directory, generation path, or simulated data path used by later steps in the same command. For example, ``--benchmark-grn`` still reads the paths from the configuration file.
+* Each run regenerates the full set of ``[Generation] number of cells to generate`` cells and re-evaluates them, so the runtime grows linearly with ``N``.
+* ``--evaluate-range`` cannot be combined with ``--optimize-hyperparameters``. Passing both prints an error, and the conflicting flags are disabled. The same rule applies to ``--train``, ``--generate``, ``--evaluate``, ``--benchmark-grn``, and ``--perturb``.
 
 Benchmarking Inferred GRNs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
