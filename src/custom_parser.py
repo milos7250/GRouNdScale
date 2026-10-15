@@ -86,7 +86,8 @@ def click_options(func: Callable[..., Any]) -> Callable[..., Any]:
     """Decorator that applies Click CLI options to a function.
 
     The resulting function signature will receive the following parameters:
-    `config, preprocess, create_grn, train, optimize_hyperparameters, generate, evaluate, benchmark_grn, perturb`.
+    `config, preprocess, create_grn, train, optimize_hyperparameters, generate, evaluate, evaluate_range, benchmark_grn,
+    perturb`.
     """
     options = [
         click.option(
@@ -114,6 +115,14 @@ def click_options(func: Callable[..., Any]) -> Callable[..., Any]:
         click.option("--generate", is_flag=True, default=False, help="Simulate single-cells RNA-seq data in-silico"),
         click.option(
             "--evaluate", is_flag=True, default=False, help="Evaluate the data quality of the simulated dataset"
+        ),
+        click.option(
+            "--evaluate-range",
+            "evaluate_range",
+            type=click.IntRange(min=2),
+            default=None,
+            help="Repeat generation and evaluation N times (N >= 2) and report the mean and standard deviation of each "
+            "metric",
         ),
         click.option(
             "--benchmark-grn",

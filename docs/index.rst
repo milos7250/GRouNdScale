@@ -6,7 +6,7 @@
 :github_url:  https://github.com/milos7250/GRouNdScale
 
 Welcome to GRouNdScale's documentation!
-=====================================  
+=======================================
 
 This site documents the code released under **GRouNdScale (GRN-guided simulation of single-cell RNA-seq data using causal generative adversarial networks)**. GRouNdScale is a gene regulatory network (GRN)-guided causal implicit generative model for simulating single-cell RNA-seq data, in-silico perturbation experiments, and benchmarking GRN inference methods.
 
