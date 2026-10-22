@@ -27,7 +27,7 @@ from .dicts import (
     GANLosses,
     LossList,
 )
-from .helpers import RunningAverage, set_learning_rate_scheduler
+from .helpers import RunningAverage, hint_on_out_of_memory, set_learning_rate_scheduler
 
 if TYPE_CHECKING:
     from matplotlib.figure import Figure
@@ -751,6 +751,7 @@ class GANTrainer:
 
         return hook_results
 
+    @hint_on_out_of_memory
     def train(
         self, checkpoint_path: "Path | None" = None, compile_modules: bool = True, trial: "Trial | None" = None
     ) -> float:
