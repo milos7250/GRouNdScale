@@ -1,22 +1,26 @@
 \documentclass[11pt]{article}
 \usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\title{GRouNdGAN Top-$k$ Causal-Graph Scaling Report}
-\author{Auto-generated from \texttt{tf-k-experiment} run logs}
+\title{GRouNdScale Top-$k$ Causal-Graph Scaling Report}
+\author{Auto-generated from \texttt{publication/tf-k-experiment} run logs}
 \date{\today}
-\begin{document}\maketitle
+\begin{document}
+\maketitle
 \section{Overview}
-This report analyses 15 completed runs in which the top-$k$ GRN parameter was varied from 1 to 15. The number of imposed edges is used as the independent variable throughout the scaling analysis. The HVG count, TF count, and target-gene count were intended to remain fixed.
-\paragraph{Observed dimensions.} The logs show a small deviation from perfectly fixed dimensions: the $k=1$ run has 2,997 genes and 194 TFs, while most later runs have 3,000 genes and 197 TFs. The observed values are reported rather than silently normalised.
+This report analyses the 15 completed runs of the publication top-$k$ experiment. The GRN parameter $k$ is the number of top-ranked transcription factors retained per gene (TFs per gene), and $k$ is the independent variable throughout the scaling analysis, replacing imposed-edge count. Imposed edges are shown only as a descriptive column in Table~\ref{tab:grn}.
+Logs are taken from Slurm job \texttt{35270928}, which matches the current \texttt{results/} directory. The older job \texttt{34606270} and \texttt{results-old/} are excluded.
+\paragraph{Observed dimensions.} The HVG and target-gene counts are constant across runs, but the TF and gene counts are not perfectly fixed: the $k=1$ run has 194 TFs and 2,997 genes, while all other runs have 197 TFs and 3,000 genes. This is reported as observed; the Notes section includes a sensitivity check that excludes $k=1$.
 \section{GRN Characteristics}
 \begin{table}[H]\centering
-\caption{GRN statistics by top-$k$ setting. The independent variable is imposed-edge count.}
+\caption{GRN statistics for each top-$k$ setting. Imposed edges are a derived descriptive quantity and are not used as the independent variable.}
+\label{tab:grn}
 \begin{tabular}{rrrrrrrr}\toprule
-Top-$k$ & TFs & Targets & Genes & TF/Target (\%) & Imposed Edges & Possible Edges & Density (\%) \\\midrule
+$k$ & TFs & Targets & Genes & TF/Target (\%) & Imposed Edges & Possible Edges & Density (\%) \\ \midrule
 1 & 194 & 2803 & 2997 & 6.92 & 2,803 & 543,782 & 0.5 \\
 2 & 197 & 2803 & 3000 & 7.03 & 5,606 & 552,191 & 1.0 \\
 3 & 197 & 2803 & 3000 & 7.03 & 8,409 & 552,191 & 1.5 \\
@@ -35,121 +39,128 @@ Top-$k$ & TFs & Targets & Genes & TF/Target (\%) & Imposed Edges & Possible Edge
 \bottomrule\end{tabular}\end{table}
 \section{Training Step Times}
 \begin{table}[H]\centering
-\caption{Average final-step times for the controller and causal generator.}
-\begin{tabular}{rrrr}\toprule Top-$k$ & Imposed Edges & Controller (ms) & Generator (ms) \\\midrule
-1 & 2,803 & 42 & 71 \\
-2 & 5,606 & 43 & 57 \\
-3 & 8,409 & 41 & 60 \\
-4 & 11,212 & 40 & 54 \\
-5 & 14,015 & 39 & 71 \\
-6 & 16,818 & 37 & 73 \\
-7 & 19,621 & 38 & 101 \\
-8 & 22,424 & 38 & 98 \\
-9 & 25,227 & 41 & 126 \\
-10 & 28,030 & 39 & 127 \\
-11 & 30,833 & 41 & 159 \\
-12 & 33,636 & 33 & 175 \\
-13 & 36,439 & 40 & 185 \\
-14 & 39,242 & 39 & 203 \\
-15 & 42,045 & 38 & 228 \\
+\caption{Average final-step times (ms) for the causal controller (first phase) and causal generator (second phase).}
+\label{tab:step}
+\begin{tabular}{rrr}\toprule $k$ & Controller (ms) & Generator (ms) \\ \midrule
+1 & 39 & 41 \\
+2 & 36 & 45 \\
+3 & 39 & 48 \\
+4 & 38 & 54 \\
+5 & 32 & 74 \\
+6 & 27 & 73 \\
+7 & 40 & 84 \\
+8 & 40 & 105 \\
+9 & 41 & 119 \\
+10 & 36 & 124 \\
+11 & 35 & 137 \\
+12 & 38 & 153 \\
+13 & 18 & 176 \\
+14 & 27 & 191 \\
+15 & 36 & 220 \\
 \bottomrule\end{tabular}\end{table}
 \begin{table}[H]\centering
 \caption{Expected duration for 200,000 controller steps and 500,000 generator steps.}
-\begin{tabular}{rrrr}\toprule Top-$k$ & Imposed Edges & Controller & Generator / Total \\\midrule
-1 & 2,803 & 2.3 h & 9.9 h / 12.2 h \\
-2 & 5,606 & 2.4 h & 7.9 h / 10.3 h \\
-3 & 8,409 & 2.3 h & 8.3 h / 10.6 h \\
-4 & 11,212 & 2.2 h & 7.5 h / 9.7 h \\
-5 & 14,015 & 2.2 h & 9.9 h / 12.0 h \\
-6 & 16,818 & 2.1 h & 10.1 h / 12.2 h \\
-7 & 19,621 & 2.1 h & 14.0 h / 16.1 h \\
-8 & 22,424 & 2.1 h & 13.6 h / 15.7 h \\
-9 & 25,227 & 2.3 h & 17.5 h / 19.8 h \\
-10 & 28,030 & 2.2 h & 17.6 h / 19.8 h \\
-11 & 30,833 & 2.3 h & 22.1 h / 24.4 h \\
-12 & 33,636 & 1.8 h & 24.3 h / 26.1 h \\
-13 & 36,439 & 2.2 h & 25.7 h / 27.9 h \\
-14 & 39,242 & 2.2 h & 28.2 h / 30.4 h \\
-15 & 42,045 & 2.1 h & 31.7 h / 33.8 h \\
+\label{tab:duration}
+\begin{tabular}{rrrr}\toprule $k$ & Controller & Generator & Total \\ \midrule
+1 & 2.2 h & 5.7 h & 7.9 h (0.33 d) \\
+2 & 2.0 h & 6.2 h & 8.2 h (0.34 d) \\
+3 & 2.2 h & 6.7 h & 8.8 h (0.37 d) \\
+4 & 2.1 h & 7.5 h & 9.6 h (0.40 d) \\
+5 & 1.8 h & 10.3 h & 12.1 h (0.50 d) \\
+6 & 1.5 h & 10.1 h & 11.6 h (0.48 d) \\
+7 & 2.2 h & 11.7 h & 13.9 h (0.58 d) \\
+8 & 2.2 h & 14.6 h & 16.8 h (0.70 d) \\
+9 & 2.3 h & 16.5 h & 18.8 h (0.78 d) \\
+10 & 2.0 h & 17.2 h & 19.2 h (0.80 d) \\
+11 & 1.9 h & 19.0 h & 21.0 h (0.87 d) \\
+12 & 2.1 h & 21.2 h & 23.4 h (0.97 d) \\
+13 & 1.0 h & 24.4 h & 25.4 h (1.06 d) \\
+14 & 1.5 h & 26.5 h & 28.0 h (1.17 d) \\
+15 & 2.0 h & 30.6 h & 32.6 h (1.36 d) \\
 \bottomrule\end{tabular}\end{table}
 \section{Parameter Counts}
 \begin{table}[H]\centering\resizebox{\textwidth}{!}{%
-\begin{tabular}{rrrrrrrrrr}\toprule Top-$k$ & Edges & Generator & Critic & Labeler & Anti-Lab. & Gen. Opt. & Crit. Opt. & Labeler Opt. & Anti-Lab. Opt. \\\midrule
-1 & 2,803 & 3.97M & 3.73M & 14.02M & 14.02M & 0.28M & 11.18M & 42.04M & 42.04M \\
-2 & 5,606 & 4.15M & 3.73M & 14.03M & 14.03M & 0.49M & 11.19M & 42.05M & 42.05M \\
-3 & 8,409 & 4.38M & 3.73M & 14.03M & 14.03M & 0.75M & 11.19M & 42.05M & 42.05M \\
-4 & 11,212 & 4.66M & 3.73M & 14.03M & 14.03M & 1.06M & 11.19M & 42.05M & 42.05M \\
-5 & 14,015 & 4.99M & 3.73M & 14.03M & 14.03M & 1.42M & 11.19M & 42.05M & 42.05M \\
-6 & 16,818 & 5.36M & 3.73M & 14.03M & 14.03M & 1.83M & 11.19M & 42.05M & 42.05M \\
-7 & 19,621 & 5.79M & 3.73M & 14.03M & 14.03M & 2.30M & 11.19M & 42.05M & 42.05M \\
-8 & 22,424 & 6.27M & 3.73M & 14.03M & 14.03M & 2.81M & 11.19M & 42.05M & 42.05M \\
-9 & 25,227 & 6.80M & 3.73M & 14.03M & 14.03M & 3.37M & 11.19M & 42.05M & 42.05M \\
-10 & 28,030 & 7.38M & 3.73M & 14.03M & 14.03M & 3.99M & 11.19M & 42.05M & 42.05M \\
-11 & 30,833 & 8.01M & 3.73M & 14.03M & 14.03M & 4.65M & 11.19M & 42.05M & 42.05M \\
-12 & 33,636 & 8.69M & 3.73M & 14.03M & 14.03M & 5.36M & 11.19M & 42.05M & 42.05M \\
-13 & 36,439 & 9.43M & 3.73M & 14.03M & 14.03M & 6.13M & 11.19M & 42.05M & 42.05M \\
-14 & 39,242 & 10.21M & 3.73M & 14.03M & 14.03M & 6.95M & 11.19M & 42.05M & 42.05M \\
-15 & 42,045 & 11.04M & 3.73M & 14.03M & 14.03M & 7.81M & 11.19M & 42.05M & 42.05M \\
-\bottomrule\end{tabular}}\end{table}
+\begin{tabular}{rrrrrrrrrr}\toprule $k$ & Generator (excl. CC) & Controller & Critic & Labeler & Anti-Lab. & Gen. Opt. & Crit. Opt. & Lab. Opt. & Anti-Lab. Opt. \\ \midrule
+1 & 0.20M & 3.77M & 3.73M & 14.02M & 14.02M & 0.28M & 11.18M & 42.04M & 42.04M \\
+2 & 0.38M & 3.77M & 3.73M & 14.03M & 14.03M & 0.49M & 11.19M & 42.05M & 42.05M \\
+3 & 0.61M & 3.77M & 3.73M & 14.03M & 14.03M & 0.75M & 11.19M & 42.05M & 42.05M \\
+4 & 0.89M & 3.77M & 3.73M & 14.03M & 14.03M & 1.06M & 11.19M & 42.05M & 42.05M \\
+5 & 1.21M & 3.77M & 3.73M & 14.03M & 14.03M & 1.42M & 11.19M & 42.05M & 42.05M \\
+6 & 1.59M & 3.77M & 3.73M & 14.03M & 14.03M & 1.83M & 11.19M & 42.05M & 42.05M \\
+7 & 2.02M & 3.77M & 3.73M & 14.03M & 14.03M & 2.30M & 11.19M & 42.05M & 42.05M \\
+8 & 2.50M & 3.77M & 3.73M & 14.03M & 14.03M & 2.81M & 11.19M & 42.05M & 42.05M \\
+9 & 3.03M & 3.77M & 3.73M & 14.03M & 14.03M & 3.37M & 11.19M & 42.05M & 42.05M \\
+10 & 3.61M & 3.77M & 3.73M & 14.03M & 14.03M & 3.99M & 11.19M & 42.05M & 42.05M \\
+11 & 4.24M & 3.77M & 3.73M & 14.03M & 14.03M & 4.65M & 11.19M & 42.05M & 42.05M \\
+12 & 4.92M & 3.77M & 3.73M & 14.03M & 14.03M & 5.36M & 11.19M & 42.05M & 42.05M \\
+13 & 5.65M & 3.77M & 3.73M & 14.03M & 14.03M & 6.13M & 11.19M & 42.05M & 42.05M \\
+14 & 6.44M & 3.77M & 3.73M & 14.03M & 14.03M & 6.95M & 11.19M & 42.05M & 42.05M \\
+15 & 7.27M & 3.77M & 3.73M & 14.03M & 14.03M & 7.81M & 11.19M & 42.05M & 42.05M \\
+\bottomrule\end{tabular}}
+\caption{Parameter counts for each component and optimiser, from \texttt{params-size.json}. The generator column excludes the causal controller, which is a submodule of the stored \texttt{gen\_state\_dict} and is shown separately.}
+\end{table}
 \section{GPU Memory}
 \begin{table}[H]\centering
-\caption{Peak GPU memory by training phase.}
-\begin{tabular}{rrrr}\toprule Top-$k$ & Imposed Edges & Controller (MiB) & Generator (MiB) \\\midrule
-1 & 2,803 & 819 & 1,919 \\
-2 & 5,606 & 795 & 2,113 \\
-3 & 8,409 & 795 & 2,091 \\
-4 & 11,212 & 1,309 & 2,897 \\
-5 & 14,015 & 1,143 & 3,327 \\
-6 & 16,818 & 795 & 3,699 \\
-7 & 19,621 & 1,143 & 4,865 \\
-8 & 22,424 & 1,309 & 5,971 \\
-9 & 25,227 & 1,309 & 7,005 \\
-10 & 28,030 & 795 & 7,643 \\
-11 & 30,833 & 1,309 & 9,425 \\
-12 & 33,636 & 1,309 & 10,799 \\
-13 & 36,439 & 749 & 12,289 \\
-14 & 39,242 & 1,143 & 13,703 \\
-15 & 42,045 & 749 & 15,075 \\
+\caption{Peak GPU memory (MiB) by training phase, from the monitoring CSV using the logged phase windows.}
+\label{tab:gpu}
+\begin{tabular}{rrr}\toprule $k$ & Controller (MiB) & Generator (MiB) \\ \midrule
+1 & 6,231 & 7,621 \\
+2 & 6,159 & 7,751 \\
+3 & 6,207 & 7,835 \\
+4 & 6,159 & 7,935 \\
+5 & 6,207 & 8,005 \\
+6 & 6,207 & 8,091 \\
+7 & 6,207 & 8,175 \\
+8 & 6,159 & 8,193 \\
+9 & 6,207 & 8,251 \\
+10 & 6,207 & 8,361 \\
+11 & 6,159 & 8,481 \\
+12 & 6,159 & 8,619 \\
+13 & 6,207 & 8,735 \\
+14 & 6,207 & 8,869 \\
+15 & 6,159 & 8,855 \\
 \bottomrule\end{tabular}\end{table}
-\section{Linear and Quadratic Fits}
-Let $e$ denote the number of imposed edges. Ordinary least-squares fits over all completed runs give:
-\begin{equation}
-\widehat{M}_{\mathrm{gen}}(e) = 0.347271\,e - 932.5\ \mathrm{MiB},\qquad R^2=0.9504.
-\end{equation}
-\begin{equation}
-\widehat{t}_{\mathrm{gen}}(e) = 0.004435\,e + 19.74\ \mathrm{ms/step},\qquad R^2=0.9173.
-\end{equation}
-\begin{equation}
-\widehat{P}_{\mathrm{gen},2}(e) = 0.003207968\,e^2 + 36.156489\,e + 3848734.0\ \mathrm{parameters},\qquad R^2=1.0000.
-\end{equation}
-\begin{equation}
-\widehat{M}_{\mathrm{gen},2}(e) = 0.000007201\,e^2 + 0.024320\,e + 1632.4\ \mathrm{MiB},\qquad R^2=0.9977.
-\end{equation}
-\begin{equation}
-\widehat{t}_{\mathrm{gen},2}(e) = 0.000000109\,e^2 - 0.000437\,e + 58.44\ \mathrm{ms/step},\qquad R^2=0.9809.
-\end{equation}
-The quadratic fits substantially improve in-sample fit quality, but their extra curvature should be validated on additional top-$k$ values before extrapolation.
+\section{Fits in $k$}\label{sec:fits}
+Let $k$ denote the number of TFs per gene. Ordinary least-squares fits over all 15 runs give:
+\begin{align}
+\widehat{P}_{\mathrm{gen}}(k) &= 5.045\times10^{5}\,k - 1.065\times10^{6}\ \mathrm{parameters},\quad R^2=0.9645, \\
+\widehat{M}_{\mathrm{gen}}(k) &= 87.95\,k + 7548\ \mathrm{MiB},\quad R^2=0.9861, \\
+\widehat{t}_{\mathrm{gen}}(k) &= 12.47\,k + 9.857\ \mathrm{ms/step},\quad R^2=0.9629.
+\end{align}
+Quadratic fits, which capture the curvature visible in the data, are:
+\begin{align}
+\widehat{P}_{\mathrm{gen},2}(k) &= 2.523\times10^{4}\,k^2 + 1.009\times10^{5}\,k + 7.849\times10^{4}\ \mathrm{parameters},\quad R^2=1.0000, \\
+\widehat{M}_{\mathrm{gen},2}(k) &= 1.179\,k^2 + 69.09\,k + 7602\ \mathrm{MiB},\quad R^2=0.9887, \\
+\widehat{t}_{\mathrm{gen},2}(k) &= 0.5815\,k^2 + 3.163\,k + 36.22\ \mathrm{ms/step},\quad R^2=0.9938.
+\end{align}
+\begin{table}[H]\centering
+\caption{Goodness of fit in $k$ (in-sample, all 15 runs).}
+\label{tab:fits}
+\begin{tabular}{lrrrr}\toprule Quantity & Linear $R^2$ & Quadratic $R^2$ & Linear RMSE & Quadratic RMSE \\ \midrule
+Generator parameters & 0.9645 & 1.0000 & 418,359.37 & 0.00 \\
+Generator peak memory (MiB) & 0.9861 & 0.9887 & 45.18 & 40.74 \\
+Generator step time (ms) & 0.9629 & 0.9938 & 10.57 & 4.33 \\
+\bottomrule\end{tabular}\end{table}
 \section{Graphs}
 \begin{figure}[H]\centering
-\includegraphics[width=0.95\textwidth]{gen_params_vs_edges.pdf}
-\caption{Generator parameter count versus imposed edges.}\label{fig:params}
+\includegraphics[width=0.95\textwidth]{gen_params_vs_k.pdf}
+\caption{Generator parameter count versus $k$, with linear and quadratic fits.}\label{fig:params}
 \end{figure}
 \begin{figure}[H]\centering
-\includegraphics[width=0.95\textwidth]{gpu_mem_vs_edges.pdf}
-\caption{Peak GPU memory versus imposed edges; the dashed line is the 80 GB GPU capacity.}\label{fig:memory}
+\includegraphics[width=0.95\textwidth]{gpu_mem_vs_k.pdf}
+\caption{Peak GPU memory versus $k$, with the generator linear and quadratic fits.}\label{fig:memory}
 \end{figure}
 \begin{figure}[H]\centering
-\includegraphics[width=0.95\textwidth]{gen_step_vs_edges.pdf}
-\caption{Causal-generator average step time versus imposed edges.}\label{fig:time}
-\end{figure}
-\begin{figure}[H]\centering
-\includegraphics[width=0.95\textwidth]{gen_step_vs_ratio.pdf}
-\caption{Causal-generator step time versus TF/target ratio; color indicates imposed-edge count.}\label{fig:ratio}
+\includegraphics[width=0.95\textwidth]{gen_step_vs_k.pdf}
+\caption{Causal-generator average step time versus $k$, with linear and quadratic fits.}\label{fig:time}
 \end{figure}
 \section{Notes}
 \begin{itemize}
-\item All included runs completed without CUDA out-of-memory errors.
-\item Generator parameter count scales approximately linearly with imposed edges (linear $R^2=0.9645$; quadratic $R^2=1.0000$).
-\item Quadratic fits improve the parameter-count $R^2$ from 0.9645 to 1.0000, the memory $R^2$ from 0.9504 to 0.9977, and the step-time $R^2$ from 0.9173 to 0.9809; this comparison is in-sample because all available top-$k$ values were used for fitting.
-\item GPU memory is reported in MiB as measured by the monitoring CSV; the GPU capacity is 81,920 MiB.
-\end{itemize}\end{document}
+\item Sensitivity to the $k=1$ point (which has different TF and gene counts): excluding it, the linear/quadratic $R^2$ are 0.9718/1.0000 for parameters, 0.9829/0.9887 for peak memory, and 0.9697/0.9930 for step time.
+\item Runs with an out-of-memory error: 0 of 15.
+\item The linear parameter fit crosses zero at $k\approx2.1$, so it predicts a negative generator parameter count below that value; the quadratic fit reproduces the measured counts and should be used at small $k$.
+\item The TF/target ratio is essentially constant (6.92\% at $k=1$; 7.03\% for $k\ge2$), because the target count is fixed. A ratio-based figure would therefore carry no information and is omitted; the scaling is attributed to $k$.
+\item The controller peak memory is flat across $k$ (from 6,159 to 6,231 MiB), as expected because the controller does not depend on $k$. This supports attributing the generator's growth to $k$ rather than to a phase-window artefact.
+\item GPU capacity is 81,920 MiB; the largest generator peak is 8,869 MiB at $k=14$.
+\end{itemize}
+\end{document}

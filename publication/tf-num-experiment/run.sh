@@ -7,19 +7,17 @@
 #SBATCH --gpus=a100:1
 #SBATCH --partition=gpu
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=20G
-#SBATCH --array=20-29
+#SBATCH --mem=16G
+#SBATCH --array=1-15
 
 set -exuo pipefail
 
 export CONFIG="causal_gan.cfg";
 export CODE_ROOT="${CODE_ROOT:-/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale}"
+source "$CODE_ROOT/scripts/common.sh"
+
 export GROUNDSCALE_LOGLEVEL=DEBUG
 export GROUNDSCALE_NO_TQDM=1
-export PYTHON="apptainer exec --nv 'docker://milos7250/groundscale:latest' python"
-python(){
-    apptainer exec --nv 'docker://milos7250/groundscale:latest' python "$@"
-}
 
 SLURM_ARRAY_JOB_ID=${SLURM_ARRAY_JOB_ID:-999999999999}
 SLURM_ARRAY_TASK_ID=${SLURM_ARRAY_TASK_ID:-1}
@@ -31,14 +29,14 @@ on_exit() {
     if [[ -n "$PID" ]]; then
         kill -SIGINT "$PID" 2>/dev/null || true
     fi
-    # if (( status != 0 )); then
-    #     scancel -t PENDING "$SLURM_ARRAY_JOB_ID" || true
-    # fi
+    if (( status != 0 )); then
+        scancel -t PENDING "$SLURM_ARRAY_JOB_ID" || true
+    fi
     exit "$status"
 }
 trap on_exit EXIT
 
-export SIZE=$((100 * SLURM_ARRAY_TASK_ID))
+export SIZE=$((200 * SLURM_ARRAY_TASK_ID))
 export NUM_GENES=$SIZE
 
 mkdir -p results/$SIZE
@@ -49,7 +47,7 @@ cut -d',' -f1 < results/$SIZE/inferred_grnboost2.csv |sort -u |grep -v 'TF' >> r
 cp data/processed/*.h5ad results/$SIZE/
 
 "$CODE_ROOT/scripts/create-grn.sh"
-NUM_GENES="$(eval "$PYTHON" "$CODE_ROOT/../..//inspect_h5ad.py" "results/${SIZE}/train.h5ad" |grep -oE '\([0-9]+, [0-9]+\)' |cut -d',' -f2 | grep -oE '[0-9]+')"
+NUM_GENES="$(eval "$PYTHON" "$CODE_ROOT/scripts/inspect_h5ad.py" "results/${SIZE}/train.h5ad" |grep -oE '\([0-9]+, [0-9]+\)' |cut -d',' -f2 | grep -oE '[0-9]+')"
 export NUM_GENES
 
 python "$CODE_ROOT/scripts/measure-gpu-usage.py" --output "results/${SIZE}/gpu-usage.csv" &

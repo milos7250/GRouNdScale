@@ -1,0 +1,91 @@
++ export CONFIG=causal_gan.cfg
++ CONFIG=causal_gan.cfg
++ export CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale
++ CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale
++ source /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/common.sh
+++ CODE_ROOT=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale
+++ CONFIG=causal_gan.cfg
+++ POSTGRES_DIR=/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/publication/tf-num-experiment/postgres
+++ [[ ! -d /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale ]]
+++ [[ ! -f causal_gan.cfg ]]
++++ stty size
++++ cut '-d ' -f2
+++ COLUMNS=
+++ COLUMNS=200
++++ mktemp -d
+++ MKTEMP=/tmp/mmicik_35281146/tmp.xSuBXiMNO5
+++ trap 'rm -rf "$MKTEMP"' EXIT
+++ TMPDIR=/tmp/mmicik_35281146
+++ export COLUMNS TMPDIR
+++ set -euo pipefail
+++ echo 'Running command on n23-64-512-buckbeak'
+++ export OMP_NUM_THREADS=8
+++ OMP_NUM_THREADS=8
+++ export TORCHINDUCTOR_COMPILE_THREADS=8
+++ TORCHINDUCTOR_COMPILE_THREADS=8
+++ export TORCHINDUCTOR_CACHE_DIR=/tmp/mmicik_35281146/torchinductor_cache
+++ TORCHINDUCTOR_CACHE_DIR=/tmp/mmicik_35281146/torchinductor_cache
+++ export TORCHINDUCTOR_FX_GRAPH_CACHE=1 TORCHINDUCTOR_AUTOGRAD_CACHE=1 TRITON_CACHE_AUTOTUNING=1
+++ TORCHINDUCTOR_FX_GRAPH_CACHE=1
+++ TORCHINDUCTOR_AUTOGRAD_CACHE=1
+++ TRITON_CACHE_AUTOTUNING=1
+++ export TORCHINDUCTOR_FORCE_DISABLE_CACHES=0
+++ TORCHINDUCTOR_FORCE_DISABLE_CACHES=0
+++ export GROUNDSCALE_LOGLEVEL=INFO
+++ GROUNDSCALE_LOGLEVEL=INFO
+++ export GROUNDSCALE_NO_TQDM=0
+++ GROUNDSCALE_NO_TQDM=0
+++ export LOGLEVEL=WARNING
+++ LOGLEVEL=WARNING
+++ export 'PYTHON=apptainer exec --nv '\''docker://milos7250/groundscale:latest'\'' python'
+++ PYTHON='apptainer exec --nv '\''docker://milos7250/groundscale:latest'\'' python'
+++ [[ -f /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/publication/tf-num-experiment/postgres/.env ]]
++ export GROUNDSCALE_LOGLEVEL=DEBUG
++ GROUNDSCALE_LOGLEVEL=DEBUG
++ export GROUNDSCALE_NO_TQDM=1
++ GROUNDSCALE_NO_TQDM=1
++ SLURM_ARRAY_JOB_ID=35274208
++ SLURM_ARRAY_TASK_ID=8
++ PID=
++ trap on_exit EXIT
++ export SIZE=1600
++ SIZE=1600
++ export NUM_GENES=1600
++ NUM_GENES=1600
++ mkdir -p results/1600
++ python ./limit-tfs.py -i data/processed/inferred_grnboost2.csv -o results/1600/inferred_grnboost2.csv --num-tfs 1600
++ apptainer exec --nv docker://milos7250/groundscale:latest python ./limit-tfs.py -i data/processed/inferred_grnboost2.csv -o results/1600/inferred_grnboost2.csv --num-tfs 1600
+INFO:    Using cached SIF image
++ echo Symbol
++ cut -d, -f1
++ sort -u
++ grep -v TF
++ cp data/processed/test.h5ad data/processed/train.h5ad data/processed/validation.h5ad results/1600/
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/create-grn.sh
+INFO:    Using cached SIF image
+++ eval 'apptainer exec --nv '\''docker://milos7250/groundscale:latest'\'' python' /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/inspect_h5ad.py results/1600/train.h5ad
+++ grep -oE '\([0-9]+, [0-9]+\)'
+++ cut -d, -f2
+++ grep -oE '[0-9]+'
++++ apptainer exec --nv docker://milos7250/groundscale:latest python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/inspect_h5ad.py results/1600/train.h5ad
+INFO:    Using cached SIF image
+python-dotenv could not parse statement starting at line 2
+python-dotenv could not parse statement starting at line 5
++ NUM_GENES=2986
++ export NUM_GENES
++ PID=66526
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/measure-gpu-usage.py --output results/1600/gpu-usage.csv
++ /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/train.sh
++ apptainer exec --nv docker://milos7250/groundscale:latest python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/measure-gpu-usage.py --output results/1600/gpu-usage.csv
+INFO:    Using cached SIF image
+INFO:    Using cached SIF image
++ kill -SIGINT 66526
++ python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/count-parameters.py --checkpoint results/1600/checkpoints/step_20.pth --out results/1600/params-size.json
++ apptainer exec --nv docker://milos7250/groundscale:latest python /mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/scripts/count-parameters.py --checkpoint results/1600/checkpoints/step_20.pth --out results/1600/params-size.json
+INFO:    Using cached SIF image
++ on_exit
++ status=0
++ [[ -n 66526 ]]
++ kill -SIGINT 66526
++ ((  status != 0  ))
++ exit 0

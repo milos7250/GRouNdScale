@@ -1,10 +1,33 @@
+import functools
 import math
-from typing import TYPE_CHECKING
+import os
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any, TypeVar
 
+from torch import OutOfMemoryError
+from torch._inductor.select_algorithm import NoValidChoicesError
 from torch.optim.lr_scheduler import LambdaLR, LRScheduler
 
 if TYPE_CHECKING:
     from torch.optim import Optimizer
+
+T = TypeVar("T")
+
+# Environment variables that lower the GPU memory needed for training, with the value to set and what it does. Both are
+# read when torch starts, so they have to be set before the process starts.
+LOW_MEMORY_ENVIRONMENT = {
+    "PYTORCH_CUDA_ALLOC_CONF": (
+        "expandable_segments:True",
+        "reduces the fragmentation of the GPU memory held by PyTorch",
+    ),
+    "TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS": (
+        "ATEN",
+        (
+            "autotunes compiled matrix multiplications over cuBLAS only; the Triton kernels it skips can reserve "
+            "several GiB of GPU memory while they are benchmarked"
+        ),
+    ),
+}
 
 
 def set_learning_rate_scheduler(
@@ -118,3 +141,49 @@ class RunningAverage:
             Current running average. Returns nan if no values have been added yet.
         """
         return self.total / self.count if self.count > 0 else float("nan")
+
+
+def _is_out_of_memory(error: BaseException) -> bool:
+    """Whether the error, or an error it was raised from, is the GPU running out of memory.
+
+    Autotuning only logs the out-of-memory errors of the kernels it benchmarks and raises NoValidChoicesError when all
+    of them failed, so that error counts as running out of memory too.
+    """
+    seen: set[int] = set()
+    pending: list[BaseException | None] = [error]
+    while pending:
+        current = pending.pop()
+        if current is None or id(current) in seen:
+            continue
+        seen.add(id(current))
+        if isinstance(current, (OutOfMemoryError, NoValidChoicesError)):
+            return True
+        pending += [current.__cause__, current.__context__, getattr(current, "inner_exception", None)]
+    return False
+
+
+def hint_on_out_of_memory(train: Callable[..., T]) -> Callable[..., T]:
+    """Decorates a trainer method to log, when the GPU runs out of memory, which environment variables can help.
+
+    Only the settings of `LOW_MEMORY_ENVIRONMENT` that are not set already are suggested. The error is re-raised.
+    """
+
+    @functools.wraps(train)
+    def wrapper(self: Any, *args: Any, **kwargs: Any) -> T:
+        try:
+            return train(self, *args, **kwargs)
+        except Exception as error:
+            if _is_out_of_memory(error):
+                missing = [
+                    f"{name}={value} ({effect})"
+                    for name, (value, effect) in LOW_MEMORY_ENVIRONMENT.items()
+                    if value not in os.environ.get(name, "")
+                ]
+                if missing:
+                    self.logger.error(
+                        "Training ran out of GPU memory. Setting these environment variables before starting can "
+                        "help, at little or no cost in speed: " + "; ".join(missing)
+                    )
+            raise
+
+    return wrapper

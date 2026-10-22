@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 from loggers import setup_logger
 from preprocessing.grn_accessor import GRNAccessor

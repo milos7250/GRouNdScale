@@ -73,6 +73,21 @@ TorchInductor, autograd, and Triton caches can be enabled with:
     invocation of the script. It should be on a local filesystem, not on a networked drive, to
     avoid cache collisions and slow compilation.
 
+On GPUs with little memory, the following settings reduce the memory that compiled training needs, at little or no
+cost in speed:
+
+.. code-block:: bash
+
+    export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+    export TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS=ATEN
+
+``expandable_segments:True`` reduces the fragmentation of the GPU memory held by PyTorch.
+``TORCHINDUCTOR_MAX_AUTOTUNE_GEMM_BACKENDS=ATEN`` makes compilation autotune matrix multiplications over cuBLAS only.
+The Triton matrix multiplication kernels it otherwise benchmarks can need so much local memory that CUDA reserves
+several GiB of GPU memory for the rest of the run (about 5.8 GiB on an A100). This memory does not show in PyTorch's
+memory statistics, only in ``nvidia-smi``. When training runs out of GPU memory, the error message lists the settings
+that are not yet in place.
+
 Logging and progress output are controlled with:
 
 .. code-block:: bash
