@@ -1,0 +1,1692 @@
+{
+  "phases": {
+    "controller": {
+      "start": {
+        "t": 1792595772.6304612,
+        "allocated_bytes": 0,
+        "reserved_bytes": 0,
+        "device_used_mib": 5
+      },
+      "end": {
+        "t": 1792595987.5640383,
+        "peak_allocated_bytes": 658998784,
+        "peak_reserved_bytes": 738197504
+      },
+      "events": [
+        {
+          "event": "model_init",
+          "modules": {
+            "gen": {
+              "parameters": 11968505,
+              "trainable_parameters": 11968504,
+              "parameter_bytes": 47874024,
+              "buffer_bytes": 14360
+            },
+            "crit": {
+              "parameters": 11921409,
+              "trainable_parameters": 11921409,
+              "parameter_bytes": 47685636,
+              "buffer_bytes": 0
+            }
+          },
+          "duration_s": 0.3831,
+          "before": {
+            "t": 1792595772.6493602,
+            "allocated_bytes": 0,
+            "reserved_bytes": 0,
+            "device_used_mib": 5
+          },
+          "after": {
+            "t": 1792595773.0513082,
+            "allocated_bytes": 95576576,
+            "reserved_bytes": 115343360,
+            "device_used_mib": 537
+          },
+          "peak_allocated_bytes": 95576576,
+          "peak_reserved_bytes": 115343360
+        },
+        {
+          "event": "optimizer_init",
+          "duration_s": 0.0246,
+          "before": {
+            "t": 1792595774.8069203,
+            "allocated_bytes": 95576576,
+            "reserved_bytes": 115343360,
+            "device_used_mib": 537
+          },
+          "after": {
+            "t": 1792595774.8487267,
+            "allocated_bytes": 95577600,
+            "reserved_bytes": 115343360,
+            "device_used_mib": 613
+          },
+          "peak_allocated_bytes": 95578112,
+          "peak_reserved_bytes": 115343360
+        }
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "stages": {
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 101213696,
+              "peak_allocated_bytes": 363075072,
+              "peak_reserved_bytes": 455081984
+            }
+          },
+          "time_ms": 170711.552,
+          "before": {
+            "t": 1792595784.3745658,
+            "allocated_bytes": 101213696,
+            "reserved_bytes": 115343360,
+            "device_used_mib": 613
+          },
+          "after": {
+            "t": 1792595955.1043916,
+            "allocated_bytes": 357442560,
+            "reserved_bytes": 455081984,
+            "device_used_mib": 6373
+          },
+          "peak_allocated_bytes": 363075072,
+          "peak_reserved_bytes": 455081984,
+          "peak_nvidia_smi_mib": 6373,
+          "failed": false
+        },
+        {
+          "step": 1,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 357442560,
+              "peak_allocated_bytes": 658339328,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 500505088,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 31159.685,
+          "before": {
+            "t": 1792595955.1376595,
+            "allocated_bytes": 357442560,
+            "reserved_bytes": 455081984,
+            "device_used_mib": 6373
+          },
+          "after": {
+            "t": 1792595986.315312,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658339328,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 2,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 23.724,
+          "before": {
+            "t": 1792595986.335952,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.3777905,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 3,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 30.335,
+          "before": {
+            "t": 1792595986.397804,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.446732,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 4,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 25.553,
+          "before": {
+            "t": 1792595986.4671535,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.511054,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 5,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 31.898,
+          "before": {
+            "t": 1792595986.532096,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.5825462,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 6,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 29.242,
+          "before": {
+            "t": 1792595986.602752,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.6503153,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 7,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 25.112,
+          "before": {
+            "t": 1792595986.6707597,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.7138152,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 8,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 36.506,
+          "before": {
+            "t": 1792595986.7345843,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.790396,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 9,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 26.331,
+          "before": {
+            "t": 1792595986.8111863,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.8560328,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 10,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 33.632,
+          "before": {
+            "t": 1792595986.8762195,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.928368,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 11,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 26.127,
+          "before": {
+            "t": 1792595986.9486985,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595986.9928112,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 12,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 30.431,
+          "before": {
+            "t": 1792595987.0130682,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.0607405,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 13,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 21.778,
+          "before": {
+            "t": 1792595987.0807838,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.1208115,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 14,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 24.249,
+          "before": {
+            "t": 1792595987.1399384,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.182238,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 15,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 25.084,
+          "before": {
+            "t": 1792595987.202788,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.245844,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 16,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 23.585,
+          "before": {
+            "t": 1792595987.2667608,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.3081527,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 17,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 22.824,
+          "before": {
+            "t": 1792595987.3279195,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.3686514,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 18,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 23.128,
+          "before": {
+            "t": 1792595987.3891716,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.4307537,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 19,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 22.808,
+          "before": {
+            "t": 1792595987.4520125,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.492556,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        },
+        {
+          "step": 20,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 658998784,
+              "peak_reserved_bytes": 738197504
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 501164544,
+              "peak_allocated_bytes": 559125504,
+              "peak_reserved_bytes": 738197504
+            }
+          },
+          "time_ms": 34.129,
+          "before": {
+            "t": 1792595987.5119724,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "after": {
+            "t": 1792595987.5640383,
+            "allocated_bytes": 501164544,
+            "reserved_bytes": 738197504,
+            "device_used_mib": 6643
+          },
+          "peak_allocated_bytes": 658998784,
+          "peak_reserved_bytes": 738197504,
+          "peak_nvidia_smi_mib": 6643,
+          "failed": false
+        }
+      ]
+    },
+    "generator": {
+      "start": {
+        "t": 1792596154.6156347,
+        "allocated_bytes": 495531520,
+        "reserved_bytes": 555745280,
+        "device_used_mib": 6477
+      },
+      "end": {
+        "t": 1792596685.2259161,
+        "peak_allocated_bytes": 7275920896,
+        "peak_reserved_bytes": 7537164288
+      },
+      "events": [
+        {
+          "event": "model_init",
+          "modules": {
+            "gen": {
+              "parameters": 21258505,
+              "trainable_parameters": 9290000,
+              "parameter_bytes": 85034024,
+              "buffer_bytes": 129382384
+            },
+            "crit": {
+              "parameters": 11921409,
+              "trainable_parameters": 11921409,
+              "parameter_bytes": 47685636,
+              "buffer_bytes": 0
+            },
+            "labeler": {
+              "parameters": 30019000,
+              "trainable_parameters": 30019000,
+              "parameter_bytes": 120076000,
+              "buffer_bytes": 48024
+            },
+            "antilabeler": {
+              "parameters": 30019000,
+              "trainable_parameters": 30019000,
+              "parameter_bytes": 120076000,
+              "buffer_bytes": 48024
+            },
+            "causal_controller": {
+              "parameters": 11968504,
+              "trainable_parameters": 0,
+              "parameter_bytes": 47874016,
+              "buffer_bytes": 14360
+            }
+          },
+          "duration_s": 2.6943,
+          "before": {
+            "t": 1792596154.633962,
+            "allocated_bytes": 495531520,
+            "reserved_bytes": 555745280,
+            "device_used_mib": 6477
+          },
+          "after": {
+            "t": 1792596157.3473058,
+            "allocated_bytes": 1002890752,
+            "reserved_bytes": 1438646272,
+            "device_used_mib": 7319
+          },
+          "peak_allocated_bytes": 1385163264,
+          "peak_reserved_bytes": 1438646272
+        },
+        {
+          "event": "optimizer_init",
+          "duration_s": 0.003,
+          "before": {
+            "t": 1792596158.6212873,
+            "allocated_bytes": 1002890752,
+            "reserved_bytes": 1438646272,
+            "device_used_mib": 7319
+          },
+          "after": {
+            "t": 1792596158.6419446,
+            "allocated_bytes": 1002892800,
+            "reserved_bytes": 1438646272,
+            "device_used_mib": 7319
+          },
+          "peak_allocated_bytes": 1002893312,
+          "peak_reserved_bytes": 1438646272
+        }
+      ],
+      "steps": [
+        {
+          "step": 0,
+          "stages": {
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1047960064,
+              "peak_allocated_bytes": 6293144064,
+              "peak_reserved_bytes": 6872367104
+            }
+          },
+          "time_ms": 407407.569,
+          "before": {
+            "t": 1792596160.0350223,
+            "allocated_bytes": 1047960064,
+            "reserved_bytes": 1438646272,
+            "device_used_mib": 7319
+          },
+          "after": {
+            "t": 1792596567.4620624,
+            "allocated_bytes": 1007226368,
+            "reserved_bytes": 6872367104,
+            "device_used_mib": 12907
+          },
+          "peak_allocated_bytes": 6293144064,
+          "peak_reserved_bytes": 6872367104,
+          "peak_nvidia_smi_mib": 12907,
+          "failed": false
+        },
+        {
+          "step": 1,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1007226368,
+              "peak_allocated_bytes": 3017053184,
+              "peak_reserved_bytes": 6878658560
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1151443968,
+              "peak_allocated_bytes": 6554209280,
+              "peak_reserved_bytes": 6878658560
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1151443968,
+              "peak_allocated_bytes": 2552548352,
+              "peak_reserved_bytes": 6878658560
+            }
+          },
+          "time_ms": 104967.761,
+          "before": {
+            "t": 1792596567.5043502,
+            "allocated_bytes": 1007226368,
+            "reserved_bytes": 6872367104,
+            "device_used_mib": 12907
+          },
+          "after": {
+            "t": 1792596672.491798,
+            "allocated_bytes": 1872701440,
+            "reserved_bytes": 6878658560,
+            "device_used_mib": 12915
+          },
+          "peak_allocated_bytes": 6554209280,
+          "peak_reserved_bytes": 6878658560,
+          "peak_nvidia_smi_mib": 12915,
+          "failed": false
+        },
+        {
+          "step": 2,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872701440,
+              "peak_allocated_bytes": 3184053760,
+              "peak_reserved_bytes": 6878658560
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872701440,
+              "peak_allocated_bytes": 7275719680,
+              "peak_reserved_bytes": 7535067136
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872701440,
+              "peak_allocated_bytes": 3231854592,
+              "peak_reserved_bytes": 7535067136
+            }
+          },
+          "time_ms": 646.219,
+          "before": {
+            "t": 1792596672.5169182,
+            "allocated_bytes": 1872701440,
+            "reserved_bytes": 6878658560,
+            "device_used_mib": 12915
+          },
+          "after": {
+            "t": 1792596673.18311,
+            "allocated_bytes": 1872509440,
+            "reserved_bytes": 7535067136,
+            "device_used_mib": 13541
+          },
+          "peak_allocated_bytes": 7275719680,
+          "peak_reserved_bytes": 7535067136,
+          "peak_nvidia_smi_mib": 13541,
+          "failed": false
+        },
+        {
+          "step": 3,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872509440,
+              "peak_allocated_bytes": 3183861760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872509440,
+              "peak_allocated_bytes": 7275274752,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872509440,
+              "peak_allocated_bytes": 3231662592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.891,
+          "before": {
+            "t": 1792596673.206707,
+            "allocated_bytes": 1872509440,
+            "reserved_bytes": 7535067136,
+            "device_used_mib": 13541
+          },
+          "after": {
+            "t": 1792596673.852841,
+            "allocated_bytes": 1872317440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275274752,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 4,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872317440,
+              "peak_allocated_bytes": 3183669760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872207872,
+              "peak_allocated_bytes": 7275071488,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872207872,
+              "peak_allocated_bytes": 3231361024,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.507,
+          "before": {
+            "t": 1792596673.876148,
+            "allocated_bytes": 1872317440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596674.5222235,
+            "allocated_bytes": 1872399872,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275071488,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 5,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872399872,
+              "peak_allocated_bytes": 3183861760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872394752,
+              "peak_allocated_bytes": 7275160064,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872394752,
+              "peak_allocated_bytes": 3231547904,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.475,
+          "before": {
+            "t": 1792596674.5460062,
+            "allocated_bytes": 1872399872,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596675.1913455,
+            "allocated_bytes": 1872010752,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275160064,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 6,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872010752,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 624.236,
+          "before": {
+            "t": 1792596675.2144063,
+            "allocated_bytes": 1872010752,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596675.8576984,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 7,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.365,
+          "before": {
+            "t": 1792596675.8799467,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596676.524806,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 8,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.628,
+          "before": {
+            "t": 1792596676.5478613,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596677.1930885,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 9,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.292,
+          "before": {
+            "t": 1792596677.215465,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596677.8603497,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 10,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 623.539,
+          "before": {
+            "t": 1792596677.8833532,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596678.5266871,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 11,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 631.592,
+          "before": {
+            "t": 1792596678.5510404,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596679.2014704,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 12,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.287,
+          "before": {
+            "t": 1792596679.2243423,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596679.869676,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 13,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 627.931,
+          "before": {
+            "t": 1792596679.892919,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596680.539538,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 14,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.415,
+          "before": {
+            "t": 1792596680.5624082,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596681.2081394,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 15,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 628.747,
+          "before": {
+            "t": 1792596681.2319937,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596681.8792949,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 16,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 623.479,
+          "before": {
+            "t": 1792596681.9033446,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596682.5467336,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 17,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 628.84,
+          "before": {
+            "t": 1792596682.5700293,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596683.2181315,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 18,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.343,
+          "before": {
+            "t": 1792596683.2410693,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596683.886535,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 19,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 628.55,
+          "before": {
+            "t": 1792596683.9099889,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596684.5571585,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        },
+        {
+          "step": 20,
+          "stages": {
+            "critic": {
+              "calls": 5,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3183477760,
+              "peak_reserved_bytes": 7537164288
+            },
+            "generator": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 7275920896,
+              "peak_reserved_bytes": 7537164288
+            },
+            "labelers": {
+              "calls": 1,
+              "baseline_allocated_bytes": 1872125440,
+              "peak_allocated_bytes": 3231278592,
+              "peak_reserved_bytes": 7537164288
+            }
+          },
+          "time_ms": 626.58,
+          "before": {
+            "t": 1792596684.580189,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "after": {
+            "t": 1792596685.2259161,
+            "allocated_bytes": 1872125440,
+            "reserved_bytes": 7537164288,
+            "device_used_mib": 13543
+          },
+          "peak_allocated_bytes": 7275920896,
+          "peak_reserved_bytes": 7537164288,
+          "peak_nvidia_smi_mib": 13543,
+          "failed": false
+        }
+      ]
+    }
+  }
+}

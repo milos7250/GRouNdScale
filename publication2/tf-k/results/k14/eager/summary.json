@@ -1,0 +1,73 @@
+{
+  "experiment": "tf-k",
+  "run": "k14",
+  "mode": "eager",
+  "status": "oom",
+  "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 14.41 GiB. GPU 0 has a total capacity of 79.27 GiB of which 4.87 GiB is free. Including non-PyTorch memory, this process has 74.39 GiB memory in use. Of the allocated memory 63.67 GiB is allocated by PyTorch, and 10.22 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/do",
+  "hyperparameters": {
+    "B": 1024,
+    "F": 1000,
+    "G": 16789,
+    "k": 14,
+    "d": 2,
+    "w": 1,
+    "n": 1
+  },
+  "graph": {
+    "path": "data/graphs/k14.pkl",
+    "total_genes": 17789,
+    "k_min": 14,
+    "k_mean": 14.0,
+    "k_max": 14
+  },
+  "controller": {
+    "complete": true,
+    "steps_recorded": 21,
+    "average_step_time_ms": 32.661,
+    "peak_torch_allocated_mib": 997.208,
+    "peak_torch_reserved_mib": 1092.0,
+    "peak_nvidia_smi_mib": 1615,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 16,
+      "peak_torch_allocated_mib": 997.208,
+      "peak_torch_reserved_mib": 1092.0,
+      "stage_peak_torch_allocated_mib": {
+        "critic": 997.208,
+        "generator": 786.067
+      }
+    }
+  },
+  "generator": {
+    "complete": false,
+    "steps_recorded": 1,
+    "average_step_time_ms": null,
+    "peak_torch_allocated_mib": 65974.823,
+    "peak_torch_reserved_mib": 75878.0,
+    "peak_nvidia_smi_mib": 76403,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 0,
+      "peak_torch_allocated_mib": null,
+      "peak_torch_reserved_mib": null,
+      "stage_peak_torch_allocated_mib": {}
+    }
+  },
+  "settings": {
+    "units": "mebibytes (2**20 bytes), milliseconds",
+    "warmup_steps": 5,
+    "smi_interval_s": 0.2,
+    "max_steps": {
+      "controller": 20,
+      "generator": 20
+    },
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_total_mib": 81176,
+    "torch": "2.14.0+cu132",
+    "host": "n23-64-512-dobby.hpc.hutton.ac.uk",
+    "git": {
+      "commit": "a350957dade67fca9c7b0cd81c9f2d330a8ddfc8",
+      "src_modified": false
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "experiment": "target-gene-num-upstream",
+  "run": "g3000",
+  "mode": "upstream",
+  "status": "oom",
+  "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 8.58 GiB (GPU 0; 79.27 GiB total capacity; 66.88 GiB already allocated; 4.50 GiB free; 74.18 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF",
+  "hyperparameters": {
+    "B": 1024,
+    "F": 1000,
+    "G": 3000,
+    "k": 15,
+    "d": 2,
+    "w": 1,
+    "n": 1
+  },
+  "graph": {
+    "path": "../target-gene-num/data/processed/3000/causal_graph.pkl",
+    "total_genes": 4000,
+    "k_min": 15,
+    "k_mean": 15.0,
+    "k_max": 15
+  },
+  "controller": {
+    "complete": true,
+    "steps_recorded": 21,
+    "average_step_time_ms": 39.421,
+    "peak_torch_allocated_mib": 280.896,
+    "peak_torch_reserved_mib": 300.0,
+    "peak_nvidia_smi_mib": 913,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 16,
+      "peak_torch_allocated_mib": 280.896,
+      "peak_torch_reserved_mib": 300.0,
+      "stage_peak_torch_allocated_mib": {
+        "critic": 280.896,
+        "generator": 237.45
+      }
+    }
+  },
+  "generator": {
+    "complete": false,
+    "steps_recorded": 1,
+    "average_step_time_ms": null,
+    "peak_torch_allocated_mib": 68490.113,
+    "peak_torch_reserved_mib": 80470.0,
+    "peak_nvidia_smi_mib": 81083,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 0,
+      "peak_torch_allocated_mib": null,
+      "peak_torch_reserved_mib": null,
+      "stage_peak_torch_allocated_mib": {}
+    }
+  },
+  "settings": {
+    "units": "mebibytes (2**20 bytes), milliseconds",
+    "warmup_steps": 5,
+    "smi_interval_s": 0.2,
+    "max_steps": {
+      "controller": 20,
+      "generator": 20
+    },
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_total_mib": 81176,
+    "torch": "1.13.1+cu117",
+    "host": "n23-64-1024-hedwig.hpc.hutton.ac.uk",
+    "git": {
+      "commit": "2df087f9144081c46eb6ce0a1daadd273adcc50a",
+      "src_modified": true
+    },
+    "implementation": "upstream",
+    "python": "3.9.6"
+  }
+}

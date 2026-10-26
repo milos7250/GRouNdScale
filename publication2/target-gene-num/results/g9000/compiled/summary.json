@@ -1,0 +1,77 @@
+{
+  "experiment": "target-gene-num",
+  "run": "g9000",
+  "mode": "compiled",
+  "status": "ok",
+  "error": null,
+  "hyperparameters": {
+    "B": 1024,
+    "F": 1000,
+    "G": 9000,
+    "k": 15,
+    "d": 2,
+    "w": 1,
+    "n": 1
+  },
+  "graph": {
+    "path": "data/processed/9000/causal_graph.pkl",
+    "total_genes": 10000,
+    "k_min": 15,
+    "k_mean": 15.0,
+    "k_max": 15
+  },
+  "controller": {
+    "complete": true,
+    "steps_recorded": 21,
+    "average_step_time_ms": 22.704,
+    "peak_torch_allocated_mib": 590.016,
+    "peak_torch_reserved_mib": 612.0,
+    "peak_nvidia_smi_mib": 6551,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 16,
+      "peak_torch_allocated_mib": 590.016,
+      "peak_torch_reserved_mib": 612.0,
+      "stage_peak_torch_allocated_mib": {
+        "critic": 590.016,
+        "generator": 501.738
+      }
+    }
+  },
+  "generator": {
+    "complete": true,
+    "steps_recorded": 21,
+    "average_step_time_ms": 632.689,
+    "peak_torch_allocated_mib": 6293.023,
+    "peak_torch_reserved_mib": 6496.0,
+    "peak_nvidia_smi_mib": 12851,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 16,
+      "peak_torch_allocated_mib": 6292.585,
+      "peak_torch_reserved_mib": 6496.0,
+      "stage_peak_torch_allocated_mib": {
+        "critic": 2784.415,
+        "generator": 6292.585,
+        "labelers": 2825.985
+      }
+    }
+  },
+  "settings": {
+    "units": "mebibytes (2**20 bytes), milliseconds",
+    "warmup_steps": 5,
+    "smi_interval_s": 0.2,
+    "max_steps": {
+      "controller": 20,
+      "generator": 20
+    },
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_total_mib": 81176,
+    "torch": "2.14.0+cu132",
+    "host": "n23-64-512-fawkes.hpc.hutton.ac.uk",
+    "git": {
+      "commit": "a350957dade67fca9c7b0cd81c9f2d330a8ddfc8",
+      "src_modified": false
+    }
+  }
+}
