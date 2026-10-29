@@ -28,6 +28,7 @@ All runs have finished, see [Results](#results).
 | `paper-v4/` | The PBMC model of the paper trained with the current code (generator depth 2, width 1): config, evaluation metrics, run statistics and figures. |
 | `paper-v4-big/` | The same with a larger generator (depth 3, width 2). |
 | `paper-arabidopsis/` | The Arabidopsis model of the paper: data, hyperparameter searches of the GAN (`gan_hyperopt/`, whose best trial gives the causal controller) and the causal GAN (`causal-gan/`), and the evaluations `causal-gan-eval-trial2` and `causal-gan-eval-trial4`. The input of `arabidopsis-ablation/`. |
+| `paper-grn-plots/` | PR curve and top TF precision of the simulated PBMC-All dataset published with the GRouNdGAN paper (the *paper* row of the results figure): GRNBoost2 with the TF list and `--benchmark_grn` of the original implementation in its image. See its README. |
 
 The `paper-*` directories keep their own `.gitignore`, which tracks only configs, metrics, causal graphs and summary
 figures. Of the hyperparameter searches of `paper-arabidopsis`, the study configs and only the configs of the trials
