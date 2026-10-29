@@ -1,0 +1,81 @@
+{
+  "experiment": "arabidopsis-ablation",
+  "run": "dense-compiled-tf32",
+  "mode": "dense-compiled-tf32",
+  "status": "ok",
+  "error": null,
+  "hyperparameters": {
+    "B": 2350,
+    "F": 422,
+    "G": 578,
+    "k": 15,
+    "d": 3,
+    "w": 2,
+    "n": 1
+  },
+  "graph": {
+    "path": "data/causal_graph.pkl",
+    "total_genes": 1000,
+    "k_min": 15,
+    "k_mean": 15.0,
+    "k_max": 15
+  },
+  "controller": {
+    "complete": true,
+    "steps_recorded": 21,
+    "average_step_time_ms": 37.84,
+    "peak_torch_allocated_mib": 119.861,
+    "peak_torch_reserved_mib": 130.0,
+    "peak_nvidia_smi_mib": 5633,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 16,
+      "peak_torch_allocated_mib": 94.5,
+      "peak_torch_reserved_mib": 130.0,
+      "stage_peak_torch_allocated_mib": {
+        "critic": 94.5,
+        "generator": 87.428
+      }
+    }
+  },
+  "generator": {
+    "complete": true,
+    "steps_recorded": 21,
+    "average_step_time_ms": 1229.199,
+    "peak_torch_allocated_mib": 23324.825,
+    "peak_torch_reserved_mib": 24320.0,
+    "peak_nvidia_smi_mib": 29873,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 16,
+      "peak_torch_allocated_mib": 23324.825,
+      "peak_torch_reserved_mib": 24320.0,
+      "stage_peak_torch_allocated_mib": {
+        "critic": 23320.16,
+        "generator": 23171.75,
+        "labelers": 23324.825
+      }
+    }
+  },
+  "settings": {
+    "units": "mebibytes (2**20 bytes), milliseconds",
+    "warmup_steps": 5,
+    "smi_interval_s": 0.2,
+    "max_steps": {
+      "controller": 20,
+      "generator": 20
+    },
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_total_mib": 81176,
+    "torch": "2.14.0+cu132",
+    "host": "n23-64-512-aragog.hpc.hutton.ac.uk",
+    "git": {
+      "commit": "b3ba67bd8a6f034003dfd12dd2713336d51df185",
+      "src_modified": false
+    },
+    "generator_layers": "dense",
+    "float32_matmul_precision": "high",
+    "cuda_matmul_allow_tf32": true,
+    "python": "3.12.3"
+  }
+}

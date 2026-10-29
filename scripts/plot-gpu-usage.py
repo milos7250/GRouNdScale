@@ -8,7 +8,7 @@ complete lines are consumed, a restarting (truncated) file is detected, and seve
 files can be overlaid in a single chart.
 
 Usage:
-    python plot-gpu-usage.py publication/size-compare2/results2/1000/gpu-usage.csv
+    python plot-gpu-usage.py results/gpu-usage.csv
     python plot-gpu-usage.py -f --height 30 --window 600 results/seed_*/gpu-usage.csv
     python plot-gpu-usage.py --no-follow --unit percent gpu-usage.csv
 

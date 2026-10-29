@@ -25,14 +25,17 @@ class MMD:
             A NumPy array representing real cell data (cells x features).
         """
         n_neighbors = 25
-        med = np.ones(20)
+        n_resamples = 20
+        med = np.empty(n_resamples)
 
         logger.info("Calculating MMD scale parameters...")
-        for ii in range(1, 20):
-            sample = real_cells[np.random.randint(real_cells.shape[0] - 1, size=real_cells.shape[0]), :]  # pyright: ignore[reportOptionalSubscript]
-            nbrs = NearestNeighbors(n_neighbors=n_neighbors).fit(sample)
+        for ii in range(n_resamples):
+            # bootstrap: sample all cells with replacement
+            sample = real_cells[np.random.randint(real_cells.shape[0], size=real_cells.shape[0]), :]  # pyright: ignore[reportOptionalSubscript]
+            # each cell is its own nearest neighbour, so query one extra neighbour and drop it
+            nbrs = NearestNeighbors(n_neighbors=n_neighbors + 1).fit(sample)
             distances, _ = nbrs.kneighbors(sample)
-            med[ii] = np.median(distances[:, 1:n_neighbors])  # exclude self-distance
+            med[ii] = np.median(distances[:, 1:])
 
         med = np.median(med)
         scales = np.array([med / 2, med, med * 2], dtype=np.float32)
