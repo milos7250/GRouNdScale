@@ -1,0 +1,21 @@
+--- ./optimizer-old.py	2026-07-29 12:43:40.000000000 +0100
++++ ./optimizer.py	2026-07-29 12:44:09.000000000 +0100
+@@ -1,6 +1,6 @@
+ from collections import defaultdict, abc as container_abcs
+ import torch
+-from copy import deepcopy
++from copy import copy, deepcopy
+ from itertools import chain
+ import warnings
+ import functools
+@@ -186,8 +186,8 @@
+             state_dict (dict): optimizer state. Should be an object returned
+                 from a call to :meth:`state_dict`.
+         """
+-        # deepcopy, to be consistent with module API
+-        state_dict = deepcopy(state_dict)
++        # copy, to be consistent with module API
++        state_dict = copy(state_dict)
+         # Validate the state_dict
+         groups = self.param_groups
+         saved_groups = state_dict['param_groups']
