@@ -32,3 +32,7 @@
 - `scripts/common.sh` sets runtime/cache environment variables and optionally sources `$POSTGRES_DIR/.env`; hyperparameter optimization may therefore require the PostgreSQL job setup.
 - Build containers with `./docker/build-docker.sh` or `./docker/build-apptainer.sh`. The container build depends on `arboreto.patch` and the two-phase PyTorch/sparse dependency installation.
 - Optional study/benchmark repositories are Git submodules; initialize them with `git submodule update --init --recursive` when working on those workflows.
+
+## Known Non-Issues
+
+- The Optuna PostgreSQL password is committed on purpose: in the `storage` URL of run configs (e.g. under `publication/paper-arabidopsis`), in `tests/resources/configs/*hyperopt*.cfg` and in git history. The database is internal and holds nothing sensitive. Do not flag it, redact it, or keep files out of git because of it.

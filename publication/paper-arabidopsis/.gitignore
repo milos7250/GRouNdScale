@@ -1,0 +1,31 @@
+# Arabidopsis model of the paper and its hyperparameter search. Tracks only the scripts, configs, metrics, causal graph
+# and summary figures (PDF); everything else (checkpoints, TensorBoard, per-step images, datasets, simulated cells,
+# inferred GRNs, logs) stays local.
+*
+!*/
+!.gitignore
+!*.sh
+!*.cfg
+.config.*.cfg
+!*.json
+!gan_hyperopt/best_trial
+!data/causal_graph.pkl
+!gan_hyperopt_intermediate.csv
+!gan_hyperopt_intermediate.pdf
+!causal-gan-eval-trial*/RF.pdf
+!causal-gan-eval-trial*/UMAP/*.pdf
+!causal-gan-eval-trial*/infer_grn_*/generated/*.pdf
+
+# Hyperparameter searches: the study configs and only the configs of the trials used in the paper, the best GAN trial
+# (the causal controller) and the causal GAN trials behind causal-gan-eval-trial2 and causal-gan-eval-trial4
+/causal-gan/*/config.cfg
+!/causal-gan/2/config.cfg
+!/causal-gan/4/config.cfg
+/gan_hyperopt/*/config.cfg
+!/gan_hyperopt/56/config.cfg
+
+# Optuna database server, its data and generated .env
+run-postgres.sh
+postgres/
+# Scratch output
+temp/

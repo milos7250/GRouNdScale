@@ -1,0 +1,13 @@
+# Trained PBMC model of the paper. Tracks only the configs, metrics, causal graph and summary figures (PDF); everything
+# else (checkpoints, TensorBoard, per-step images, datasets, simulated cells, inferred GRNs, GPU traces, logs) stays local.
+*
+!*/
+!.gitignore
+!*.cfg
+.config.*.cfg
+!*.json
+!data/processed/*/causal_graph.pkl
+!data/processed/*/TFs.csv
+!data/processed/*/convert.py
+!results/inset-scatterfig*/*.pdf
+!results/infer_grn_*/generated/*.pdf

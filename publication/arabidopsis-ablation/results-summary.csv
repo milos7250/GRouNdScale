@@ -1,0 +1,39 @@
+comparison,baseline,variant,phase,baseline_status,variant_status,baseline_step_ms,variant_step_ms,speed_up,torch_allocated_ratio,steady_torch_allocated_ratio,nvidia_smi_ratio,baseline_extrapolated_hours,variant_extrapolated_hours
+environment,a-upstream,a2-upstream-newenv,controller,ok,ok,103.793,61.394,1.691,1.153,1.158,0.877,5.77,3.41
+environment,a-upstream,a2-upstream-newenv,generator,ok,ok,7443.037,7153.534,1.04,0.928,0.928,0.925,1033.76,993.55
+code update,a2-upstream-newenv,dense-eager-fp32,controller,ok,ok,61.394,40.514,1.515,0.733,0.733,0.958,3.41,2.25
+code update,a2-upstream-newenv,dense-eager-fp32,generator,ok,ok,7153.534,7083.841,1.01,0.786,0.786,0.788,993.55,983.87
+environment + code update,a-upstream,dense-eager-fp32,controller,ok,ok,103.793,40.514,2.562,0.845,0.848,0.84,5.77,2.25
+environment + code update,a-upstream,dense-eager-fp32,generator,ok,ok,7443.037,7083.841,1.051,0.729,0.729,0.729,1033.76,983.87
+sparse layers,dense-eager-fp32,sparse-eager-fp32,controller,ok,ok,40.514,48.463,0.836,1.0,1.0,1.0,2.25,2.69
+sparse layers,dense-eager-fp32,sparse-eager-fp32,generator,ok,ok,7083.841,1915.27,3.699,1.392,1.392,1.56,983.87,266.01
+sparse layers,dense-eager-tf32,sparse-eager-tf32,controller,ok,ok,41.991,45.38,0.925,1.0,1.0,1.0,2.33,2.52
+sparse layers,dense-eager-tf32,sparse-eager-tf32,generator,ok,ok,1560.542,1884.133,0.828,1.392,1.392,1.56,216.74,261.69
+sparse layers,dense-compiled-fp32,sparse-compiled-fp32,controller,ok,ok,38.631,42.765,0.903,1.0,1.0,1.0,2.15,2.38
+sparse layers,dense-compiled-fp32,sparse-compiled-fp32,generator,ok,ok,6524.367,1201.513,5.43,0.08,0.08,0.258,906.16,166.88
+sparse layers,dense-compiled-tf32,sparse-compiled-tf32,controller,ok,ok,37.84,40.49,0.935,1.0,1.0,1.0,2.1,2.25
+sparse layers,dense-compiled-tf32,sparse-compiled-tf32,generator,ok,ok,1229.199,1152.376,1.067,0.08,0.08,0.252,170.72,160.05
+compilation,dense-eager-fp32,dense-compiled-fp32,controller,ok,ok,40.514,38.631,1.049,1.283,0.981,8.971,2.25,2.15
+compilation,dense-eager-fp32,dense-compiled-fp32,generator,ok,ok,7083.841,6524.367,1.086,0.91,0.91,1.081,983.87,906.16
+compilation,dense-eager-tf32,dense-compiled-tf32,controller,ok,ok,41.991,37.84,1.11,1.289,1.016,8.927,2.33,2.1
+compilation,dense-eager-tf32,dense-compiled-tf32,generator,ok,ok,1560.542,1229.199,1.27,0.91,0.91,1.081,216.74,170.72
+compilation,sparse-eager-fp32,sparse-compiled-fp32,controller,ok,ok,48.463,42.765,1.133,1.283,0.981,8.971,2.69,2.38
+compilation,sparse-eager-fp32,sparse-compiled-fp32,generator,ok,ok,1915.27,1201.513,1.594,0.052,0.052,0.178,266.01,166.88
+compilation,sparse-eager-tf32,sparse-compiled-tf32,controller,ok,ok,45.38,40.49,1.121,1.289,1.016,8.927,2.52,2.25
+compilation,sparse-eager-tf32,sparse-compiled-tf32,generator,ok,ok,1884.133,1152.376,1.635,0.052,0.052,0.174,261.69,160.05
+TF32,dense-eager-fp32,dense-eager-tf32,controller,ok,ok,40.514,41.991,0.965,1.0,1.0,1.0,2.25,2.33
+TF32,dense-eager-fp32,dense-eager-tf32,generator,ok,ok,7083.841,1560.542,4.539,1.0,1.0,1.0,983.87,216.74
+TF32,dense-compiled-fp32,dense-compiled-tf32,controller,ok,ok,38.631,37.84,1.021,1.005,1.036,0.995,2.15,2.1
+TF32,dense-compiled-fp32,dense-compiled-tf32,generator,ok,ok,6524.367,1229.199,5.308,1.0,1.0,1.0,906.16,170.72
+TF32,sparse-eager-fp32,sparse-eager-tf32,controller,ok,ok,48.463,45.38,1.068,1.0,1.0,1.0,2.69,2.52
+TF32,sparse-eager-fp32,sparse-eager-tf32,generator,ok,ok,1915.27,1884.133,1.017,1.0,1.0,1.0,266.01,261.69
+TF32,sparse-compiled-fp32,sparse-compiled-tf32,controller,ok,ok,42.765,40.49,1.056,1.005,1.036,0.995,2.38,2.25
+TF32,sparse-compiled-fp32,sparse-compiled-tf32,generator,ok,ok,1201.513,1152.376,1.043,1.001,1.001,0.977,166.88,160.05
+paper: environment + code update + TF32,a-upstream,dense-eager-tf32,controller,ok,ok,103.793,41.991,2.472,0.845,0.848,0.84,5.77,2.33
+paper: environment + code update + TF32,a-upstream,dense-eager-tf32,generator,ok,ok,7443.037,1560.542,4.77,0.729,0.729,0.729,1033.76,216.74
+paper: sparse layers,dense-eager-tf32,sparse-eager-tf32,controller,ok,ok,41.991,45.38,0.925,1.0,1.0,1.0,2.33,2.52
+paper: sparse layers,dense-eager-tf32,sparse-eager-tf32,generator,ok,ok,1560.542,1884.133,0.828,1.392,1.392,1.56,216.74,261.69
+paper: compilation,sparse-eager-tf32,sparse-compiled-tf32,controller,ok,ok,45.38,40.49,1.121,1.289,1.016,8.927,2.52,2.25
+paper: compilation,sparse-eager-tf32,sparse-compiled-tf32,generator,ok,ok,1884.133,1152.376,1.635,0.052,0.052,0.174,261.69,160.05
+all,a-upstream,sparse-compiled-tf32,controller,ok,ok,103.793,40.49,2.563,1.089,0.862,7.501,5.77,2.25
+all,a-upstream,sparse-compiled-tf32,generator,ok,ok,7443.037,1152.376,6.459,0.053,0.053,0.198,1033.76,160.05

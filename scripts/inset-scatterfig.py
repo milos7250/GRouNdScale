@@ -58,29 +58,48 @@ def _category_colors(n: int) -> list[str]:
     return [_DEFAULT_COLORS[i % len(_DEFAULT_COLORS)] for i in range(n)]
 
 
-def read_datasets(cells_paths: list[Path]) -> list["sparse.csr_matrix"]:
+def read_datasets(cells_paths: list[Path], max_cells: int | None = None, seed: int = 42) -> list["sparse.csr_matrix"]:
     """
     Load gene expression datasets from H5AD files.
 
-    Each file is read into a sparse matrix and all datasets are truncated to the smallest row count so
-    every group contributes the same number of cells.
+    Each file is read into a sparse matrix and all datasets are reduced to a common cell count so
+    every group contributes the same number of cells. The common count is the smallest row count,
+    further capped by ``max_cells`` if given. Cells are randomly subsampled (without replacement,
+    keeping their original order) rather than taking the first rows, so ordering in the H5AD files
+    does not bias the sample.
 
     Parameters
     ----------
     cells_paths
         Paths to the H5AD files, one per cell group.
+    max_cells
+        Optional upper limit on the number of cells per group.
+    seed
+        Seed for the random subsampling.
 
     Returns
     -------
     list["sparse.csr_matrix"]
-        Sparse matrices (one per input file), each truncated to the common cell count.
+        Sparse matrices (one per input file), each reduced to the common cell count.
     """
+    import numpy as np
     import scanpy as sc
     from scipy import sparse
 
     matrices = [sparse.csr_matrix(sc.read_h5ad(p).X) for p in cells_paths]
     no_of_cells = int(min(m.shape[0] for m in matrices))
-    return [m[:no_of_cells, :] for m in matrices]
+    if max_cells is not None:
+        no_of_cells = min(no_of_cells, max_cells)
+    logger.info("Using %d cells per group", no_of_cells)
+
+    rng = np.random.default_rng(seed)
+    datasets = []
+    for m in matrices:
+        if m.shape[0] > no_of_cells:
+            idx = np.sort(rng.choice(m.shape[0], size=no_of_cells, replace=False))
+            m = m[idx, :]
+        datasets.append(m)
+    return datasets
 
 
 def get_UMAP_embeddings(datasets: list["sparse.csr_matrix"]) -> list["np.ndarray"]:
@@ -342,7 +361,7 @@ def _best_inset_corner(main_points: "np.ndarray") -> tuple[str, dict[str, int]]:
         that fall in it.
     """
 
-    counts: dict[str, int] = {loc: 0 for loc in _CORNER_LOCATIONS}
+    counts: dict[str, int] = dict.fromkeys(_CORNER_LOCATIONS, 0)
     if main_points.shape[0] == 0:
         return "upper right", counts
     xs = main_points[:, 0]
@@ -506,6 +525,7 @@ def main(
     inset_width: float = 0.35,
     inset_height: float = 0.35,
     centres: list[tuple[float, float]] | None = None,
+    max_cells: int | None = None,
 ) -> None:
     import matplotlib.pyplot as plt
 
@@ -519,7 +539,7 @@ def main(
     colors = _category_colors(len(names))
 
     logger.info("Reading datasets")
-    datasets = read_datasets(cells_paths)
+    datasets = read_datasets(cells_paths, max_cells=max_cells)
 
     logger.info("Computing UMAP embeddings")
     embeddings = get_UMAP_embeddings(datasets)
@@ -636,6 +656,12 @@ def _parse_centres(spec: str) -> list[tuple[float, float]]:
     "assigned to its nearest centre; the largest group is the main region, the rest the inset. "
     "Use when automatic detection fails.",
 )
+@click.option(
+    "--max-cells",
+    type=click.IntRange(min=1),
+    default=None,
+    help="Maximum number of cells per group, randomly subsampled (seed 42). Defaults to the smallest input file's cell count.",
+)
 def cli(
     files: tuple[Path, ...],
     names: str,
@@ -645,6 +671,7 @@ def cli(
     inset_width: float,
     inset_height: float,
     cluster_centres: str | None,
+    max_cells: int | None,
 ) -> None:
     """
     Plot UMAP embeddings of an arbitrary number of cell groups (one H5AD file each), showing the smaller of two disjoint regions as a zoomed inset to reduce whitespace. UMAP is fitted on the first file and used to transform all files.
@@ -662,6 +689,7 @@ def cli(
         inset_width,
         inset_height,
         centres=centres,
+        max_cells=max_cells,
     )
 
 

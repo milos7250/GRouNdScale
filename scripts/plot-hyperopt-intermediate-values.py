@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import optuna
 
 STUDY_NAME = "gan_hyperopt"
-ROOT = Path("paper-arabidopsis")
+ROOT = Path("publication/paper-arabidopsis")
 ENV_FILE = ROOT / "postgres" / ".env"
 CSV_PATH = ROOT / "gan_hyperopt_intermediate.csv"
 PLOT_PATH = ROOT / "gan_hyperopt_intermediate.pdf"

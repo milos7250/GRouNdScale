@@ -1,0 +1,35 @@
+# Copies of the processed datasets (the causal graphs are small and stay tracked)
+*.h5ad
+
+# Per-run outputs: keep the measurements, drop everything the training writes
+/*/results/*/*/*
+!/*/results/*/*/summary.json
+!/*/results/*/*/trace.json
+!/*/results/*/*/nvidia-smi.csv
+!/*/results/*/*/causal_gan.cfg
+
+# compile-overhead nests one level deeper: results/<variant>/g<G>/compiled/
+!/compile-overhead/results/*/*/*
+/compile-overhead/results/*/*/*/*
+!/compile-overhead/results/*/*/*/summary.json
+!/compile-overhead/results/*/*/*/trace.json
+!/compile-overhead/results/*/*/*/nvidia-smi.csv
+!/compile-overhead/results/*/*/*/processes.csv
+!/compile-overhead/results/*/*/*/ballast.json
+!/compile-overhead/results/*/*/*/causal_gan.cfg
+
+# Slurm logs, at any depth
+**/logs/*
+!**/logs/.gitkeep
+__pycache__/
+
+# Allocator snapshots of arabidopsis-ablation/diagnosis (about 18 MB each); the JSON summaries next to them stay
+*.pickle
+# Keep the small traces for reference
+!/allocator-traces/*
+
+# Third-party packages installed with pip --target for the a2 run, see arabidopsis-ablation/README.md
+/arabidopsis-ablation/a2-pydeps/
+
+# The inferred GRNs of data/base are copies of the former size-compare experiment, see data-provenance/
+/*/data/**/*.csv

@@ -1,0 +1,73 @@
+{
+  "experiment": "compile-overhead",
+  "run": "threads8-free8-trim-g10000",
+  "mode": "compiled",
+  "status": "oom",
+  "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 626.00 MiB. GPU 0 has a total capacity of 79.27 GiB of which 405.81 MiB is free. Process 200270 has 71.26 GiB memory in use. Including non-PyTorch memory, this process has 7.60 GiB memory in use. Of the allocated memory 1.36 GiB is allocated by PyTorch, and 57.65 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Me",
+  "hyperparameters": {
+    "B": 1024,
+    "F": 1000,
+    "G": 10000,
+    "k": 15,
+    "d": 2,
+    "w": 1,
+    "n": 1
+  },
+  "graph": {
+    "path": "/mnt/shared/scratch/mmicik/private/Geneformer/simulation/GRouNdScale/publication2/target-gene-num/data/processed/10000/causal_graph.pkl",
+    "total_genes": 11000,
+    "k_min": 15,
+    "k_mean": 15.0,
+    "k_max": 15
+  },
+  "controller": {
+    "complete": true,
+    "steps_recorded": 21,
+    "average_step_time_ms": 27.233,
+    "peak_torch_allocated_mib": 628.47,
+    "peak_torch_reserved_mib": 704.0,
+    "peak_nvidia_smi_mib": 79351,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 16,
+      "peak_torch_allocated_mib": 628.47,
+      "peak_torch_reserved_mib": 704.0,
+      "stage_peak_torch_allocated_mib": {
+        "critic": 628.47,
+        "generator": 533.224
+      }
+    }
+  },
+  "generator": {
+    "complete": false,
+    "steps_recorded": 1,
+    "average_step_time_ms": null,
+    "peak_torch_allocated_mib": 1341.84,
+    "peak_torch_reserved_mib": 1400.0,
+    "peak_nvidia_smi_mib": 80681,
+    "steady_state": {
+      "first_step": 5,
+      "steps": 0,
+      "peak_torch_allocated_mib": null,
+      "peak_torch_reserved_mib": null,
+      "stage_peak_torch_allocated_mib": {}
+    }
+  },
+  "settings": {
+    "units": "mebibytes (2**20 bytes), milliseconds",
+    "warmup_steps": 5,
+    "smi_interval_s": 0.2,
+    "max_steps": {
+      "controller": 20,
+      "generator": 20
+    },
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_total_mib": 81176,
+    "torch": "2.14.0+cu132",
+    "host": "n23-64-512-fawkes.hpc.hutton.ac.uk",
+    "git": {
+      "commit": "a350957dade67fca9c7b0cd81c9f2d330a8ddfc8",
+      "src_modified": false
+    }
+  }
+}

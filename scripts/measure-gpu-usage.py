@@ -72,7 +72,7 @@ def main(gpu_ids: tuple[int] | None, output: Path, frequency: float):
                     (start_time + timedelta(seconds=frequency) * i - now()).total_seconds()
                 )  # Sleep until the next interval
 
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, SystemExit):
             print()
             logger.info("Measurement stopped by user.")
             logger.info(f"Results saved to '{output}'")
