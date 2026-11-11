@@ -39,7 +39,10 @@ class MMD:
 
         med = np.median(med)
         scales = np.array([med / 2, med, med * 2], dtype=np.float32)
-        weights = np.ones(len(scales), dtype=np.float32)
+        # average the kernels over the scales (weights sum to 1), so that 0 <= k(x, y) <= 1 and 0 <= MMD^2 <= 2.
+        # Note: the original GRouNdGAN implementation weights each scale by len(scales) = 3 instead,
+        # so its MMD values are 9 times larger than these.
+        weights = np.full(len(scales), 1 / len(scales), dtype=np.float32)
 
         # Reshape for broadcasting
         self.scales = scales.reshape(-1, 1, 1)
@@ -74,7 +77,8 @@ class MMD:
         b: csr_matrix,
     ) -> np.ndarray:
         """
-        Compute the multi-scale Gaussian kernel between two datasets.
+        Compute the multi-scale Gaussian kernel between two datasets,
+        k(x, y) = sum_s w_s * exp(-||x - y||^2 / s^2), averaged over the scales s (w_s = 1 / n_scales).
 
         Parameters
         ----------
