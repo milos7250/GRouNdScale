@@ -1,0 +1,1165 @@
+{
+  "environment": {
+    "torch": "2.14.0+cu132",
+    "cuda": "13.2",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_memory_gib": 79.279296875,
+    "upstream_commit": "2df087f9144081c46eb6ce0a1daadd273adcc50a"
+  },
+  "calibration_rel_l2": {
+    "fp32": 5.140609432635502e-07,
+    "tf32": 0.0002934762960783674
+  },
+  "trials_ok": 128,
+  "trials_failed": [],
+  "sizes_ok": [
+    10,
+    12,
+    14,
+    17,
+    20,
+    24,
+    29,
+    35,
+    42,
+    50,
+    59,
+    71,
+    85,
+    101,
+    121,
+    145,
+    173,
+    207,
+    247,
+    295,
+    352,
+    421,
+    503,
+    601,
+    719,
+    859,
+    1026,
+    1226,
+    1465,
+    1751,
+    2092,
+    2500
+  ],
+  "genes_range": [
+    10,
+    2500
+  ],
+  "hidden_dims_range": [
+    160,
+    40000
+  ],
+  "density_range": [
+    0.0004,
+    0.24615384615384617
+  ],
+  "sparse_connectivity_ok": true,
+  "dense_weights_masked_ok": true,
+  "dense64_vs_sparse64": {
+    "trials": 88,
+    "output_max_rel": 9.857306908600284e-16,
+    "grad_input_max_rel": 3.3806313570294847e-15,
+    "grad_weight_max_abs": 1.7053025658242404e-13
+  },
+  "precisions": {
+    "fp32": {
+      "layer": {
+        "output": {
+          "sparse_vs_dense": {
+            "max_abs": 7.152557373046875e-07,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271113
+            },
+            "max_rel": 3.3147411710874484e-07,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761113
+            },
+            "max_rel_l2": 1.0568503991788179e-07,
+            "median_max_rel": 1.6016097162447737e-07,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 5.534235616444505e-07,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271113
+            },
+            "max_rel": 2.5209907059974766e-07,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761113
+            },
+            "max_rel_l2": 8.233574007694873e-08,
+            "median_max_rel": 1.2558212870006853e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 4.0911986598501926e-07,
+            "max_abs_at": {
+              "genes": 17,
+              "seed": 20278110
+            },
+            "max_rel": 2.3507495843162918e-07,
+            "max_rel_at": {
+              "genes": 173,
+              "seed": 20434112
+            },
+            "max_rel_l2": 7.528428261633268e-08,
+            "median_max_rel": 1.1299938619801154e-07,
+            "n": 512
+          }
+        },
+        "grad_input": {
+          "sparse_vs_dense": {
+            "max_abs": 1.9550323486328125e-05,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761112
+            },
+            "max_rel": 4.577018722015996e-06,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761112
+            },
+            "max_rel_l2": 1.8743410892172138e-06,
+            "median_max_rel": 2.0817959423824867e-07,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 1.791285365415618e-05,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761112
+            },
+            "max_rel": 4.327656353601776e-06,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel_l2": 1.7090085540293151e-06,
+            "median_max_rel": 1.7651416621374268e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 5.5970613277445125e-06,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761113
+            },
+            "max_rel": 1.310066302622754e-06,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel_l2": 8.526974357993302e-07,
+            "median_max_rel": 1.376114010682608e-07,
+            "n": 512
+          }
+        },
+        "grad_weight": {
+          "sparse_vs_dense": {
+            "max_abs": 0.00025177001953125,
+            "max_abs_at": {
+              "genes": 1465,
+              "seed": 21726110
+            },
+            "max_rel": 1.8216100582020973e-06,
+            "max_rel_at": {
+              "genes": 1465,
+              "seed": 21726110
+            },
+            "max_rel_l2": 5.865840397743193e-07,
+            "median_max_rel": 5.3444607745342e-07,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 2.336742056741059e-05,
+            "max_abs_at": {
+              "genes": 601,
+              "seed": 20862112
+            },
+            "max_rel": 1.6817490659500773e-07,
+            "max_rel_at": {
+              "genes": 2092,
+              "seed": 22353111
+            },
+            "max_rel_l2": 1.0713706035015067e-07,
+            "median_max_rel": 1.0879821558790011e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 0.00024800719174322694,
+            "max_abs_at": {
+              "genes": 1465,
+              "seed": 21726110
+            },
+            "max_rel": 1.7943844536459198e-06,
+            "max_rel_at": {
+              "genes": 1465,
+              "seed": 21726110
+            },
+            "max_rel_l2": 5.76839218766825e-07,
+            "median_max_rel": 5.276125386063742e-07,
+            "n": 512
+          }
+        },
+        "grad_bias": {
+          "sparse_vs_dense": {
+            "max_abs": 0.0,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel": 0.0,
+            "max_rel_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel_l2": 0.0,
+            "median_max_rel": 0.0,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 2.0422179659362882e-05,
+            "max_abs_at": {
+              "genes": 601,
+              "seed": 20862110
+            },
+            "max_rel": 1.8640410020057772e-07,
+            "max_rel_at": {
+              "genes": 24,
+              "seed": 20285110
+            },
+            "max_rel_l2": 1.301493935564824e-07,
+            "median_max_rel": 1.0285912408097908e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 2.0422179659362882e-05,
+            "max_abs_at": {
+              "genes": 601,
+              "seed": 20862110
+            },
+            "max_rel": 1.8640410020057772e-07,
+            "max_rel_at": {
+              "genes": 24,
+              "seed": 20285110
+            },
+            "max_rel_l2": 1.301493935564824e-07,
+            "median_max_rel": 1.0285912408097908e-07,
+            "n": 512
+          }
+        },
+        "by_kind": {
+          "input": {
+            "max_abs": 7.152557373046875e-07,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271113
+            },
+            "max_rel": 3.3147411710874484e-07,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761113
+            },
+            "max_rel_l2": 1.0568503991788179e-07,
+            "median_max_rel": 2.2184575033733826e-07,
+            "n": 128
+          },
+          "hidden": {
+            "max_abs": 3.5762786865234375e-07,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel": 2.518696282505035e-07,
+            "max_rel_at": {
+              "genes": 601,
+              "seed": 20862111
+            },
+            "max_rel_l2": 8.0226113708865e-08,
+            "median_max_rel": 1.5280629702505525e-07,
+            "n": 256
+          },
+          "output": {
+            "max_abs": 4.76837158203125e-07,
+            "max_abs_at": {
+              "genes": 12,
+              "seed": 20273112
+            },
+            "max_rel": 2.0205654498529668e-07,
+            "max_rel_at": {
+              "genes": 85,
+              "seed": 20346110
+            },
+            "max_rel_l2": 8.032778830957869e-08,
+            "median_max_rel": 1.2938295303002748e-07,
+            "n": 128
+          }
+        }
+      },
+      "end_to_end": {
+        "output": {
+          "sparse_vs_dense": {
+            "max_abs": 8.344650268554688e-07,
+            "max_abs_at": {
+              "genes": 17,
+              "seed": 20278110
+            },
+            "max_rel": 6.095911430086635e-07,
+            "max_rel_at": {
+              "genes": 12,
+              "seed": 20273113
+            },
+            "max_rel_l2": 4.3435453304584783e-07,
+            "median_max_rel": 3.8448446045360705e-07,
+            "n": 128
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 6.933768550987374e-07,
+            "max_abs_at": {
+              "genes": 12,
+              "seed": 20273113
+            },
+            "max_rel": 5.430700502992609e-07,
+            "max_rel_at": {
+              "genes": 85,
+              "seed": 20346111
+            },
+            "max_rel_l2": 3.6902264945501554e-07,
+            "median_max_rel": 3.0067415824334865e-07,
+            "n": 128
+          },
+          "dense_vs_fp64": {
+            "max_abs": 6.649290605897917e-07,
+            "max_abs_at": {
+              "genes": 17,
+              "seed": 20278110
+            },
+            "max_rel": 5.055328722780717e-07,
+            "max_rel_at": {
+              "genes": 24,
+              "seed": 20285110
+            },
+            "max_rel_l2": 2.894986047153573e-07,
+            "median_max_rel": 2.755743403231267e-07,
+            "n": 128
+          }
+        },
+        "grad_input": {
+          "sparse_vs_dense": {
+            "max_abs": 0.12477501295506954,
+            "max_abs_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel": 0.11568808817313854,
+            "max_rel_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel_l2": 0.0043632805086655,
+            "median_max_rel": 3.008124100579682e-05,
+            "n": 128
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 0.12477500321547566,
+            "max_abs_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel": 0.11568807563628693,
+            "max_rel_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel_l2": 0.004363279498254394,
+            "median_max_rel": 1.5158210751280475e-06,
+            "n": 128
+          },
+          "dense_vs_fp64": {
+            "max_abs": 0.050439975526341,
+            "max_abs_at": {
+              "genes": 207,
+              "seed": 20468113
+            },
+            "max_rel": 0.04580632813259056,
+            "max_rel_at": {
+              "genes": 207,
+              "seed": 20468113
+            },
+            "max_rel_l2": 0.0019488090357238867,
+            "median_max_rel": 5.885157134033843e-07,
+            "n": 128
+          }
+        },
+        "grad_weight": {
+          "sparse_vs_dense": {
+            "max_abs": 3.3965225219726562,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761113
+            },
+            "max_rel": 0.04513526089901859,
+            "max_rel_at": {
+              "genes": 1751,
+              "seed": 22012110
+            },
+            "max_rel_l2": 0.002936854258074973,
+            "median_max_rel": 5.942747034658838e-07,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 1.400050781971118,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel": 0.02679418476273916,
+            "max_rel_at": {
+              "genes": 601,
+              "seed": 20862110
+            },
+            "max_rel_l2": 0.002936850936629591,
+            "median_max_rel": 3.2421819413076425e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 3.396520126657487,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761113
+            },
+            "max_rel": 0.0451352362917603,
+            "max_rel_at": {
+              "genes": 1751,
+              "seed": 22012110
+            },
+            "max_rel_l2": 0.002146523386413033,
+            "median_max_rel": 5.276571163996992e-07,
+            "n": 512
+          }
+        },
+        "grad_bias": {
+          "sparse_vs_dense": {
+            "max_abs": 1.5778999328613281,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel": 0.017148866290193725,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel_l2": 0.0013757514152561924,
+            "median_max_rel": 0.0,
+            "n": 128
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 1.0222203775774688,
+            "max_abs_at": {
+              "genes": 859,
+              "seed": 21120112
+            },
+            "max_rel": 0.012724485249268632,
+            "max_rel_at": {
+              "genes": 859,
+              "seed": 21120112
+            },
+            "max_rel_l2": 0.001547793724829194,
+            "median_max_rel": 1.0171468124364232e-07,
+            "n": 128
+          },
+          "dense_vs_fp64": {
+            "max_abs": 1.5779017234453931,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel": 0.017148885336976123,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel_l2": 0.001547793724829194,
+            "median_max_rel": 1.0523533020522677e-07,
+            "n": 128
+          }
+        },
+        "grad_batchnorm": {
+          "sparse_vs_dense": {
+            "max_abs": 0.06113934516906738,
+            "max_abs_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel": 0.03531111591102596,
+            "max_rel_at": {
+              "genes": 1026,
+              "seed": 21287110
+            },
+            "max_rel_l2": 0.0033117109930068936,
+            "median_max_rel": 4.167322722462129e-07,
+            "n": 768
+          },
+          "sparse_vs_fp64": null,
+          "dense_vs_fp64": null
+        },
+        "grad_bias_before_bn": {
+          "sparse_vs_dense": {
+            "max_abs": 3.528594970703125e-05,
+            "max_abs_at": {
+              "genes": 601,
+              "seed": 20862113
+            },
+            "max_rel": 2.8095238095238093,
+            "max_rel_at": {
+              "genes": 173,
+              "seed": 20434110
+            },
+            "max_rel_l2": 1.5793125693048724,
+            "median_max_rel": 1.25,
+            "n": 384
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 2.7179718012249054e-05,
+            "max_abs_at": {
+              "genes": 173,
+              "seed": 20434110
+            },
+            "max_rel": 1395864370.2,
+            "max_rel_at": {
+              "genes": 17,
+              "seed": 20278111
+            },
+            "max_rel_l2": 762368878.3362025,
+            "median_max_rel": 543581798.9875,
+            "n": 384
+          },
+          "dense_vs_fp64": {
+            "max_abs": 2.9563903801488323e-05,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761112
+            },
+            "max_rel": 1380525202.2857144,
+            "max_rel_at": {
+              "genes": 14,
+              "seed": 20275113
+            },
+            "max_rel_l2": 762150360.3787189,
+            "median_max_rel": 512417164.62939954,
+            "n": 384
+          }
+        }
+      },
+      "relu_flips": {
+        "trials": 128,
+        "units_per_comparison": 3065151488,
+        "sparse_vs_dense": 236,
+        "sparse_vs_fp64": 197,
+        "dense_vs_fp64": 165,
+        "trials_without_sparse_dense_flip": 57
+      },
+      "end_to_end_same_relu_pattern": {
+        "output": {
+          "max_abs": 8.344650268554688e-07,
+          "max_abs_at": {
+            "genes": 17,
+            "seed": 20278110
+          },
+          "max_rel": 6.095911430086635e-07,
+          "max_rel_at": {
+            "genes": 12,
+            "seed": 20273113
+          },
+          "max_rel_l2": 4.3435453304584783e-07,
+          "median_max_rel": 3.8743029467532436e-07,
+          "n": 57
+        },
+        "grad_input": {
+          "max_abs": 2.205371856689453e-06,
+          "max_abs_at": {
+            "genes": 295,
+            "seed": 20556112
+          },
+          "max_rel": 2.074092410794967e-06,
+          "max_rel_at": {
+            "genes": 295,
+            "seed": 20556112
+          },
+          "max_rel_l2": 7.368853153225574e-07,
+          "median_max_rel": 5.584947505333101e-07,
+          "n": 57
+        },
+        "grad_weight": {
+          "max_abs": 5.7220458984375e-05,
+          "max_abs_at": {
+            "genes": 247,
+            "seed": 20508112
+          },
+          "max_rel": 1.070990203117117e-06,
+          "max_rel_at": {
+            "genes": 173,
+            "seed": 20434110
+          },
+          "max_rel_l2": 6.237439943716393e-07,
+          "median_max_rel": 4.2674784642790236e-07,
+          "n": 228
+        },
+        "grad_bias": {
+          "max_abs": 0.0,
+          "max_abs_at": {
+            "genes": 10,
+            "seed": 20271110
+          },
+          "max_rel": 0.0,
+          "max_rel_at": {
+            "genes": 10,
+            "seed": 20271110
+          },
+          "max_rel_l2": 0.0,
+          "median_max_rel": 0.0,
+          "n": 57
+        },
+        "grad_batchnorm": {
+          "max_abs": 5.245208740234375e-06,
+          "max_abs_at": {
+            "genes": 20,
+            "seed": 20281113
+          },
+          "max_rel": 7.883266877393556e-07,
+          "max_rel_at": {
+            "genes": 20,
+            "seed": 20281113
+          },
+          "max_rel_l2": 5.860454782053066e-07,
+          "median_max_rel": 3.3345063442113137e-07,
+          "n": 342
+        }
+      },
+      "masked_out_positions_checked": 90788746048,
+      "masked_out_grad_nonzeros": 0
+    },
+    "tf32": {
+      "layer": {
+        "output": {
+          "sparse_vs_dense": {
+            "max_abs": 0.001074075698852539,
+            "max_abs_at": {
+              "genes": 12,
+              "seed": 20273112
+            },
+            "max_rel": 0.0006939839864661645,
+            "max_rel_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel_l2": 0.0003489521371389859,
+            "median_max_rel": 0.0003576091494202311,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 4.4916468944222743e-07,
+            "max_abs_at": {
+              "genes": 12,
+              "seed": 20273111
+            },
+            "max_rel": 2.4104174896758033e-07,
+            "max_rel_at": {
+              "genes": 101,
+              "seed": 20362110
+            },
+            "max_rel_l2": 8.281263103428858e-08,
+            "median_max_rel": 1.2673036435538257e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 0.0010741856455762644,
+            "max_abs_at": {
+              "genes": 12,
+              "seed": 20273112
+            },
+            "max_rel": 0.0006938533529408136,
+            "max_rel_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel_l2": 0.0003489581903770549,
+            "median_max_rel": 0.0003576865843764542,
+            "n": 512
+          }
+        },
+        "grad_input": {
+          "sparse_vs_dense": {
+            "max_abs": 0.0017230510711669922,
+            "max_abs_at": {
+              "genes": 24,
+              "seed": 20285110
+            },
+            "max_rel": 0.0007410751604173002,
+            "max_rel_at": {
+              "genes": 1026,
+              "seed": 21287110
+            },
+            "max_rel_l2": 0.0003116124959802038,
+            "median_max_rel": 0.00035992500105998465,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 1.6720760758648368e-05,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761112
+            },
+            "max_rel": 4.196083221306163e-06,
+            "max_rel_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel_l2": 1.7052304112188086e-06,
+            "median_max_rel": 1.748717866999492e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 0.0017232370517117346,
+            "max_abs_at": {
+              "genes": 24,
+              "seed": 20285110
+            },
+            "max_rel": 0.0007414104103020138,
+            "max_rel_at": {
+              "genes": 1026,
+              "seed": 21287110
+            },
+            "max_rel_l2": 0.00031162244801625653,
+            "median_max_rel": 0.00035994855198715826,
+            "n": 512
+          }
+        },
+        "grad_weight": {
+          "sparse_vs_dense": {
+            "max_abs": 0.05492973327636719,
+            "max_abs_at": {
+              "genes": 1465,
+              "seed": 21726112
+            },
+            "max_rel": 0.0005046438042174857,
+            "max_rel_at": {
+              "genes": 14,
+              "seed": 20275113
+            },
+            "max_rel_l2": 0.00037092583035558424,
+            "median_max_rel": 0.00030047076912416025,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 2.336742056741059e-05,
+            "max_abs_at": {
+              "genes": 601,
+              "seed": 20862112
+            },
+            "max_rel": 1.6817490659500773e-07,
+            "max_rel_at": {
+              "genes": 2092,
+              "seed": 22353111
+            },
+            "max_rel_l2": 1.0713706035015067e-07,
+            "median_max_rel": 1.0879821558790011e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 0.054929645922769055,
+            "max_abs_at": {
+              "genes": 1465,
+              "seed": 21726112
+            },
+            "max_rel": 0.0005045290354896518,
+            "max_rel_at": {
+              "genes": 14,
+              "seed": 20275113
+            },
+            "max_rel_l2": 0.00037093571947825976,
+            "median_max_rel": 0.0003004544413014724,
+            "n": 512
+          }
+        },
+        "grad_bias": {
+          "sparse_vs_dense": {
+            "max_abs": 0.0,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel": 0.0,
+            "max_rel_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel_l2": 0.0,
+            "median_max_rel": 0.0,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 2.0422179659362882e-05,
+            "max_abs_at": {
+              "genes": 601,
+              "seed": 20862110
+            },
+            "max_rel": 1.8640410020057772e-07,
+            "max_rel_at": {
+              "genes": 24,
+              "seed": 20285110
+            },
+            "max_rel_l2": 1.301493935564824e-07,
+            "median_max_rel": 1.0285912408097908e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 2.0422179659362882e-05,
+            "max_abs_at": {
+              "genes": 601,
+              "seed": 20862110
+            },
+            "max_rel": 1.8640410020057772e-07,
+            "max_rel_at": {
+              "genes": 24,
+              "seed": 20285110
+            },
+            "max_rel_l2": 1.301493935564824e-07,
+            "median_max_rel": 1.0285912408097908e-07,
+            "n": 512
+          }
+        },
+        "by_kind": {
+          "input": {
+            "max_abs": 0.0010029077529907227,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271113
+            },
+            "max_rel": 0.0004543292027512248,
+            "max_rel_at": {
+              "genes": 1751,
+              "seed": 22012110
+            },
+            "max_rel_l2": 0.00032435406852495584,
+            "median_max_rel": 0.00036311709961627696,
+            "n": 128
+          },
+          "hidden": {
+            "max_abs": 0.0010702461004257202,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel": 0.0005423796418122533,
+            "max_rel_at": {
+              "genes": 14,
+              "seed": 20275110
+            },
+            "max_rel_l2": 0.00031315928177166126,
+            "median_max_rel": 0.0003563471413952047,
+            "n": 256
+          },
+          "output": {
+            "max_abs": 0.001074075698852539,
+            "max_abs_at": {
+              "genes": 12,
+              "seed": 20273112
+            },
+            "max_rel": 0.0006939839864661645,
+            "max_rel_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel_l2": 0.0003489521371389859,
+            "median_max_rel": 0.0003461574328299155,
+            "n": 128
+          }
+        }
+      },
+      "end_to_end": {
+        "output": {
+          "sparse_vs_dense": {
+            "max_abs": 0.001848757266998291,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel": 0.0012852310015256255,
+            "max_rel_at": {
+              "genes": 17,
+              "seed": 20278111
+            },
+            "max_rel_l2": 0.00105022353257155,
+            "median_max_rel": 0.0008473000641229322,
+            "n": 128
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 7.364001015641719e-07,
+            "max_abs_at": {
+              "genes": 24,
+              "seed": 20285112
+            },
+            "max_rel": 5.431574672561927e-07,
+            "max_rel_at": {
+              "genes": 35,
+              "seed": 20296110
+            },
+            "max_rel_l2": 3.4259689631195146e-07,
+            "median_max_rel": 2.8980160071933156e-07,
+            "n": 128
+          },
+          "dense_vs_fp64": {
+            "max_abs": 0.0018487191135666547,
+            "max_abs_at": {
+              "genes": 10,
+              "seed": 20271110
+            },
+            "max_rel": 0.0012849851454765286,
+            "max_rel_at": {
+              "genes": 17,
+              "seed": 20278111
+            },
+            "max_rel_l2": 0.0010502587501746705,
+            "median_max_rel": 0.0008475000157990933,
+            "n": 128
+          }
+        },
+        "grad_input": {
+          "sparse_vs_dense": {
+            "max_abs": 1.6650450229644775,
+            "max_abs_at": {
+              "genes": 14,
+              "seed": 20275112
+            },
+            "max_rel": 0.577857890269551,
+            "max_rel_at": {
+              "genes": 14,
+              "seed": 20275112
+            },
+            "max_rel_l2": 0.07426955954217579,
+            "median_max_rel": 0.22089548485236993,
+            "n": 128
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 0.12736155830741894,
+            "max_abs_at": {
+              "genes": 71,
+              "seed": 20332110
+            },
+            "max_rel": 0.11568814838596016,
+            "max_rel_at": {
+              "genes": 352,
+              "seed": 20613110
+            },
+            "max_rel_l2": 0.006111926382675098,
+            "median_max_rel": 1.1335665869621496e-06,
+            "n": 128
+          },
+          "dense_vs_fp64": {
+            "max_abs": 1.6650451838024067,
+            "max_abs_at": {
+              "genes": 14,
+              "seed": 20275112
+            },
+            "max_rel": 0.5775670097094331,
+            "max_rel_at": {
+              "genes": 14,
+              "seed": 20275112
+            },
+            "max_rel_l2": 0.07443191695939941,
+            "median_max_rel": 0.22089319358032142,
+            "n": 128
+          }
+        },
+        "grad_weight": {
+          "sparse_vs_dense": {
+            "max_abs": 16.579025268554688,
+            "max_abs_at": {
+              "genes": 1226,
+              "seed": 21487113
+            },
+            "max_rel": 0.33731967007512176,
+            "max_rel_at": {
+              "genes": 17,
+              "seed": 20278113
+            },
+            "max_rel_l2": 0.0820278018077172,
+            "median_max_rel": 0.08444697528465071,
+            "n": 512
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 3.396518219308854,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761113
+            },
+            "max_rel": 0.04513523279957435,
+            "max_rel_at": {
+              "genes": 1751,
+              "seed": 22012110
+            },
+            "max_rel_l2": 0.005500906742630097,
+            "median_max_rel": 3.2629404566782936e-07,
+            "n": 512
+          },
+          "dense_vs_fp64": {
+            "max_abs": 16.579022481460868,
+            "max_abs_at": {
+              "genes": 1226,
+              "seed": 21487113
+            },
+            "max_rel": 0.31135472504005923,
+            "max_rel_at": {
+              "genes": 17,
+              "seed": 20278113
+            },
+            "max_rel_l2": 0.08185719086991901,
+            "median_max_rel": 0.08426216796490366,
+            "n": 512
+          }
+        },
+        "grad_bias": {
+          "sparse_vs_dense": {
+            "max_abs": 4.984458923339844,
+            "max_abs_at": {
+              "genes": 85,
+              "seed": 20346110
+            },
+            "max_rel": 0.10109388146683869,
+            "max_rel_at": {
+              "genes": 85,
+              "seed": 20346110
+            },
+            "max_rel_l2": 0.05836907584147805,
+            "median_max_rel": 0.03692993899024657,
+            "n": 128
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 1.5779017234453931,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel": 0.019745199399500726,
+            "max_rel_at": {
+              "genes": 71,
+              "seed": 20332110
+            },
+            "max_rel_l2": 0.006813859411608562,
+            "median_max_rel": 1.0315471773700429e-07,
+            "n": 128
+          },
+          "dense_vs_fp64": {
+            "max_abs": 4.984459039056674,
+            "max_abs_at": {
+              "genes": 85,
+              "seed": 20346110
+            },
+            "max_rel": 0.10109388967038754,
+            "max_rel_at": {
+              "genes": 85,
+              "seed": 20346110
+            },
+            "max_rel_l2": 0.05941138291192894,
+            "median_max_rel": 0.036913577207159314,
+            "n": 128
+          }
+        },
+        "grad_batchnorm": {
+          "sparse_vs_dense": {
+            "max_abs": 0.9960110113024712,
+            "max_abs_at": {
+              "genes": 17,
+              "seed": 20278112
+            },
+            "max_rel": 0.22381397737468384,
+            "max_rel_at": {
+              "genes": 1226,
+              "seed": 21487113
+            },
+            "max_rel_l2": 0.0983044447510872,
+            "median_max_rel": 0.05912382705116122,
+            "n": 768
+          },
+          "sparse_vs_fp64": null,
+          "dense_vs_fp64": null
+        },
+        "grad_bias_before_bn": {
+          "sparse_vs_dense": {
+            "max_abs": 3.814697265625e-05,
+            "max_abs_at": {
+              "genes": 503,
+              "seed": 20764113
+            },
+            "max_rel": 2.888888888888889,
+            "max_rel_at": {
+              "genes": 14,
+              "seed": 20275110
+            },
+            "max_rel_l2": 1.7559453240639438,
+            "median_max_rel": 1.4609797297297296,
+            "n": 384
+          },
+          "sparse_vs_fp64": {
+            "max_abs": 3.0517578125e-05,
+            "max_abs_at": {
+              "genes": 2500,
+              "seed": 22761110
+            },
+            "max_rel": 1423875027.2173913,
+            "max_rel_at": {
+              "genes": 173,
+              "seed": 20434110
+            },
+            "max_rel_l2": 797743634.0595032,
+            "median_max_rel": 565912174.2010233,
+            "n": 384
+          },
+          "dense_vs_fp64": {
+            "max_abs": 2.6702880873585855e-05,
+            "max_abs_at": {
+              "genes": 1226,
+              "seed": 21487113
+            },
+            "max_rel": 1073741824.1818182,
+            "max_rel_at": {
+              "genes": 421,
+              "seed": 20682110
+            },
+            "max_rel_l2": 726959458.5404181,
+            "median_max_rel": 510541118.4838517,
+            "n": 384
+          }
+        }
+      },
+      "relu_flips": {
+        "trials": 128,
+        "units_per_comparison": 3065151488,
+        "sparse_vs_dense": 532754,
+        "sparse_vs_fp64": 179,
+        "dense_vs_fp64": 532763,
+        "trials_without_sparse_dense_flip": 0
+      },
+      "end_to_end_same_relu_pattern": {
+        "output": null,
+        "grad_input": null,
+        "grad_weight": null,
+        "grad_bias": null,
+        "grad_batchnorm": null
+      },
+      "masked_out_positions_checked": 90788746048,
+      "masked_out_grad_nonzeros": 0
+    }
+  }
+}

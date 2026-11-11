@@ -1,0 +1,18 @@
+# PBMC model of the paper trained with the original implementation (upstream/). Tracks only the scripts, configs,
+# metrics, causal graph and summary figures (PNG, the only format the original code writes); everything else
+# (checkpoints, TensorBoard, per-step and per-run images, datasets, simulated cells, inferred GRNs, logs) stays local.
+*
+!*/
+!.gitignore
+!*.sh
+!*.py
+!*.patch
+!*.cfg
+.config.*.cfg
+!*.json
+!*.txt
+!data/processed/*/causal_graph.pkl
+!gpu_usage.png
+!results/GRouNdGAN*.png
+!results/GRouNdGAN/generated*/*.png
+!results/GRouNdGAN/infer_grn_*/generated/*.png

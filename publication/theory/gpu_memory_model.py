@@ -39,6 +39,11 @@ temporary tensors (`temp`).
 
 from __future__ import annotations
 
+try:
+    import rich_click as click
+except ImportError:
+    import click
+
 FLOAT_BYTES = 4
 INT64_BYTES = 8
 
@@ -324,3 +329,104 @@ def compute_compile(
         + gen_sparse["grad"]
         + temporaries
     )
+
+
+# Networks whose breakdown the CLI can print, and the peak estimates it can print as a single total.
+NETWORKS = ("gen", "sparse-gen", "cc", "crit", "labeler")
+PEAKS = ("dense", "sparse", "compile")
+UNITS = {"B": 1, "KiB": 2**10, "MiB": 2**20, "GiB": 2**30}
+
+
+@click.command(
+    context_settings={"show_default": True, "help_option_names": ["-h", "--help"]},
+    epilog="'dense', 'sparse' and 'compile' are peak totals (compute_all and compute_compile); 'gen', 'sparse-gen', "
+    "'cc', 'crit' and 'labeler' are per-network breakdowns. Defaults are the main configuration.",
+)
+@click.argument("models", nargs=-1, type=click.Choice(NETWORKS + PEAKS))
+@click.option("-F", "F", type=click.IntRange(min=1), required=True, help="Number of TFs.")
+@click.option("-G", "G", type=click.IntRange(min=1), required=True, help="Number of target genes.")
+@click.option("-B", "--batch-size", type=click.IntRange(min=1), default=1024)
+@click.option("-k", type=click.IntRange(min=0), default=15, help="TFs per target gene.")
+@click.option("-w", type=click.IntRange(min=1), default=1, help="Width multiplier of the generator.")
+@click.option("-d", type=click.IntRange(min=0), default=2, help="Number of hidden layers of the generator.")
+@click.option("-n", type=click.IntRange(min=0), default=1, help="Noise dimensions per gene.")
+@click.option(
+    "--latent-dim", type=click.IntRange(min=1), default=128, help="Latent dimension of the causal controller."
+)
+@click.option(
+    "--cc-layers",
+    type=(int, int, int),
+    default=(256, 512, 1024),
+    metavar="W1 W2 W3",
+    help="Causal-controller layer widths.",
+)
+@click.option(
+    "--crit-layers", type=(int, int, int), default=(1024, 512, 256), metavar="W1 W2 W3", help="Critic layer widths."
+)
+@click.option(
+    "--labeler-layers",
+    type=(int, int, int),
+    default=(2000, 2000, 2000),
+    metavar="W1 W2 W3",
+    help="Labeler layer widths.",
+)
+@click.option("--unit", type=click.Choice(list(UNITS)), default="GiB")
+def main(
+    models: tuple[str, ...],
+    F: int,
+    G: int,
+    batch_size: int,
+    k: int,
+    w: int,
+    d: int,
+    n: int,
+    latent_dim: int,
+    cc_layers: tuple[int, int, int],
+    crit_layers: tuple[int, int, int],
+    labeler_layers: tuple[int, int, int],
+    unit: str,
+) -> None:
+    """Print the analytic GPU-memory estimates of MODELS (default: dense sparse compile) of the causal GAN."""
+    architecture: Architecture = {
+        "latent_dim": latent_dim,
+        "cc_layers": cc_layers,
+        "crit_layers": crit_layers,
+        "labeler_layers": labeler_layers,
+    }
+    B = batch_size
+    generator = (B, F, G, k, w, d, n)
+    networks = {
+        "gen": lambda: compute_gen(*generator),
+        "sparse-gen": lambda: compute_sparse_gen(*generator),
+        "cc": lambda: compute_cc(F, G, B, latent_dim, cc_layers),
+        "crit": lambda: compute_crit(F, G, B, crit_layers),
+        "labeler": lambda: compute_labeler(F, G, B, labeler_layers),
+    }
+    peaks = {
+        "dense": lambda: compute_all(*generator, architecture)[0],
+        "sparse": lambda: compute_all(*generator, architecture)[1],
+        "compile": lambda: compute_compile(*generator, architecture),
+    }
+    scale = UNITS[unit]
+    models = tuple(dict.fromkeys(models)) or PEAKS  # drop repeats, keep order
+
+    click.echo(f"B={B}, F={F}, G={G}, k={k}, w={w}, d={d}, n={n}; memory in {unit}")
+    chosen = [m for m in models if m in networks]
+    if chosen:
+        columns = ("model", "grad", "opt", "act", "temp", "total")
+        click.echo(f"\n{'network':<12}" + "".join(f"{c:>14}" for c in columns))
+        for name in chosen:
+            parts = networks[name]()
+            values = [parts[c] for c in columns[:-1]]
+            click.echo(f"{name:<12}" + "".join(f"{v / scale:>14,.3f}" for v in [*values, sum(values)]))
+        if "labeler" in chosen:
+            click.echo("(the labeler row is also that of the identical antilabeler)")
+    chosen = [m for m in models if m in peaks]
+    if chosen:
+        click.echo(f"\n{'peak':<12}{'total':>14}")
+        for name in chosen:
+            click.echo(f"{name:<12}{peaks[name]() / scale:>14,.3f}")
+
+
+if __name__ == "__main__":
+    main()

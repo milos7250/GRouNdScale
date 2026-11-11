@@ -27,6 +27,8 @@ All runs have finished, see [Results](#results).
 | `data-provenance/` | Config and Slurm script of the former `size-compare` experiment, which preprocessed the dataset and inferred the GRN in `data/base`, see [Data](#data). Kept as a record; their relative paths are those of the old directory. |
 | `paper-v4/` | The PBMC model of the paper trained with the current code (generator depth 2, width 1): config, evaluation metrics, run statistics and figures. |
 | `paper-v4-big/` | The same with a larger generator (depth 3, width 2). |
+| `paper-v2-upstream/` | The PBMC model of the paper trained with the original implementation (`upstream/`, generator depth 2, width 1, k = 15): configs, scripts, evaluation metrics, memory and parameter counts, and figures. |
+| `paper-v2-big-upstream/` | The same with a larger generator (depth 3, width 2, k = 14); `optimizer.patch` is a patch to torch's `optimizer.py` used for this run. |
 | `paper-arabidopsis/` | The Arabidopsis model of the paper: data, hyperparameter searches of the GAN (`gan_hyperopt/`, whose best trial gives the causal controller) and the causal GAN (`causal-gan/`), and the evaluations `causal-gan-eval-trial2` and `causal-gan-eval-trial4`. The input of `arabidopsis-ablation/`. |
 | `paper-grn-plots/` | PR curve and top TF precision of the simulated PBMC-All dataset published with the GRouNdGAN paper (the *paper* row of the results figure): GRNBoost2 with the TF list and `--benchmark_grn` of the original implementation in its image. See its README. |
 
